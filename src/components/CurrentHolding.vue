@@ -62,6 +62,7 @@
 </script>
 
 <style scoped>
+  *
   h1, h2 {
     font-weight: normal;
   }
@@ -111,5 +112,25 @@
     width: 96%;
     margin: 0 2%;
     padding-bottom: 5px;
+  }
+
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    .currentHoldingComponents{
+      margin-top:60%;
+      margin-bottom: 20px;
+      overflow: scroll;
+    }
+    .current-holding-thead-tr th{
+      text-align: center;
+    }
+    .curHoldingTable {
+      font-size: 1rem;
+      word-break: keep-all;
+    }
+
   }
 </style>

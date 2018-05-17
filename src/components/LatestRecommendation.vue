@@ -56,6 +56,7 @@
 </script>
 
 <style scoped>
+  *
   html,body{
     height: auto!important;
   }
@@ -125,6 +126,48 @@
   }
   .Red{
     color: red;
+  }
+
+  /*
+屏幕兼容(手机)
+ */
+  @media screen and (max-width:600px)
+  {
+    .recommendation-items {
+      width: 102%;
+      height:4rem;
+      margin: auto;
+      color: #5F5F5F;
+      line-height: 4rem;
+      font-size: 1.6rem;
+    }
+
+    .recommendation{
+      width: 25%;
+      height: 100%;
+      background: #e0e0e0;
+      background: #ffffff;
+      /*padding: 2% 10%;*/
+    }
+
+    .recommendation_time{
+      width: 100%;
+      height:1rem;
+      color: #5F5F5F;
+      line-height: 2rem;
+      font-size: 1rem;
+    }
+    .recommendation_income{
+      width: 100%;
+      height:1rem;
+      color: #5F5F5F;
+      font-size: 1rem;
+    }
+
+    .cover {
+      display: none;
+    }
+
   }
 </style>
 

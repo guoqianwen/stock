@@ -155,6 +155,7 @@
 </script>
 
 <style scoped>
+  *
   .transactionRecord {
     width: 96%;
     height: auto;
@@ -200,5 +201,19 @@
 
   tr > th {
     text-align: center;
+  }
+
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    /*.transactionRecordTable {*/
+    .list {
+      font-size: 0.5rem;
+      word-break: keep-all;
+      padding: 0px;
+      overflow: scroll;
+    }
   }
 </style>

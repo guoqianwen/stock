@@ -104,11 +104,30 @@
 </script>
 
 <style scoped>
+  body{
+    background: #ffffff!important;
+    height: 100%;
+    width: 100%;
+  }
+  .content {
+    background: #ffffff;
+  }
+  .container{
+    background: #ffffff;
+  }
+  h3{
+    text-align: center;
+  }
   .login-wrap{
     text-align:center;
+    background: #ffffff;
+  }
+  .register-wrap{
+    background: #ffffff;
   }
   .login-wrap,register-wrap>h3{
     text-align: center;
+
   }
   input{
     display:block;

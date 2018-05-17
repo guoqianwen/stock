@@ -147,6 +147,7 @@
   }
 </script>
 <style>
+  *
   .marketTrendComponents{
    padding: 20px 0;
   }
@@ -186,5 +187,52 @@
   }
   .activeBtn{
     background-color: #D4D4D4;
+  }
+
+  /*
+ 屏幕兼容(手机)
+  */
+  @media screen and (max-width:600px){
+    .marketTrendComponents{
+      padding: 20px 0;
+    }
+    h1, h2 {
+      font-weight: normal;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+    .marketTrendRow{
+      width: 96%;
+      height: auto;
+      background: #ffffff;
+      margin:0 2%;
+    }
+    .marketTrendHeader{
+      width: 96%;
+      border-bottom: 1px solid #EEF1F5;
+      margin: 0 2%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .btn-group{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+    button{
+      background-color: #ffffff;
+    }
+    .activeBtn{
+      background-color: #D4D4D4;
+    }
+
   }
 </style>

@@ -137,6 +137,7 @@
 </script>
 
 <style scoped>
+  *
   .profitRecord{
     width: 96%;
     height: auto;
@@ -185,4 +186,17 @@
   td>a{
     cursor: pointer;
   }
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    .profitRecordTable {
+      font-size: 0.5rem;
+      word-break: keep-all;
+      padding: 0px;
+      overflow: scroll;
+    }
+  }
+
 </style>

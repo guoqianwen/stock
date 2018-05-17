@@ -299,7 +299,7 @@
 
 
 <style>
-
+*
   ::-webkit-scrollbar{
     width: 0px;
     height: 0px;
@@ -674,5 +674,36 @@
   }
   .activeIcon{
     color: #806EB2;
+  }
+
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    .main_ft{
+      min-height: 3rem;
+      display: flex;
+      flex-direction: row;
+      /* border-bottom: 1px solid #DCC6F1;*/
+      justify-content: space-between;
+    }
+    .main_ft-left{
+      display: flex;
+      font-size: 1rem;
+      line-height:  1rem;
+    }
+    .main_ft-right{
+      /*display: flex;*/
+      margin-top: 20px;
+    }
+    .main_ft-left-time{
+      color: #9B9B9B;
+    }
+    .main_ft-left-comment{
+      color: #A376B8;
+      margin-left: 12px;
+      cursor: pointer;
+    }
   }
 </style>

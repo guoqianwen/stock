@@ -271,6 +271,7 @@
 </script>
 
 <style scoped>
+  *
   .virtualAccountBox {
     display: flex;
     flex-direction: row;
@@ -328,5 +329,37 @@
   .data_box {
     width: 63%;
     text-align: right;
+  }
+
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    .virtualAccountC4 {
+      position: absolute;
+      background: #ffffff;
+      height: 30%;
+      width: 95%;
+    }
+    .yourClassName {
+      margin-left: 1%;
+    }
+    .virtualAccountC8 {
+      margin-top: 200px;
+      margin-left: -0.1px;
+    }
+    .col-md-12 table {
+      font-size: 0.5rem;
+      word-break: keep-all;
+      padding: 0px;
+    }
+    .col-md-12 table td {
+      width: 20%;
+    }
+    .data_box {
+      width: 100%;
+      text-align: right;
+    }
   }
 </style>

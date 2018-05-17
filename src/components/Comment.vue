@@ -37,6 +37,7 @@
 </script>
 
 <style scoped>
+  *
       .comment{
         width:calc(100%- 2rem);
         height: 25rem;
@@ -77,5 +78,30 @@
         float: right;
         margin-right: 3rem;
         margin-top: 1rem;
+      }
+
+      /*
+   屏幕兼容(手机)
+   */
+      @media screen and (max-width:600px)
+      {
+        .comment_user_header{
+          width: 5%;
+          height: 5rem;
+          line-height: 5rem;
+        }
+        .comment_user_header img{
+          float:left;
+          margin-left: 50%;
+          height: 5rem;
+          width: 5rem;
+          border-radius: 50%;
+        }
+        .comment_textarea{
+          margin-right: 1%;
+          width: 100%;
+          /*float: left;*/
+          margin-top: 20%;
+        }
       }
 </style>

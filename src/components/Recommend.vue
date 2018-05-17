@@ -98,6 +98,7 @@
   }
 </script>
 <style>
+  *
   h1, h2,h3 ,h5{
     font-weight: normal;
     text-align: left;
@@ -189,5 +190,52 @@
   }
   .Red{
     color: red;
+  }
+
+  /*
+屏幕兼容(手机)
+ */
+  @media screen and (max-width:600px)
+  {
+    .recommend-thead-tr th{
+      word-break: keep-all;
+      width: 15%;
+    }
+    .table>thead>tr>th {
+      padding:3px;
+    }
+    .recommendRow1{
+      width: 96%;
+      /*height: auto;*/
+      background: #ffffff;
+      /*margin-top: 1rem;*/
+      /* margin:0 2%;*/
+      font-size:0.1rem;
+    }
+    .recommendRownew{
+      width: 96%;
+      /*height: auto;*/
+      background: #ffffff;
+      margin-top: 1rem;
+      margin:0 2%;
+      font-size:0.1rem;
+    }
+    .recommendHistroyRow{
+      width: 96%;
+      height: auto;
+      background: #ffffff;
+      margin:0 2%;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size:0.1rem;
+    }
+    .recommendHeader{
+      width: 96%;
+      border-bottom: 1px solid #EEF1F5;
+      margin: 0 2%;
+      /*display: flex;*/
+      /*flex-direction: row;*/
+      /*justify-content:left;*/
+    }
   }
 </style>

@@ -177,6 +177,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  *
   .item{
     height:520px;
   }
@@ -254,5 +255,89 @@
     color: #ffffff;
     line-height: 6rem;
     font-size: 1rem;
+  }
+
+  /*
+ 屏幕兼容(平板)
+  */
+  @media screen and (min-width:600px) and (max-width:900px)
+  {
+    img {
+      width: 30%;
+      height: 30%;
+    }
+
+    .feature {
+      margin: auto;
+      width: 100%;
+
+    }
+
+    .col-md-4 {
+      float: left;
+      width: 30%;
+      font-size: x-small;
+    }
+
+    /*.carousel-inner {*/
+    /*display: none;*/
+    /*}*/
+
+
+  }
+  /*
+  屏幕兼容(手机)
+   */
+  @media screen and (max-width:600px)
+  {
+    .carousel-inner {
+      display: none;
+    }
+
+    .row {
+      margin-bottom: -30px;
+    }
+    .feature {
+      margin: auto;
+      width: 100%;
+
+    }
+
+    .ant-row{
+      width: 120%;
+      position: relative;
+      margin-left: -20px;
+      height: auto;
+      zoom: 1;
+      display: block;
+      padding-bottom: 100px;
+    }
+
+    .col-md-4 {
+      float: left;
+      width: 30%;
+    }
+
+    .icon {
+      font-size: 30px;
+    }
+    .title {
+      font-size: 1.5rem;
+      line-height: 200%;
+      font-weight: bold;
+      color: #595959;
+    }
+    .desc {
+      /*text-align: center;*/
+      line-height: 100%;
+      font-size:0.5rem;
+      width: 100%;
+      margin: auto;
+      color: #595959;
+    }
+
+    .iconfont-icon{
+      font-size:3rem;
+    }
   }
 </style>
