@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Index from '@/Index'
 import Forum from '@/Forum'
 import Login from '@/Login'
+
 import LatestPolicy from '@/LatestPolicy'
 import PaperTrading from '@/PaperTrading'
 import RecommendInfo from '@/RecommendInfo'
 import VueResource from 'vue-resource'
+import {getCookie} from "../apiConfig/cookie";
 Vue.use(Router)
 Vue.use(VueResource);
 
@@ -43,9 +45,11 @@ export default new Router({
       component: Forum
     },
     {
-      path: '/login',
+      path: '/Login',
       name: 'Login',
       component: Login
     }
   ]
+
 })
+

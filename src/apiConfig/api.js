@@ -1,4 +1,4 @@
-let localhostDev = false;
+let localhostDev = true;
 //如果是本地开发，就把localhostDev 设置成true，连接就是拼成‘http://localhost:8080/api/test’
 //生产环境，就把localhostDev 设置成false，连接就是拼成‘http://xxx.com/api/test’
 let _host= localhostDev ? 'http://fqm0925.vicp.io' : 'http://106.14.175.196:8081';
@@ -25,6 +25,8 @@ let httpUrl = {
   'createFirstApi':_host + '/reply/createFirst',//对话题的评论调用的是
   'createReplyApi':_host + '/reply/createReply',// 对评论进行评论或是回复调用的是
   'getLastTradeRecordApi':_host + '/trade/find_new_trade',//查找最新的交易记录
-  'getTotalProfitLineApi':_host + '/trade/get_contrast' //总的收益率曲线
+  'getTotalProfitLineApi':_host + '/trade/get_contrast',//总的收益率曲线
+  'userLoginApi':_host + '/userInfo/login', //用户登录接口
+  'userRegisterApi':_host + '/userInfo/register' //用户注册接口
 };
 export {httpUrl}

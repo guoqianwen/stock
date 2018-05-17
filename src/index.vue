@@ -82,6 +82,21 @@
         </div>
       </div>
     </div>
+    <div class="footer">
+      <div class="contentFooter">
+        <div class="row">
+          <!--<div class="col-md-6">
+              <span>关于我们</span>
+              <span>帮助中心</span>
+          </div>-->
+          <div class="col-md-12">
+            <span>Copyright</span>
+            <span>©2018 1000Stock All Rights Reserved</span>
+            <a  href="http://www.miitbeian.gov.cn/">赣ICP备18004847号</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -224,5 +239,20 @@
 
   .iconfont-icon{
     font-size:5rem;
+  }
+  .footer{
+    width: 100%;
+    height: 6rem;
+    background: #404040;
+  }
+  .footer a{
+    color: #00ADD2;
+    line-height: 6rem;
+    font-size: 1rem;
+  }
+  .footer span{
+    color: #ffffff;
+    line-height: 6rem;
+    font-size: 1rem;
   }
 </style>

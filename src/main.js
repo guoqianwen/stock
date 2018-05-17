@@ -6,10 +6,26 @@ import router from './router'
 import $ from 'jquery'
 import 'bootstrap/js/bootstrap.min.js'
 import 'bootstrap/css/bootstrap.min.css'
+import {getCookie} from "./apiConfig/cookie";
 
 
 Vue.config.productionTip = false;
-Vue.http.headers.common['Account-Code'] = 'root';
+//Vue.http.headers.common['Account-Code'] = 'root';
+Vue.http.interceptors.push((request,next)=>{
+  //request.credentials = true; // 接口每次请求会跨域携带cookie
+  //request.method= 'POST'; // 请求方式（get,post）
+  console.log(getCookie("username"))
+  if(getCookie("username")!=""){
+    request.headers.set('Account-Code',getCookie("username")) // 请求headers携带参数
+  }else {
+    request.headers.set('Account-Code',"root") // 请求headers携带参数
+  }
+
+  next(function(response){
+    return response;
+
+  });
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

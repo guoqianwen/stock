@@ -29,15 +29,15 @@
             <td>{{index+1}}</td>
             <td>{{item.name}}</td>
             <td>{{item.oldDate}}</td>
-            <td><div class="data_box">{{item.oldPrice}}</div></td>
+            <td><div class="data_box2">{{item.oldPrice | toFixed2 }}</div></td>
             <td>{{item.newDate}}</td>
-            <td><div class="data_box">{{item.newPrice}}</div></td>
-            <td><div class="data_box"><span :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain}}%</span></div></td>
+            <td><div class="data_box2">{{item.newPrice  | toFixed2 }}</div></td>
+            <td><div class="data_box2"><span :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain  | toFixed2 }}%</span></div></td>
             <td>{{item.type}}</td>
-            <td><div class="data_box"></div>{{item.amount}}</td>
-            <td><div class="data_box">{{item.cost}}</div></td>
-            <td><div class="data_box">{{item.value}}</div></td>
-            <td><div class="data_box"><span :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning}}</span></div></td>
+            <td><div class="data_box2"></div>{{item.amount  | toFixed2 }}</td>
+            <td><div class="data_box2">{{item.cost  | toFixed2 }}</div></td>
+            <td><div class="data_box2">{{item.value | toFixed2 }}</div></td>
+            <td><div class="data_box2"><span :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning | toFixed2 }}</span></div></td>
           </tr>
 
           </tbody>
@@ -52,7 +52,12 @@
 <script>
     export default {
         name: "current-holding",
-        props:['holding']
+        props:['holding'],
+        filters: {
+          toFixed2: function (value) {
+            return value.toFixed(2);
+          }
+        }
     }
 </script>
 
@@ -97,12 +102,8 @@
   .current-holding-thead-tr th{
     text-align: center;
   }
-  .data_box1{
-    width:56%;
-    text-align: right;
-  }
   .data_box2{
-    width:58%;
+    width:70%;
     text-align: right;
   }
   .row-fluid {
