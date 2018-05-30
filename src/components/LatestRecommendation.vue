@@ -110,10 +110,10 @@
   }
   .recommendation_time{
     width: 100%;
-    height:4rem;
+    height:3rem;
     color: #5F5F5F;
-    line-height: 4rem;
-    font-size: 1.6rem;
+    line-height: 2rem;
+    font-size: 1rem;
   }
   .recommendation_income{
     width: 100%;

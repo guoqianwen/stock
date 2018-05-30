@@ -7,7 +7,8 @@
       </div>
       <div class="row-fluid">
       <div class="span6" style="float: left; width: 100%">
-        <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+        <div class="currentHoldingTable">
+          <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
           <thead>
           <tr class="current-holding-thead-tr">
             <th>序号</th>
@@ -42,6 +43,7 @@
 
           </tbody>
         </table>
+        </div>
       </div>
       <div class="clear"></div>
     </div>
@@ -103,8 +105,12 @@
   .current-holding-thead-tr th{
     text-align: center;
   }
+  .data_box1{
+    width:56%;
+    text-align: right;
+  }
   .data_box2{
-    width:70%;
+    width:58%;
     text-align: right;
   }
   .row-fluid {
@@ -122,6 +128,9 @@
     .currentHoldingComponents{
       margin-top:60%;
       margin-bottom: 20px;
+      /*overflow: scroll;*/
+    }
+    .currentHoldingTable{
       overflow: scroll;
     }
     .current-holding-thead-tr th{

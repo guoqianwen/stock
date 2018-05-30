@@ -37,7 +37,7 @@
       },
       height: {
         type: String,
-        default: '500px'
+        default: '200px'
       },
       trend:{
         type: Object,
@@ -77,6 +77,65 @@
     methods: {
       initChart() {
         this.chart = echarts.init(this.$refs.myEchart,'macarons');
+        if ($(window).width() <= 600) {
+          // 把配置和数据放这里
+          this.chart.setOption({
+            tooltip: {
+              trigger: 'axis'
+            },
+            legend: {
+              x: 'left',
+              data: ['大盘指数','', '引擎指数']
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                dataZoom: {
+                  yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              data: this.trend.time
+            },
+            yAxis: {
+              type: 'value',
+              min: 2000,
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            series: [
+              {
+                name: '大盘指数',
+                type: 'line',
+                data:  this.trend.baseMarket,
+                markPoint: {
+                  data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                  ]
+                },
+                markLine: {
+                  data: [
+                    {type: 'average', name: '平均值'}
+                  ]
+                }
+              },
+              {
+                name: '引擎指数',
+                type: 'line',
+                data: this.trend.aiMarket
+              }
+            ]
+          })
+        } else {
         // 把配置和数据放这里
         this.chart.setOption({
           tooltip: {
@@ -133,6 +192,7 @@
             }
           ]
         })
+      }
       },
       changeTrendTime(e) {
         console.log(e)

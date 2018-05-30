@@ -116,7 +116,7 @@
       },
       height1: {
         type: String,
-        default: '400px'
+        default: '200px'
       },
       virtCount: {
         type: Object,

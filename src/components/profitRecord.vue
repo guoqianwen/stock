@@ -153,21 +153,89 @@
     font-size: 24px;
     line-height: 4rem;
   }
-  .data_box{
-    width:60%;
-    text-align: right;
+  .forum-list-right{
+    width: 66%;
+    background: #F2F2F2;
+    height: 100%;
+    overflow: hidden;
   }
-
+  .forum-list-box{
+    height: 100%;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  .forum-list-box::-webkit-scrollbar{
+    width: 0px;
+    height: 0px;
+  }
   table{
     margin-bottom: 0px;
   }
-
+  .forumItem{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #DDDDDD;
+    margin: 1rem;
+  }
+  .forumImg{
+    width:12rem;
+    height: 15rem;
+    /* border: 1px solid #DDDDDD;*/
+  }
+  .forumUserImg{
+    width: 80%;
+    height: 60%;
+    margin: 10%;
+  }
   .forumUserImg img{
     width:100%;
     height:100%;
 
   }
-
+  .forumInfo{
+    /* border: 1px solid #DDDDDD;*/
+    width: calc(100% - 12rem);
+    height: 15rem;
+  }
+  .showUserContent{
+    width: 100%;
+    height: 12rem;
+    background: #ffffff;
+    /* border: 1px solid #DDDDDD;*/
+  }
+  .showUserContentDetail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 3rem;
+    line-height: 3rem;
+    background: #ffffff;
+  }
+  .submit_time{
+    height: 3rem;
+    line-height: 3rem;
+  }
+  .box {
+    padding: 100px;
+  }
+  .border-left{
+    border-left: 1px solid #dddddd;
+  }
+  .border-right{
+    border-right: 1px solid #dddddd;
+  }
+  .border-bottom{
+    border-bottom: 1px solid #dddddd;
+  }
+  .border-top{
+    border-top: 1px solid #dddddd;
+  }
+  .forumSubmit{
+    margin-bottom:2rem;
+  }
+  .icon-star{
+    color: #FFAC38;
+  }
   .recommendHeader{
     text-align: center;
     width: 96%;
@@ -185,6 +253,10 @@
   }
   td>a{
     cursor: pointer;
+  }
+  .data_box{
+    width:60%;
+    text-align: right;
   }
   /*
 屏幕兼容(手机)

@@ -663,7 +663,7 @@
   .icon-yijin14-cai:before {
     margin-left: -2rem;
     margin-top: 0.6rem;
-    position: absolute;
+    /*position: absolute;*/
     content: "\E60E";
   }
   .caiIcon{
