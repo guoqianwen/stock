@@ -29,7 +29,7 @@
         curAmount:'',
         totalAmount:'',
         curTime:"MONTH",
-        pageSize:1,
+        pageSize:10,
         pageNo:1,
         remmonent:'',
         recomHistory:[],
@@ -48,7 +48,7 @@
     mounted: function () {
       let  _this=this;
       let sw = true;
-      window.addEventListener('scroll',function(){
+     /* window.addEventListener('scroll',function(){
         if(document.documentElement.scrollTop + window.innerHeight >= (document.documentElement.offsetHeight-240)) {
           if(sw==true){
             sw = false;
@@ -72,11 +72,45 @@
             },function(){
               console.log("请求失败")
             });
-          /*  console.log("到底啦！！！")*/
+            console.log("到底啦！！！")
+          }
+        }
+      });*/
+      $(window).scroll(function(event){
+        var wScrollY = window.scrollY; // 当前滚动条位置
+        var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
+        var bScrollH = document.body.scrollHeight; // 滚动条总高度
+        console.log("______________")
+        console.log((wScrollY + wInnerH))
+        console.log(bScrollH)
+        console.log("++++++++++++++++++")
+        if (wScrollY + wInnerH >= bScrollH) {
+          if(sw==true) {
+            sw = false;
+            _this.$http.get(httpUrl.recommendHistoryFindApi, {
+              params: {pageSize: _this.pageSize, pageNo: _this.pageNo}
+            }).then(function (res) {
+              if (res.body.code == 0) {
+                console.log(res.body.data.entities)
+                if (res.body.data.entities != null) {
+                  _this.recomHistory=_this.recomHistory.concat(res.body.data.entities);
+                  _this.pageNo++;
+                  console.log(_this.recomHistory)
+                  sw = true;
+                } else {
+                  console.log("到底啦！！！")
+                  this.show = false;
+                }
+              } else {
+                alert("网络出错！")
+              }
+            }, function () {
+              console.log("请求失败")
+            });
+            console.log("到底啦！！！")
           }
         }
       });
-
 
       /**
        * 获取大盘与走势AI的数据

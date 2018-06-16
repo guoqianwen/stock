@@ -37,12 +37,12 @@
                                           <div class="main_ft-left-comment"  v-on:click="getComment(item.id,index)">查看评论</div>
                                         </div>
                                         <div class="main_ft-right">
-                                          <div class="caiIcon" v-on:click="goCai('-1')" v-bind:class="{ activeIcon:zanFlag+index==cai}">
+                                         <!-- <div class="caiIcon" v-on:click="goCai('-1')" v-bind:class="{ activeIcon:zanFlag+index==cai}">
                                              <i class="iconfont icon-yijin14-cai iconfont2"  ></i>踩&nbsp&nbsp&nbsp&nbsp&nbsp
                                           </div>
                                          <div class="zanIcon" v-on:click="goZan('-1')" v-bind:class="{ activeIcon:zanFlag+index==zan}">
                                               <i class="iconfont icon-zan iconfont2"></i>赞
-                                         </div>
+                                         </div>-->
                                         </div>
                                   </div>
                                   <div class="replay-box"  v-if="index === showReplay && replayList.length>0" >

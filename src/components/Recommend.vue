@@ -11,6 +11,7 @@
             <thead>
             <tr class="recommend-thead-tr">
               <th>序号</th>
+              <th>推荐日期</th>
               <th>推荐指数</th>
               <th>股票动作</th>
               <th>股票名称</th>
@@ -18,22 +19,31 @@
               <th>备注</th>
             </tr>
             </thead>
-            <tbody>
-            <tr v-for="(item,index) in recommends">
+            <tbody v-if="recommends.length>0">
+              <tr v-for="(item,index) in recommends">
               <td>
                 <div :class="item.action"></div>
                 {{index+1}}
               </td>
+              <td >{{item.newDate}}</td>
               <td>
                 <div class="data_box">
                   {{item.rank}}
                 </div>
               </td>
+
               <td >{{item.action}}</td>
               <td >{{item.name}}</td>
               <td>{{item.type}}</td>
               <td>{{item.note}}</td>
             </tr>
+            </tbody>
+            <tbody v-else>
+              <tr >
+                <td colspan="7">当前股市波动较大，不推荐进一步操作，请等待明天的推荐结果
+                </td>
+              </tr>
+
             </tbody>
           </table>
           <div class="clear"></div>
@@ -41,9 +51,9 @@
         </div>
       </div>
     </div>
-    <div class="recommendHistroyRow" v-for="item in recomHistory" v-if="item[0].recommend.length>0">
+    <div class="recommendHistroyRow" v-for="item in recomHistory" >
       <div class="recommendHeader">
-        <h3><span class="recommdationTitel">{{ item[0].date}}</span> 盈利 <span v-bind:class="{Green:item[0].gainRate<0,Red:item[0].gainRate>=0}">{{(item[0].gainRate*100).toFixed(2)}}%</span></h3>
+        <h3><span class="recommdationTitel">{{ item.date}}</span> 盈利 <span v-bind:class="{Green:item.gainRate<0,Red:item.gainRate>=0}">{{(item.gainRate*100).toFixed(2)}}%</span></h3>
       </div>
       <div class="row-fluid">
         <div class="span12">
@@ -58,8 +68,8 @@
               <th>备注</th>
             </tr>
             </thead>
-            <tbody>
-            <tr v-for="(recommendItem,index)  in item[0].recommend">
+            <tbody v-if="item.recommend.length>0">
+              <tr v-for="(recommendItem,index)  in item.recommend">
               <td>
                 <div :class="recommendItem.action"></div>
                 {{index+1}}
@@ -75,6 +85,13 @@
               <td>{{recommendItem.note}}</td>
             </tr>
             </tbody>
+            <tbody v-else>
+              <tr >
+                <td colspan="7">当天股票市场波动较大，没有推荐股票
+
+                </td>
+              </tr>
+            </tbody>
           </table>
           <div class="clear"></div>
         </div>
@@ -87,7 +104,7 @@
     name: 'Recommend',
     props: ["recomHistory","recommends"],
     mounted:function () {
-      console.log(this.recomHistory)
+      console.log(this.recommends)
     },
     methods: {
       changeTrendTime(e) {
