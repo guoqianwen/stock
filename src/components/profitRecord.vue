@@ -32,12 +32,12 @@
                   </td>
                   <td>
                     <div class="data_box">
-                      {{item.stock|toFixed2}}
+                      {{item.stock|toFixed2|setNum}}
                     </div>
                   </td>
                   <td>
                     <div class="data_box">
-                      {{item.balance|toFixed2}}
+                      {{item.balance|toFixed2|setNum}}
                     </div>
 
                   </td>
@@ -47,7 +47,7 @@
                     </div>
                   </td>
                   <td>
-                    <span :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain*100|toFixed2}}%</span>
+                    <span :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain*100|toFixed2|setNum}}%</span>
                   </td>
                   <td>
                     <a @click="gettradeRecord(item.date)">查看详情</a>
@@ -127,11 +127,6 @@
       console.log(this.profitRecord)
       //请求第一页数据
       this.getList()
-    },
-    filters:{
-      toFixed2:function(value){
-        return value.toFixed(2);
-      }
     }
   }
 </script>

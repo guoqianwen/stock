@@ -28,21 +28,21 @@
                 <tr>
                   <td>初始金额:</td>
                   <td>
-                    <div class="data_box">￥{{virtCount.initAmount}}</div>
+                    <div class="data_box">¥{{virtCount.initAmount|setNum}}</div>
                   </td>
                   <td>总资产:</td>
                   <td>
-                    <div class="data_box">￥{{virtCount.totalAmount}}</div>
+                    <div class="data_box">¥{{virtCount.totalAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>持有股金:</td>
                   <td>
-                    <div class="data_box">￥{{virtCount.stockAmount}}</div>
+                    <div class="data_box">¥{{virtCount.stockAmount|setNum}}</div>
                   </td>
                   <td>账户余额:</td>
                   <td>
-                    <div class="data_box">￥{{virtCount.balance}}</div>
+                    <div class="data_box">¥{{virtCount.balance|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                 <tr>
                   <td>做空金额:</td>
                   <td>
-                    <div class="data_box">￥{{virtCount.coverAmount}}</div>
+                    <div class="data_box">¥{{virtCount.coverAmount|setNum}}</div>
                   </td>
 
                 </tr>

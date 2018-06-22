@@ -43,7 +43,7 @@
                   </td>
                   <td>
                     <div class="data_box">
-                      {{item.oldPrice | toFixed2}}
+                      {{item.oldPrice | toFixed2|setNum}}
                     </div>
                   </td>
                   <td>
@@ -56,7 +56,7 @@
                   </td>
                   <td>
                     <div class="data_box">
-                    {{item.amount}}
+                    {{item.amount| toFixed2|setNum}}
                     </div>
                   </td>
                 </tr>
@@ -150,11 +150,6 @@
       },
       date(val){
         this.getList(val);
-      }
-    },
-    filters: {
-      toFixed2: function (value) {
-        return value.toFixed(2);
       }
     }
   }

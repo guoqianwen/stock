@@ -7,6 +7,7 @@ import $ from 'jquery'
 import 'bootstrap/js/bootstrap.min.js'
 import 'bootstrap/css/bootstrap.min.css'
 import {getCookie} from "./apiConfig/cookie";
+import * as custom from "./apiConfig/filters"
 
 
 Vue.config.productionTip = false;
@@ -26,6 +27,9 @@ Vue.http.interceptors.push((request,next)=>{
 
   });
 })
+Object.keys(custom).forEach(key => {
+  Vue.filter(key, custom[key])
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -33,3 +37,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+

@@ -13,27 +13,27 @@
             <tbody>
             <tr class="success">
               <td>初始金额:</td>
-              <td><div class="data_box">￥{{record.initAmount}}</div></td>
+              <td><div class="data_box">¥{{record.initAmount}}</div></td>
               <td>账户余额:</td>
-              <td><div class="data_box">￥{{record.balance}}</div></td>
+              <td><div class="data_box">¥{{record.balance}}</div></td>
             </tr>
             <tr>
               <td>总资产:</td>
-              <td><div class="data_box">￥{{record.totalAmount}}</div></td>
+              <td><div class="data_box">¥{{record.totalAmount}}</div></td>
               <td>今日买入:</td>
-              <td><div class="data_box">￥{{record.todayBuy}}</div></td>
+              <td><div class="data_box">¥{{record.todayBuy}}</div></td>
             </tr>
             <tr class="success">
               <td>持有股金:</td>
-              <td><div class="data_box">￥{{record.stockAmount}}</div></td>
+              <td><div class="data_box">¥{{record.stockAmount}}</div></td>
               <td>今日卖出:</td>
-              <td><div class="data_box">￥{{record.todaySell}}</div></td>
+              <td><div class="data_box">¥{{record.todaySell}}</div></td>
             </tr>
             <tr>
               <td>累计收益:</td>
-              <td><div class="data_box">￥{{record.totalGain}}</div></td>
+              <td><div class="data_box">¥{{record.totalGain}}</div></td>
               <td>今日盈利:</td>
-              <td><div class="data_box">￥{{record.todayGain}}</div></td>
+              <td><div class="data_box">¥{{record.todayGain}}</div></td>
             </tr>
 
             </tbody>
