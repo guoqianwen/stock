@@ -1,5 +1,5 @@
 <template>
-  <div class="transactionRecord" v-if="items.length>0">
+  <div class="transactionRecord" >
     <div class="recommendRow">
       <div class="recommendHeader">
         <h3></h3>
@@ -14,7 +14,7 @@
                 <thead>
                 <tr class="recommend-thead-tr">
                   <th>序号</th>
-                  <th>股票名称</th>
+                  <th>股票代码</th>
                   <th>股票类型</th>
                   <th>动作</th>
                   <th>买入日期</th>
@@ -24,7 +24,7 @@
                   <th>股票份数</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="items.length>0">
                 <tr v-for="(item,index) in items">
                   <td>
                     {{index+1}}
@@ -60,6 +60,12 @@
                     </div>
                   </td>
                 </tr>
+                </tbody>
+                <tbody v-else>
+                    <tr >
+                      <td colspan="9">当前股市波动较大，无交易操作
+                      </td>
+                    </tr>
                 </tbody>
               </table>
               <pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
@@ -290,7 +296,7 @@
   tr > th {
     text-align: center;
   }
-  
+
   .data_box{
     width:60%;
     text-align: right;

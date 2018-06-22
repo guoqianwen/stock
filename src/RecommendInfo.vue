@@ -107,7 +107,6 @@
             }, function () {
               console.log("请求失败")
             });
-            console.log("到底啦！！！")
           }
         }
       });
@@ -121,6 +120,11 @@
        * 初次调用获取最新推荐数据
        */
       this.fetchLastRecomData();
+
+      /**
+       * 获取历史推荐数据
+       */
+      this.fetchRecommendHistoryData();
     },
 
     methods:{
@@ -174,7 +178,8 @@
           params:{pageSize:this.pageSize,pageNo:this.pageNo}
         }).then(function(res){
           if(res.body.code==0){
-            this.recomHistory.push(res.body.data.entity);
+            /*this.recomHistory.push(res.body.data.entity);*/
+            this.recomHistory=this.recomHistory.concat(res.body.data.entities);
           }else{
             alert(res.body.message)
           }

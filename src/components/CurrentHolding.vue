@@ -12,7 +12,7 @@
           <thead>
           <tr class="current-holding-thead-tr">
             <th>序号</th>
-            <th>股票名称</th>
+            <th>股票代码</th>
             <th>买入日期</th>
             <th>买入价格</th>
             <th>当前日期</th>
@@ -33,12 +33,12 @@
             <td><div class="data_box2">{{item.oldPrice | toFixed2 }}</div></td>
             <td>{{item.newDate}}</td>
             <td><div class="data_box2">{{item.newPrice  | toFixed2 }}</div></td>
-            <td><div class="data_box2"><span :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain  | toFixed2 }}%</span></div></td>
+            <td><div class="data_box3"><span :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain  | toFixed2 }}%</span></div></td>
             <td>{{item.type}}</td>
             <td><div class="data_box2"></div>{{item.amount  | toFixed2 }}</td>
-            <td><div class="data_box2">{{item.cost  | toFixed2 }}</div></td>
-            <td><div class="data_box2">{{item.value | toFixed2 }}</div></td>
-            <td><div class="data_box2"><span :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning | toFixed2 }}</span></div></td>
+            <td><div class="data_box3">{{item.cost  | toFixed2 }}</div></td>
+            <td><div class="data_box3">{{item.value | toFixed2 }}</div></td>
+            <td><div class="data_box3"><span :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning | toFixed2 }}</span></div></td>
           </tr>
 
           </tbody>
@@ -111,6 +111,10 @@
   }
   .data_box2{
     width:58%;
+    text-align: right;
+  }
+  .data_box3{
+    width:68%;
     text-align: right;
   }
   .row-fluid {
