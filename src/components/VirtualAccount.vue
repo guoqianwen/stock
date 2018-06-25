@@ -276,6 +276,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    overflow-x: scroll;
     margin: 0%;
     padding-top: 0px;
   }

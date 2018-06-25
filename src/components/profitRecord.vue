@@ -15,9 +15,9 @@
                 <tr class="recommend-thead-tr">
                   <th>序号</th>
                   <th>交易日期</th>
-                  <th>股票金额</th>
-                  <th>账户余额</th>
-                  <th>做空余额</th>
+                  <th>股票金额(元)</th>
+                  <th>账户余额(元)</th>
+                  <th>做空余额(元)</th>
                   <th>收益率</th>
                   <th>操作</th>
                 </tr>

@@ -29,7 +29,7 @@
       //页面中的可见页码，其他的以...替代, 必须是奇数
       perPages : {
         type : Number,
-        default : 3
+        default : 1
       },
 
       //当前页码

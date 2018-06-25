@@ -3,7 +3,7 @@
     <div class="recommendRow1 recommendRownew">
       <div class="recommendHeader">
         <h3>最新推荐</h3>
-        <h4 class="recommentTime">{{recommends.length ? recommends[0].newData : ''}}</h4>
+        <h4 class="recommentTime"><span class="recommdationTitel">&nbsp;&nbsp;{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h4>
       </div>
       <div class="row-fluid">
         <div class="span12">
@@ -11,30 +11,23 @@
             <thead>
             <tr class="recommend-thead-tr">
               <th>序号</th>
-              <th>推荐日期</th>
-              <th>推荐指数</th>
-              <th>股票动作</th>
+              <!--<th>推荐日期</th>-->
               <th>股票代码</th>
               <th>股票类型</th>
+              <th>推荐操作</th>
               <th>备注</th>
             </tr>
             </thead>
             <tbody v-if="recommends.length>0">
               <tr v-for="(item,index) in recommends">
-              <td>
+                <td>
                 <div :class="item.action"></div>
                 {{index+1}}
               </td>
-              <td >{{item.newDate}}</td>
-              <td>
-                <div class="data_box">
-                  {{item.rank}}
-                </div>
-              </td>
-
-              <td >{{item.action}}</td>
-              <td >{{item.name}}</td>
-              <td>{{item.type}}</td>
+                <td >{{item.name}}</td>
+                <!-- <td >{{item.newDate}}</td>-->
+                <td>{{item.type}}</td>
+                <td >{{item.action}}</td>
               <td>{{item.note}}</td>
             </tr>
             </tbody>
@@ -61,9 +54,8 @@
             <thead>
             <tr class="recommend-thead-tr">
               <th>序号</th>
-              <th>推荐指数</th>
-              <th>股票动作</th>
               <th>股票代码</th>
+              <th> 推荐操作</th>
               <th>股票类型</th>
               <th>备注</th>
             </tr>
@@ -74,20 +66,15 @@
                 <div :class="recommendItem.action"></div>
                 {{index+1}}
               </td>
-              <td>
-                <div class="data_box">
-                  {{recommendItem.rank}}
-                </div>
-              </td>
-              <td >{{recommendItem.action}}</td>
-              <td >{{recommendItem.name}}</td>
+                <td >{{recommendItem.name}}</td>
+                <td >{{recommendItem.action}}</td>
               <td>{{recommendItem.type}}</td>
               <td>{{recommendItem.note}}</td>
             </tr>
             </tbody>
             <tbody v-else>
               <tr >
-                <td colspan="7">当天股票市场波动较大，没有推荐股票
+                <td colspan="5">当天股票市场波动较大，没有推荐股票
 
                 </td>
               </tr>

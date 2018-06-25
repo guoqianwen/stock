@@ -77,12 +77,12 @@
         }
       });*/
       $(window).scroll(function(event){
-        var wScrollY = window.scrollY; // 当前滚动条位置
+        var wScrollY = window.scrollY | window.pageYOffset ; // 当前滚动条位置
         var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
         var bScrollH = document.body.scrollHeight; // 滚动条总高度
         console.log("______________")
         console.log((wScrollY + wInnerH))
-        console.log(bScrollH)
+        console.log("++++++++++++++++++"+wScrollY)
         console.log("++++++++++++++++++")
         if (wScrollY + wInnerH >= bScrollH) {
           if(sw==true) {
@@ -174,18 +174,19 @@
        * 获取历史推荐数据
        */
       fetchRecommendHistoryData (){
-        this.$http.get(httpUrl.recommendHistoryFindApi,{
-          params:{pageSize:this.pageSize,pageNo:this.pageNo}
-        }).then(function(res){
-          if(res.body.code==0){
-            /*this.recomHistory.push(res.body.data.entity);*/
-            this.recomHistory=this.recomHistory.concat(res.body.data.entities);
-          }else{
-            alert(res.body.message)
-          }
-        },function(){
-          console.log("请求失败")
-        });
+              this.$http.get(httpUrl.recommendHistoryFindApi,{
+                params:{pageSize:this.pageSize,pageNo:this.pageNo}
+              }).then(function(res){
+                if(res.body.code==0){
+                  this.pageNo++;
+                  this.recomHistory=this.recomHistory.concat(res.body.data.entities);
+                }else{
+                  alert(res.body.message)
+                }
+              },function(){
+                console.log("请求失败")
+              });
+
       },
     }
 
