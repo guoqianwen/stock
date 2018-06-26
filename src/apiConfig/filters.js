@@ -15,6 +15,7 @@ function setNum(num){//保留2位小数，如果没小数位自动补全.00
   }
 function toFixed2(value){
   console.log("******************")
-  return value.toFixed(2);
+  console.log(value)
+  return parseFloat(value).toFixed(2);
 }
 export { setNum,toFixed2 }

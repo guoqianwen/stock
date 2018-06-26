@@ -76,7 +76,7 @@
     </div>
     <div  class="row virtualAccountRow">
       <div class="virtualAccountHeader">
-        <h3 class="virtureAllLook">总盈利率</h3>
+        <h3 class="virtureAllLook">总盈利率  <span class="virtualEmpty">(资金平均闲置率：{{virtualEmpPresent | toFixed2}}%)</span></h3>
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-12 virtualAccountC4">
@@ -121,6 +121,10 @@
       virtCount: {
         type: Object,
         required: true
+      },
+      virtualEmpPresent:{
+        type: Number,
+        required: true
       }
 
     },
@@ -137,6 +141,7 @@
       console.log(this.time);
       console.log(this.gain);
       this.initChart();
+
 
     },
     beforeDestroy() {
@@ -276,7 +281,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    overflow-x: scroll;
+   /* overflow-x: scroll;*/
     margin: 0%;
     padding-top: 0px;
   }
@@ -330,6 +335,10 @@
   .data_box {
     width: 63%;
     text-align: right;
+  }
+  .virtualEmpty{
+    font-size: 1.8rem;
+    color: red;
   }
 
   /*

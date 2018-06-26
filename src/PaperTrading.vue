@@ -1,6 +1,6 @@
 <template>
   <div class="paperTrading">
-    <virtual-account  :virtCount="virtCount"></virtual-account>
+    <virtual-account  :virtCount="virtCount" :virtualEmpPresent="virtualEmpPresent"></virtual-account>
     <current-holding :holding="holding"></current-holding>
     <profit-record @changeSearchDate="changeSearchDate($event)"  :profitRecord="profitRecord"></profit-record>
     <transaction-record :date="date" :transactionRecord="transactionRecord"></transaction-record>
@@ -25,7 +25,8 @@
           pageNo:1,
           date:"",
           time:[],
-          gain:[]
+          gain:[],
+          virtualEmpPresent:0
         }
       },
       components: {
@@ -42,8 +43,9 @@
 
         this.fetchCurTrendRecord();
 
-        this.getProfitLine()
+        this.getProfitLine();
         /* this.fetchGetGainRecord();*/
+        this.getVirtualEmpPresent();
       },
       methods:{
         /**
@@ -128,8 +130,23 @@
           },function(){
             console.log("请求失败")
           });
+        },
+        /**
+         * 获取闲置率
+         */
+        getVirtualEmpPresent () {
+          this.$http.get(httpUrl.getEmptyPresentApi).then(function(res){
+            if(res.body.code==0){
+              this.virtualEmpPresent=res.body.data.idleRate;
+            }else{
+              alert(res.body.message)
+            }
+          },function(){
+            console.log("请求失败")
+          });
         }
       }
+
     }
 </script>
 

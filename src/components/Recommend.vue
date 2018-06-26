@@ -2,8 +2,8 @@
   <div id="recommend" class="recommendComponents">
     <div class="recommendRow1 recommendRownew">
       <div class="recommendHeader">
-        <h3>最新推荐</h3>
-        <h4 class="recommentTime"><span class="recommdationTitel">&nbsp;&nbsp;{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h4>
+        <h3>最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>
+
       </div>
       <div class="row-fluid">
         <div class="span12">

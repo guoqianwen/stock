@@ -1,7 +1,8 @@
 <template>
     <div class="LatestRecommendation">
       <div class="header">
-        <div class="heading">{{ heading }}</div>
+        <div class="heading">{{ heading }}  </div>
+        <div class="virtualEmpty">(资金平均闲置率：{{virtualEmpPresent | toFixed2}}%)</div>
       </div>
       <div class="recommendation-items">
         <div v-for="(item,index) in recommendations" class="recommendation" >
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+  import {httpUrl} from '../apiConfig/api'
     export default {
         name: "latest-recommendation",
         props: ['heading', 'recommendations'],
@@ -51,7 +53,31 @@
           join(args){
             return args.join(',')
           }
-        }
+        },
+        data () {
+          return {
+            virtualEmpPresent : ""
+          }
+        },
+      methods : {
+        //获取数据
+        getVirtualEmpPresent () {
+          this.$http.get(httpUrl.getEmptyPresentApi).then(function(res){
+            if(res.body.code==0){
+              this.virtualEmpPresent=res.body.data.idleRate;
+            }else{
+              alert(res.body.message)
+            }
+          },function(){
+            console.log("请求失败")
+          });
+        },
+
+
+      },
+      mounted() {
+       this.getVirtualEmpPresent();
+      }
     }
 </script>
 
@@ -74,6 +100,7 @@
     transform: scale(1.1);
   }
   .header{
+    display: flex;
     margin:  2rem 0;
     justify-content:center;
     height:4rem ;
@@ -125,6 +152,10 @@
     color: green;
   }
   .Red{
+    color: red;
+  }
+  .virtualEmpty{
+    font-size: 1.8rem;
     color: red;
   }
 

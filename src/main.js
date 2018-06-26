@@ -19,7 +19,7 @@ Vue.http.interceptors.push((request,next)=>{
   if(getCookie("username")!=""){
     request.headers.set('Account-Code',getCookie("username")) // 请求headers携带参数
   }else {
-    request.headers.set('Account-Code',"root") // 请求headers携带参数
+    request.headers.set('Account-Code',"echo_gou") // 请求headers携带参数
   }
 
   next(function(response){

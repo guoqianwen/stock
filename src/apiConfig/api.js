@@ -27,6 +27,7 @@ let httpUrl = {
   'getLastTradeRecordApi':_host + '/trade/find_new_trade',//查找最新的交易记录
   'getTotalProfitLineApi':_host + '/trade/get_contrast',//总的收益率曲线
   'userLoginApi':_host + '/userInfo/login', //用户登录接口
-  'userRegisterApi':_host + '/userInfo/register' //用户注册接口
+  'userRegisterApi':_host + '/userInfo/register', //用户注册接口
+  'getEmptyPresentApi':_host + '/trade/get_idle_rate' //获取闲置率
 };
 export {httpUrl}
