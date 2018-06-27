@@ -180,7 +180,15 @@
       background: #ffffff;
       /*padding: 2% 10%;*/
     }
-
+    .header{
+      margin: 1rem 0;
+    }
+    .heading{
+      font-size: 15px;
+    }
+    .virtualEmpty{
+      font-size: 15px;
+    }
     .recommendation_time{
       width: 100%;
       height:1rem;

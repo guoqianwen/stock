@@ -290,10 +290,12 @@
    */
   @media screen and (max-width:600px)
   {
-    .carousel-inner {
+    /*.carousel-inner {
       display: none;
+    }*/
+    .item{
+      height:18rem;
     }
-
     .row {
       margin-bottom: -30px;
     }
@@ -303,6 +305,13 @@
 
     }
 
+    .latest_recommend_list{
+      margin-bottom: 1rem;
+    }
+    img{
+      width: 100%!important;
+      height:18rem!important;
+    }
     .ant-row{
       width: 120%;
       position: relative;

@@ -85,6 +85,7 @@
    */
       @media screen and (max-width:600px)
       {
+
         .comment_user_header{
           width: 5%;
           height: 5rem;
@@ -99,7 +100,7 @@
         }
         .comment_textarea{
           margin-right: 1%;
-          width: 100%;
+          /*width: 100%;*/
           /*float: left;*/
           margin-top: 20%;
         }

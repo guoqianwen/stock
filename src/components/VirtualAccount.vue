@@ -346,23 +346,42 @@
 */
   @media screen and (max-width:600px)
   {
+    .virtualAccountBox{
+      display: flex;
+      flex-wrap: wrap;
+    }
     .virtualAccountC4 {
-      position: absolute;
+      width: 100%;
       background: #ffffff;
       height: 30%;
-      width: 95%;
+      padding-left: 2px;
+      padding-right: 5px;
     }
     .yourClassName {
       margin-left: 1%;
     }
+    .row{
+      width: 96%;
+      margin: 0 2%;
+
+    }
     .virtualAccountC8 {
-      margin-top: 200px;
-      margin-left: -0.1px;
+      width: 100%;
+      margin-left: 0rem;
+    }
+    .col-md-12{
+      padding: 1px;
+    }
+    .virtureAllLook{
+      font-size: 1.5rem;
+    }
+    .virtualEmpty{
+      font-size: 1.5rem;
     }
     .col-md-12 table {
       font-size: 0.5rem;
-      word-break: keep-all;
-      padding: 0px;
+     /* word-break: keep-all;*/
+
     }
     .col-md-12 table td {
       width: 20%;

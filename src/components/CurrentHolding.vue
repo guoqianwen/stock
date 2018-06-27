@@ -125,7 +125,7 @@
   @media screen and (max-width:600px)
   {
     .currentHoldingComponents{
-      margin-top:60%;
+      margin-top:2rem;
       margin-bottom: 20px;
       /*overflow: scroll;*/
     }
