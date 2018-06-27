@@ -12,20 +12,14 @@
     name: 'editor',
     data () {
       return {
-        editorContent: ''
+        editorContent: '',
+        obj:{}
       }
     },
     methods: {
       getContent: function () {
-        console.log(this.editorContent)
-          this.$emit('getUserComment1', this.editorContent)
-          this.editorContent=" ";
-      /*  var editor1 = new E(this.$refs.editor);
-        console.log(Text(editor1))
-        editor1.Text*/
-        //console.log(editor1.toolbarSelector.innerHTML)
-       // editor1.toolbarSelector.innerHTML="";
-
+        this.obj._clearText();
+        this.$emit('getUserComment1', this.editorContent)
       }
     },
     mounted() {
@@ -33,6 +27,7 @@
       editor.customConfig.onchange = (html) => {
         this.editorContent = html
       }
+      this.obj=editor;
       editor.create()
     }
   }

@@ -30,7 +30,6 @@
           console.log(comment)
           this.content=comment;
           this.$emit('getUserComment', this.content)
-          this.content="";
         }
       }
     }
