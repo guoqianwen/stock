@@ -1,6 +1,6 @@
 <<template>
   <div>
-    <div class="" ref="editor" style="text-align:left;"></div>
+    <div class="" ref="editor" style="text-align:left;flex-wrap: wrap!important;"></div>
     <button type="button" class="btn btn-success" v-on:click="getContent">发表</button>
   </div>
 </template>

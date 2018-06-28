@@ -84,8 +84,14 @@
    */
       @media screen and (max-width:600px)
       {
-
+        .comment{
+          width: calc(100%- 2rem);
+          height: 30rem;
+          margin: 2rem 0rem;
+          background: #ffffff;
+        }
         .comment_user_header{
+          display: none;
           width: 5%;
           height: 5rem;
           line-height: 5rem;
@@ -98,10 +104,11 @@
           border-radius: 50%;
         }
         .comment_textarea{
-          margin-right: 1%;
+          margin:0  2%;
+          width: 96%;
           /*width: 100%;*/
           /*float: left;*/
-          margin-top: 20%;
+        /*  margin-top: 20%;*/
         }
       }
 </style>

@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li v-for="(item,index) in items" v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
-                <router-link :to="{ name : item.url }">
+                <router-link :to="{ name : item.url }" data-toggle="collapse"  data-target="#example-navbar-collapse">
                   {{item.title}}
                 </router-link>
               </li>
