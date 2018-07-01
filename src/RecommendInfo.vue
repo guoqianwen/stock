@@ -2,7 +2,7 @@
   <div class="content1" style="width: 100%;height: 100%;">
     <!--<v-header></v-header>-->
     <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
-    <v-recommend :recommends="recommends" @showHistrReomm="showHistrReomm($event)" :recomHistory="recomHistory"></v-recommend>
+    <v-recommend :recommends="recommends"  :recomHistory="recomHistory"></v-recommend>
     <!--<v-loading v-if="show"></v-loading>-->
     <!--<asset-records :record="record"></asset-records>
     <current-holding :holding="holding"></current-holding>-->
@@ -30,7 +30,7 @@
         totalAmount:'',
         curTime:"MONTH",
         pageSize:10,
-        pageNo:1,
+        pageNo1:0,
         remmonent:'',
         recomHistory:[],
         show:true
@@ -46,70 +46,8 @@
       'v-loading':Loading
     },
     mounted: function () {
-      let  _this=this;
-      let sw = true;
-     /* window.addEventListener('scroll',function(){
-        if(document.documentElement.scrollTop + window.innerHeight >= (document.documentElement.offsetHeight-240)) {
-          if(sw==true){
-            sw = false;
-            _this.$http.get(httpUrl.recommendHistoryFindApi,{
-              params:{pageSize:_this.pageSize,pageNo:_this.pageNo}
-            }).then(function(res){
-              if(res.body.code==0){
-                console.log(res.body.data.entities)
-                if(res.body.data.entities!=null){
-                  _this.recomHistory.push(res.body.data.entities);
-                  _this.pageNo++;
-                  console.log(_this.recomHistory)
-                  sw = true;
-                }else {
-                  console.log("到底啦！！！")
-                  this.show=false;
-                }
-              }else{
-                alert("网络出错！")
-              }
-            },function(){
-              console.log("请求失败")
-            });
-            console.log("到底啦！！！")
-          }
-        }
-      });*/
-      $(window).scroll(function(event){
-        var wScrollY = window.scrollY | window.pageYOffset ; // 当前滚动条位置
-        var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
-        var bScrollH = document.body.scrollHeight; // 滚动条总高度
-        console.log("______________")
-        console.log((wScrollY + wInnerH))
-        console.log("++++++++++++++++++"+wScrollY)
-        console.log("++++++++++++++++++")
-        if (wScrollY + wInnerH >= bScrollH) {
-          if(sw==true) {
-            sw = false;
-            _this.$http.get(httpUrl.recommendHistoryFindApi, {
-              params: {pageSize: _this.pageSize, pageNo: _this.pageNo}
-            }).then(function (res) {
-              if (res.body.code == 0) {
-                console.log(res.body.data.entities)
-                if (res.body.data.entities != null) {
-                  _this.recomHistory=_this.recomHistory.concat(res.body.data.entities);
-                  _this.pageNo++;
-                  console.log(_this.recomHistory)
-                  sw = true;
-                } else {
-                  console.log("到底啦！！！")
-                  this.show = false;
-                }
-              } else {
-                alert("网络出错！")
-              }
-            }, function () {
-              console.log("请求失败")
-            });
-          }
-        }
-      });
+      console.log("进入页面监听")
+      window.addEventListener("scroll",this.fetchRecommendHistoryData),
 
       /**
        * 获取大盘与走势AI的数据
@@ -124,7 +62,7 @@
       /**
        * 获取历史推荐数据
        */
-      this.fetchRecommendHistoryData();
+     /* this.fetchRecommendHistoryData();*/
     },
 
     methods:{
@@ -132,12 +70,6 @@
         this.curTime = time;
         this.fetchTrendData();
       },
-      showHistrReomm(e){
-        console.log(e)
-        this.pageNo++;
-        this.fetchRecommendHistoryData();
-      },
-
       /**
        * 获取大盘与走势AI的数据
        */
@@ -174,20 +106,52 @@
        * 获取历史推荐数据
        */
       fetchRecommendHistoryData (){
-              this.$http.get(httpUrl.recommendHistoryFindApi,{
-                params:{pageSize:this.pageSize,pageNo:this.pageNo}
-              }).then(function(res){
-                if(res.body.code==0){
-                  this.pageNo++;
-                  this.recomHistory=this.recomHistory.concat(res.body.data.entities);
-                }else{
-                  alert(res.body.message)
-                }
-              },function(){
-                console.log("请求失败")
-              });
+        let  _this=this;
+        let sw = true;
+        var wScrollY = window.scrollY | window.pageYOffset ; // 当前滚动条位置
+        var wInnerH = window.innerHeight; // 设备窗口的高度（不会变）
+        var bScrollH = document.body.scrollHeight; // 滚动条总高度
+        if (wScrollY + wInnerH >= bScrollH) {
+          console.log("取消监听")
+          window.removeEventListener("scroll",this.fetchRecommendHistoryData)
+          if(sw==true) {
+            sw = false;
+            _this.pageNo1++;
+            _this.$http.get(httpUrl.recommendHistoryFindApi, {
+              params: {pageSize: _this.pageSize, pageNo: _this.pageNo1}
+            }).then(function (res) {if (res.body.code == 0) {
+
+              console.log(res.body.data.entities)
+              if (res.body.data.entities != null) {
+                console.log("获取数据从新监听")
+                window.addEventListener("scroll",this.fetchRecommendHistoryData)
+                this.recomHistory=this.recomHistory.concat(res.body.data.entities);
+                console.log(this.recomHistory)
+                sw = true;
+              } else {
+                _this.pageNo1--;
+                console.log("获取数据从新监听")
+                window.addEventListener("scroll",this.fetchRecommendHistoryData)
+                console.log("到底啦！！！")
+                this.show = false;
+              }
+            } else {
+              _this.pageNo1--;
+              console.log("获取数据从新监听")
+              window.addEventListener("scroll",this.fetchRecommendHistoryData)
+              alert("网络出错！")
+            }
+            }, function () {
+              _this.pageNo1--;
+              console.log("请求失败")
+            });
+          }
+        }
 
       },
+    },
+    beforeDestroy(){
+      window.removeEventListener("scroll",this.fetchRecommendHistoryData)
     }
 
   }

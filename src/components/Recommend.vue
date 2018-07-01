@@ -44,6 +44,9 @@
         </div>
       </div>
     </div>
+    <div class="virtualAccountHeader1">
+      <h3 class="virtureAllLook">推荐及盈利记录</h3>
+    </div>
     <div class="recommendHistroyRow" v-for="item in recomHistory" >
       <div class="recommendHeader">
         <h3><span class="recommdationTitel">{{ item.date}}</span> 盈利 <span v-bind:class="{Green:item.gainRate<0,Red:item.gainRate>=0}">{{(item.gainRate*100).toFixed(2)}}%</span></h3>
@@ -90,14 +93,11 @@
   export default {
     name: 'Recommend',
     props: ["recomHistory","recommends"],
-    mounted:function () {
+    mounted:function (){
       console.log(this.recommends)
     },
     methods: {
-      changeTrendTime(e) {
-        console.log(e)
-        this.$emit('showMoreRecomm', e)
-      }
+
     }
   }
 </script>
@@ -194,6 +194,22 @@
   }
   .Red{
     color: red;
+  }
+  .virtualAccountHeader1 {
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin: 0 2%;
+    margin-top: 2rem;
+    margin-bottom: -1rem
+  }
+
+  .virtualAccountHeader1 h3 {
+    margin: 0 2%;
+    height: 4rem;
+    /*  margin-top:10px;*/
+    line-height: 4rem;
+    text-align: left;
   }
 
   /*
