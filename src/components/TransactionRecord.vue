@@ -86,21 +86,12 @@
 
   export default {
     name: "transaction-record",
-    props: {
-      transactionRecord: {
-        type: Array,
-        required: true
-      },
-      date:{
-        type:String
-      }
-    },
     data() {
       return {
         pageSize: 1, //每页显示20条数据
         currentPage: 1, //当前页码
-        count: this.transactionRecord.length, //总记录数
-        items: this.transactionRecord,
+        count: 0, //总记录数
+        items:[],
       }
     },
     components: {

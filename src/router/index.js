@@ -7,6 +7,7 @@ import Login from '@/Login'
 import LatestPolicy from '@/LatestPolicy'
 import PaperTrading from '@/PaperTrading'
 import RecommendInfo from '@/RecommendInfo'
+import TransactionRecord from '../components/TransactionRecord'
 import VueResource from 'vue-resource'
 import {getCookie} from "../apiConfig/cookie";
 Vue.use(Router)
@@ -48,6 +49,10 @@ export default new Router({
       path: '/Login',
       name: 'Login',
       component: Login
+    },{
+      path: '/components/transaction-record',
+      name: 'TransactionRecord',
+      component: TransactionRecord
     }
   ]
 

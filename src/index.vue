@@ -7,7 +7,6 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
        <!-- <li data-target="#myCarousel" data-slide-to="3"></li>-->
-
       </ol>
       <!-- 轮播（Carousel）项目 -->
       <div class="carousel-inner">
@@ -30,55 +29,118 @@
     <div class="latest_recommend_list">
       <latest-recommendation heading="最新推荐盈亏" :recommendations="recommendationsList"></latest-recommendation>
     </div>
+    <div class="index_contrast">
+      <index-contrast  heading="指数对比" ></index-contrast>
+    </div>
+    <div class="index_contrast">
+      <index-contrast  heading="盈亏率对比"  :curData="curData"></index-contrast>
+    </div>
+    <div class="paperTrading">
+      <virtual-account  :virtCount="virtCount" :virtualEmpPresent="virtualEmpPresent"></virtual-account>
+      <current-holding :holding="holding"></current-holding>
+    </div>
+    <div class="operationAccount">
+        <div class="currentHoldingHeader">
+          <h3>操作统计</h3>
+          <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
+        </div>
+        <div class="row operationAccountRow">
+            <div class="col-md-6">
+                <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+                  <tbody>
+                      <tr class="current-holding-thead-tr">
+                        <td>持仓股票</td>
+                        <td>2只</td>
+                      </tr>
+                      <tr class="current-holding-thead-tr">
+                        <td>挣钱股票</td>
+                        <td>2只</td>
+                      </tr>
+                      <tr class="current-holding-thead-tr">
+                        <td>赔钱股票</td>
+                        <td>0只</td>
+                      </tr>
+                      <tr class="current-holding-thead-tr">
+                        <td>胜率</td>
+                        <td>100%</td>
+                      </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+              <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+                <tbody>
+                    <tr class="current-holding-thead-tr">
+                      <td>平均收益率</td>
+                      <td>16.12%</td>
+                    </tr>
+                    <tr class="current-holding-thead-tr">
+                      <td>平均持有时长</td>
+                      <td>10天</td>
+                    </tr>
+                    <tr class="current-holding-thead-tr">
+                      <td>买入次数</td>
+                      <td>20次</td>
+                    </tr>
+                    <tr class="current-holding-thead-tr">
+                      <td>卖出次数</td>
+                      <td>5次</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="showTransactionRecord">
+          <a>
+              <router-link :to="{ path: '/components/transaction-record' }" >
+                  查看交易记录
+              </router-link>
+          </a>
+        </div>
+    </div>
+    <div class="aboutUs">
+
+    </div>
     <div class="feature">
+      <div class="featureTitle">
+        <h3>关于我们</h3>
+      </div>
       <div class="row" style="padding-bottom: 100px;">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="icon">
               <i class="iconfont icon-zhinengsuanfa iconfont-icon"></i>
             </div>
-            <div class="title">算法先进</div>
-            <div class="desc">基于大量历史数据测试历年收益率均高于100%</div>
+            <div class="title">方法论</div>
+            <div class="desc">基于股票市场非理性的影响经常有股票价格偏离其价值的现象，基于深度学习的技术每天从大量股票中选中最优的股票，从而保证最大可能的盈利。</div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="icon">
               <i class="iconfont icon-gupiao-copy iconfont-icon"></i>
             </div>
-            <div class="title">实力抗跌</div>
-            <div class="desc">股灾环境下跌幅大大低于沪深300指</div>
+            <div class="title">原则</div>
+            <div class="desc">选择基本面良好的公司，从中基于股票价格趋势变动，挑选最安全，最稳健的投资组合，保证资金安全的前提下，将收益最大化。</div>
           </div>
-          <div class="col-md-4">
+
+        </div>
+      </div>
+      <div class="row ">
+        <div class="ant-row">
+          <div class="col-md-6">
             <div class="icon">
               <i class="iconfont icon-tuijian iconfont-icon"></i>
             </div>
-            <div class="title">智能推荐</div>
-            <div class="desc">免费获取人工智能的推荐股</div>
+            <div class="title">团队</div>
+            <div class="desc">团队成员由硅谷资深的人工智能开发专家，和20年投资经验的理财顾问领头外加在上海从事互联网的技术人员组成</div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="ant-row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="icon">
               <i class="iconfont icon-jisuxiangying iconfont-icon"></i>
             </div>
-            <div class="title">及时高效</div>
-            <div class="desc">每天收盘后就推送出推荐信息</div>
+            <div class="title">共同参与</div>
+            <div class="desc">如果您有好的建议或者批评，希望您在讨论区发表，我们会虚心接受并改正，同时承诺将在24小时给与回复。</div>
           </div>
-          <div class="col-md-4">
-            <div class="icon">
-              <i class="iconfont icon-jiaoyi iconfont-icon"></i>
-            </div>
-            <div class="title">公开透明</div>
-            <div class="desc">数据来自于证券交易所，收益率可查可算</div>
-          </div>
-          <div class="col-md-4">
-            <div class="icon">
-              <i class="iconfont icon-kefu iconfont-icon"></i>
-            </div>
-            <div class="title">极速响应</div>
-            <div class="desc">您在集思广益上的任何问题将会有专人为您解答</div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -105,14 +167,20 @@
   import LatestRecommendation from './components/LatestRecommendation';
   import Recommend from './components/Recommend';
   import Header from './components/Header';
-  import MarketTrend from './components/MarketTrend'
-  import AssetRecord from './components/AssetRecord'
-  import CurrentHolding from './components/CurrentHolding'
+  import MarketTrend from './components/MarketTrend';
+  import AssetRecord from './components/AssetRecord';
+  import CurrentHolding from './components/CurrentHolding';
+  import IndexContrast  from './components/IndexContrast';
+  import VirtualAccount from "./components/VirtualAccount";
   import {httpUrl} from './apiConfig/api'
   export default {
     data () {
       return {
+        virtCount: {},
+        virtualEmpPresent:0,
+        curData:"2018-07-03",
         recommendationsList:[],
+        indexCompare:[],
         recommends: [],
         trend:{},
         holding:[],
@@ -125,14 +193,17 @@
       }
     },
     components: {
+      MarketTrend,
       HelloWorld,
       'v-header':Header,
+      'virtual-account': VirtualAccount,
       'v-recommend':Recommend,
       'hello-world':HelloWorld,
      'market-trend': MarketTrend,
       'asset-records':AssetRecord,
       'current-holding':CurrentHolding,
-      "latest-recommendation":LatestRecommendation
+      "latest-recommendation":LatestRecommendation,
+      "index-contrast":IndexContrast
     },
     mounted: function () {
       /**
@@ -149,26 +220,48 @@
         },function(){
           console.log("请求失败")
         });
+
+      this.getVirtualAccount();
+      this.fetchTrendData();
     },
 
     methods:{
-      filterTrendByTime(time){
-        this.curTime = time;
-        this.fetchTrendData();
-      },
-
+      /**
+       * 获取当前持股信息
+       */
       fetchTrendData (){
-        this.$http.get(httpUrl.trendApi,{
+        this.$http.get(httpUrl.tradeFindStockApi,{
           params:{step:this.curTime}
         }).then(function(res){
           if(res.body.code==0){
-            this.trend=res.body.data.entity;
+            this.holding=res.body.data.entities;
           }else{
             alert(res.body.message)
           }
         },function(){
           console.log("请求失败")
         });
+      },
+
+      /**
+       * 获取虚拟账户总览
+       */
+      getVirtualAccount:function () {
+        this.$http.get(httpUrl.tradeGetOverviewApi).then(function (res) {
+          //console.log(res.body.data)
+          if (res.body.code == 0) {
+            this.virtCount = res.body.data.entity;
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
+      },
+
+      filterTrendByTime(time){
+        this.curTime = time;
+        this.fetchTrendData();
       }
     }
 
@@ -206,10 +299,19 @@
     opacity: .9;
   }
  .feature{
-    margin: 64px 21%;
-    width: 58%;
-    padding: 64px 64px;
-    background-color: #fff;
+   width: 96%;
+   height: auto;
+   background: #ffffff;
+   margin: 2rem 2% 2rem 2%;
+   padding:  0 0 3rem 0;
+  }
+ .featureTitle{
+   padding: 1rem;
+   text-align: center;
+ }
+  .featureTitle>h3{
+    padding:0rem;
+    text-align: center;
   }
   .ant-row{
     position: relative;
@@ -231,8 +333,8 @@
     color: #595959;
   }
   .desc {
-    padding: 0 20%;
-    text-align: justify;
+    padding: 0rem 10%;
+    text-align: center;
     line-height: 200%;
     font-size:1.5rem;
     color: #595959;
@@ -255,6 +357,33 @@
     color: #ffffff;
     line-height: 6rem;
     font-size: 1rem;
+  }
+  .operationAccount{
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin: 0 2%;
+  }
+  .operationAccountRow{
+    margin-top: 2rem;
+     margin-right: 0px;
+     margin-left: 0px;
+    background: #ffffff;
+  }
+  .showTransactionRecord{
+    padding-bottom: 2rem;
+  }
+  .currentHoldingHeader{
+    width: 96%;
+    border-bottom: 1px solid #EEF1F5;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .currentHoldingHeader h3{
+    width: 100%;
+    text-align: center;
   }
 
   /*
@@ -347,6 +476,9 @@
 
     .iconfont-icon{
       font-size:3rem;
+    }
+    .row{
+      margin: 0;
     }
   }
 </style>

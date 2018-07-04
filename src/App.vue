@@ -49,12 +49,8 @@ export default {
           url:'RecommendInfo'
         },
         {
-          title:'集思广益',
+          title:'讨论区',
           url:'Forum'
-        },
-        {
-          title:'模拟交易',
-          url:'PaperTrading'
         },
         {
           title:'登录',

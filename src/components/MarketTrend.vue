@@ -192,7 +192,7 @@
             }
           ]
         })
-      }
+        }
       },
       changeTrendTime(e) {
         console.log(e)

@@ -2,7 +2,7 @@
     <div class="LatestRecommendation">
       <div class="header">
         <div class="heading">{{ heading }}  </div>
-        <div class="virtualEmpty">(资金平均闲置率：{{virtualEmpPresent | toFixed2}}%)</div>
+        <div class="virtualEmpty">&nbsp;&nbsp;(预期年化：{{virtualEmpPresent | toFixed2}}%)</div>
       </div>
       <div class="recommendation-items">
         <div v-for="(item,index) in recommendations" class="recommendation" >
@@ -11,35 +11,15 @@
           </div>
           <div class="recommendation_time">{{item.date}}</div>
           <div class="recommendation_income">盈利 <span v-bind:class="{Green:item.profit<0,Red:item.profit>=0}">{{(item.profit*100).toFixed(2)}}%</span></div>
-        </div>
-       <!-- <div class="recommendation" >
-            <div class="cover">
-              <img src="../assets/img/price_1.png"/>
-            </div>
-            <div class="recommendation_time">2018-0-1</div>
-            <div class="recommendation_income">赢利1000%</div>
-        </div>
-        <div class="recommendation" >
-          <div class="cover">
-            <img src="../assets/img/price_2.png"/>
+          <div class="recommendation_row">
+            <div>千古:<span>1.23%</span></div>
+            <div>上证:<span>-2.23%</span></div>
           </div>
-          <div class="recommendation_time">2018-0-1</div>
-          <div class="recommendation_income">赢利1000%</div>
-        </div>
-        <div class="recommendation" >
-          <div class="cover">
-            <img src="../assets/img/price_3.png"/>
+          <div class="recommendation_row">
+            <div> 沪深300:<span>-2.23%</span></div>
+            <div> 创业板:<span>-2.25%</span></div>
           </div>
-          <div class="recommendation_time">2018-0-1</div>
-          <div class="recommendation_income">赢利1000%</div>
         </div>
-        <div class="recommendation" >
-          <div class="cover">
-            <img src="../assets/img/price_4.png"/>
-          </div>
-          <div class="recommendation_time">2018-0-1</div>
-          <div class="recommendation_income">赢利1000%</div>
-        </div>-->
       </div>
     </div>
 </template>
@@ -115,7 +95,7 @@
   .recommendation-items{
     margin-left: 20%;
     width: 60%;
-    height: 22rem;
+    height: 25rem;
     display: flex;
     margin-top: 1rem;
   }
@@ -137,14 +117,14 @@
   }
   .recommendation_time{
     width: 100%;
-    height:3rem;
+    height:2rem;
     color: #5F5F5F;
     line-height: 2rem;
     font-size: 1rem;
   }
   .recommendation_income{
     width: 100%;
-    height:6rem;
+    height:3rem;
     color: #5F5F5F;
     font-size: 2rem;
   }
@@ -158,6 +138,15 @@
     font-size: 1.8rem;
     color: red;
   }
+  .recommendation_row{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    font-size: 0.5rem;
+  }
+  .recommendation_row>div{
+    margin:0.5rem  1rem;
+  }
 
   /*
 屏幕兼容(手机)
@@ -165,7 +154,7 @@
   @media screen and (max-width:600px)
   {
     .recommendation-items {
-      width: 102%;
+      width: 100%;
       height:4rem;
       margin: auto;
       color: #5F5F5F;
@@ -206,7 +195,14 @@
     .cover {
       display: none;
     }
-
+    .recommendation_row{
+      display: flex;
+      flex-direction: column;
+      font-size: 0.5rem;
+    }
+    .recommendation_row>div{
+      margin:0.5rem  1rem;
+    }
   }
 </style>
 

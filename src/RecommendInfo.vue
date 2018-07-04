@@ -1,7 +1,7 @@
 <template>
   <div class="content1" style="width: 100%;height: 100%;">
     <!--<v-header></v-header>-->
-    <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
+   <!-- <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>-->
     <v-recommend :recommends="recommends"  :recomHistory="recomHistory"></v-recommend>
     <!--<v-loading v-if="show"></v-loading>-->
     <!--<asset-records :record="record"></asset-records>

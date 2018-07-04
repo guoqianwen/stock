@@ -91,11 +91,11 @@
     margin: 0 2%;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
   }
   .currentHoldingHeader h3{
     width: 100%;
-    text-align: left;
+    text-align: center;
   }
   .current-holding-thead-tr th{
     text-align: center;

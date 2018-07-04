@@ -1,9 +1,78 @@
 <template>
-  <div class="paperTrading">
-    <virtual-account  :virtCount="virtCount" :virtualEmpPresent="virtualEmpPresent"></virtual-account>
-    <current-holding :holding="holding"></current-holding>
-    <profit-record @changeSearchDate="changeSearchDate($event)"  :profitRecord="profitRecord"></profit-record>
-    <transaction-record :date="date" :transactionRecord="transactionRecord"></transaction-record>
+  <div class="transactionRecord" >
+    <div class="recommendRow">
+      <div class="recommendHeader">
+        <h3></h3>
+        <h4 class="transactionRecordText">交易记录</h4>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+
+          <div class="list">
+            <template>
+              <table class="transactionRecordTable table table-striped table-bordered table-advance">
+                <thead>
+                <tr class="recommend-thead-tr">
+                  <th>股票代码</th>
+                  <th>股票类型</th>
+                  <th>操作</th>
+                  <th>买入日期</th>
+                  <th>买入价格(元)</th>
+                  <th>卖出日期</th>
+                  <th>卖出价格(元)</th>
+                  <th>股票份数</th>
+                </tr>
+                </thead>
+                <tbody v-if="items.length>0">
+                <tr v-for="(item,index) in items">
+                  <td>
+                    {{item.name}}
+                  </td>
+                  <td>
+                    {{item.type}}
+                  </td>
+                  <td>
+                    {{item.action}}
+                  </td>
+                  <td>
+                    {{item.oldDate}}
+                  </td>
+                  <td>
+                    <div class="data_box">
+                      {{item.oldPrice | toFixed2|setNum}}
+                    </div>
+                  </td>
+                  <td>
+                    {{item.newDate}}
+                  </td>
+                  <td>
+                    <div class="data_box">
+                      {{item.newPrice | toFixed2}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="data_box">
+                      {{item.amount| toFixed2|setNum}}
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+                <tbody v-else>
+                <tr >
+                  <td colspan="9">当前股市波动较大，无交易操作
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
+              </pagination>
+            </template>
+          </div>
+          <div class="clear"></div>
+
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -68,9 +137,7 @@
          * 获取当前持股信息
          */
         fetchTrendData (){
-          this.$http.get(httpUrl.tradeFindStockApi,{
-            params:{step:this.curTime}
-          }).then(function(res){
+          this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
             if(res.body.code==0){
               this.holding=res.body.data.entities;
             }else{

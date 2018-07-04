@@ -1,6 +1,6 @@
 <template>
     <div class="comment">
-        <div class="comment_title">网友评论</div>
+        <div class="comment_title">我的看法与建议</div>
         <div class="comment_info">
           <div class="comment_user_header">
             <img src="../assets/img/man.png">
