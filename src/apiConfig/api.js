@@ -1,4 +1,4 @@
-let localhostDev = false;
+let localhostDev = true;
 //如果是本地开发，就把localhostDev 设置成true，连接就是拼成‘http://localhost:8080/api/test’
 //生产环境，就把localhostDev 设置成false，连接就是拼成‘http://xxx.com/api/test’
 let _host= localhostDev ? 'http://fqm0925.vicp.io' : 'http://www.1000stock.com';
@@ -28,6 +28,9 @@ let httpUrl = {
   'getTotalProfitLineApi':_host + '/trade/get_contrast',//总的收益率曲线
   'userLoginApi':_host + '/userInfo/login', //用户登录接口
   'userRegisterApi':_host + '/userInfo/register', //用户注册接口
-  'getEmptyPresentApi':_host + '/trade/get_idle_rate' //获取闲置率
+  'getEmptyPresentApi':_host + '/trade/get_idle_rate', //获取闲置率
+  /*年化收益率*/
+  'getYearRateApi':_host + '/trade/get_year_rate', //获取闲置率
+  'getIndexContrastApi':_host + '/trade/get_index_contrast', // 获取上证指数与千古指数的对比
 };
 export {httpUrl}

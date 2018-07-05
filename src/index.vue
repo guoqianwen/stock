@@ -30,7 +30,7 @@
       <latest-recommendation heading="最新推荐盈亏" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="index_contrast">
-      <index-contrast  heading="指数对比" ></index-contrast>
+      <index-contrast  heading="指数对比" :indexContract="indexContract"></index-contrast>
     </div>
     <div class="index_contrast">
       <index-contrast  heading="盈亏率对比"  :curData="curData"></index-contrast>
@@ -190,6 +190,7 @@
         curTime:"MONTH",
         pageSize:100,
         currentPage:1,
+        indexContract:{}
       }
     },
     components: {
@@ -223,6 +224,8 @@
 
       this.getVirtualAccount();
       this.fetchTrendData();
+
+      this.getIndexContract();
     },
 
     methods:{
@@ -259,6 +262,22 @@
         });
       },
 
+      /**
+       *
+       * @param
+       */
+        getIndexContract:function () {
+        this.$http.get(httpUrl.getIndexContrastApi).then(function (res) {
+          console.log(res.body.data)
+          if (res.body.code == 0) {
+            this.indexContract = res.body.data.entity;
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
+      },
       filterTrendByTime(time){
         this.curTime = time;
         this.fetchTrendData();

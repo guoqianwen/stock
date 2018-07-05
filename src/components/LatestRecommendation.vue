@@ -2,22 +2,22 @@
     <div class="LatestRecommendation">
       <div class="header">
         <div class="heading">{{ heading }}  </div>
-        <div class="virtualEmpty">&nbsp;&nbsp;(预期年化：{{virtualEmpPresent | toFixed2}}%)</div>
+        <div class="virtualEmpty">&nbsp;&nbsp;(预期年化：{{yearRate | toFixed2}}%)</div>
       </div>
       <div class="recommendation-items">
         <div v-for="(item,index) in recommendations" class="recommendation" >
           <div class="cover">
             <img :src="'https://aisharev1.oss-cn-beijing.aliyuncs.com/share/home_block_'+(index+1)+'.png'"/>
           </div>
-          <div class="recommendation_time">{{item.date}}</div>
-          <div class="recommendation_income">盈利 <span v-bind:class="{Green:item.profit<0,Red:item.profit>=0}">{{(item.profit*100).toFixed(2)}}%</span></div>
+          <div class="recommendation_time"></div>
+          <div class="recommendation_income">{{item.title}}</div>
           <div class="recommendation_row">
-            <div>千古:<span>1.23%</span></div>
-            <div>上证:<span>-2.23%</span></div>
+            <div>{{item.gain[0].indexName}}:<span>{{item.gain[0].profit}}</span></div>
+            <div>{{item.gain[1].indexName}}:<span>{{item.gain[1].profit}}</span></div>
           </div>
           <div class="recommendation_row">
-            <div> 沪深300:<span>-2.23%</span></div>
-            <div> 创业板:<span>-2.25%</span></div>
+            <div> {{item.gain[2].indexName}}:<span>{{item.gain[2].profit}}</span></div>
+            <div> {{item.gain[3].indexName}}:<span>{{item.gain[3].profit}}</span></div>
           </div>
         </div>
       </div>
@@ -36,15 +36,15 @@
         },
         data () {
           return {
-            virtualEmpPresent : ""
+            yearRate : ""
           }
         },
       methods : {
         //获取数据
         getVirtualEmpPresent () {
-          this.$http.get(httpUrl.getEmptyPresentApi).then(function(res){
+          this.$http.get(httpUrl.getYearRateApi).then(function(res){
             if(res.body.code==0){
-              this.virtualEmpPresent=res.body.data.idleRate;
+              this.yearRate=res.body.data.yearRate;
             }else{
               alert(res.body.message)
             }
