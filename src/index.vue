@@ -30,13 +30,13 @@
       <latest-recommendation heading="最新推荐盈亏" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="index_contrast">
-      <index-contrast  heading="指数对比" :indexContract="indexContract"></index-contrast>
+      <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
     </div>
     <div class="index_contrast">
-      <index-contrast  heading="盈亏率对比"  :curData="curData"></index-contrast>
+      <index-contrast  heading="盈亏率对比"  :curData="curData"  :GainInfo="GainInfo"></index-contrast>
     </div>
     <div class="paperTrading">
-      <virtual-account  :virtCount="virtCount" :virtualEmpPresent="virtualEmpPresent"></virtual-account>
+      <virtual-account  :virtCount="virtCount"></virtual-account>
       <current-holding :holding="holding"></current-holding>
     </div>
     <div class="operationAccount">
@@ -50,19 +50,19 @@
                   <tbody>
                       <tr class="current-holding-thead-tr">
                         <td>持仓股票</td>
-                        <td>2只</td>
+                        <td>{{userAccount.holdNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
                         <td>挣钱股票</td>
-                        <td>2只</td>
+                        <td>{{userAccount.profitNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
                         <td>赔钱股票</td>
-                        <td>0只</td>
+                        <td>{{userAccount.lossNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
                         <td>胜率</td>
-                        <td>100%</td>
+                        <td>{{userAccount.winRate}}%</td>
                       </tr>
                   </tbody>
                 </table>
@@ -72,19 +72,19 @@
                 <tbody>
                     <tr class="current-holding-thead-tr">
                       <td>平均收益率</td>
-                      <td>16.12%</td>
+                      <td>{{userAccount.avgProfitRate}}%</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
                       <td>平均持有时长</td>
-                      <td>10天</td>
+                      <td>{{userAccount.avgHoldDay}}天</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
                       <td>买入次数</td>
-                      <td>20次</td>
+                      <td>{{userAccount.buyNumber}}次</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
                       <td>卖出次数</td>
-                      <td>5次</td>
+                      <td>{{userAccount.sellNumber}}次</td>
                     </tr>
                 </tbody>
               </table>
@@ -190,7 +190,9 @@
         curTime:"MONTH",
         pageSize:100,
         currentPage:1,
-        indexContract:{}
+        indexContract:{},
+        GainInfo:{},
+        userAccount:{}
       }
     },
     components: {
@@ -207,12 +209,12 @@
       "index-contrast":IndexContrast
     },
     mounted: function () {
+      this.getGainInfo();
       /**
        * 获取首页的最新推荐赢亏数据
        */
         this.$http.get(httpUrl.newSearchLastGainApi
         ).then(function(res){
-          console.log(res.body.data)
           if(res.body.code==0){
             this.recommendationsList=res.body.data.entities;
           }else{
@@ -221,18 +223,38 @@
         },function(){
           console.log("请求失败")
         });
-
-      this.getVirtualAccount();
+      /**
+       * 获取上证指数与千古指数的对比
+       */
       this.fetchTrendData();
 
-      this.getIndexContract();
+
+      /**
+       * 获取用户账户信息数据
+       */
+      this.getVirtualAccount();
+
+
+      /**
+       * 获取操作统计数据
+       */
+      this.getOperatorSummary();
+
+      /**
+       *获取当前持股
+       */
+      this.fetchCurStockeData()
     },
 
     methods:{
+      filterTrendByTime(time){
+        this.curTime = time;
+        this.fetchTrendData();
+      },
       /**
        * 获取当前持股信息
        */
-      fetchTrendData (){
+      fetchCurStockeData (){
         this.$http.get(httpUrl.tradeFindStockApi,{
           params:{step:this.curTime}
         }).then(function(res){
@@ -247,11 +269,10 @@
       },
 
       /**
-       * 获取虚拟账户总览
+       * 获取用户账户信息数据
        */
       getVirtualAccount:function () {
-        this.$http.get(httpUrl.tradeGetOverviewApi).then(function (res) {
-          //console.log(res.body.data)
+        this.$http.get(httpUrl.getUserAccoutInfoApi).then(function (res) {
           if (res.body.code == 0) {
             this.virtCount = res.body.data.entity;
           } else {
@@ -262,15 +283,33 @@
         });
       },
 
+
+      filterTrendByTime(time){
+        this.curTime = time;
+        this.fetchTrendData();
+      },
+
       /**
-       *
-       * @param
+       * 获取大盘与走势AI的数据
        */
-        getIndexContract:function () {
-        this.$http.get(httpUrl.getIndexContrastApi).then(function (res) {
-          console.log(res.body.data)
+      fetchTrendData (){
+        this.$http.get(httpUrl.GetContrastApi,{
+          params:{step:this.curTime}
+        }).then(function(res){
+          if(res.body.code==0){
+            this.trend=res.body.data.entity;
+          }else{
+            alert(res.body.message)
+          }
+        },function(){
+          console.log("请求失败")
+        });
+      },
+
+      getGainInfo:function(){
+        this.$http.get(httpUrl.getGainInfoApi).then(function (res) {
           if (res.body.code == 0) {
-            this.indexContract = res.body.data.entity;
+            this.GainInfo = res.body.data.entity;
           } else {
             alert(res.body.message)
           }
@@ -278,10 +317,25 @@
           console.log("请求失败")
         });
       },
-      filterTrendByTime(time){
-        this.curTime = time;
-        this.fetchTrendData();
+
+
+      /**
+       * 获取操作统计数据
+       */
+      getOperatorSummary:function () {
+        this.$http.get(httpUrl.getOperatorSummaryApi).then(function (res) {
+          if (res.body.code == 0) {
+            this.userAccount = res.body.data.entity;
+            console.log(this.userAccount)
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
       }
+
+
     }
 
   }

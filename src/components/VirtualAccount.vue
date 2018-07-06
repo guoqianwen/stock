@@ -6,51 +6,48 @@
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-3 virtualAccountC4">
-          <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
+          <div   ref="myEchart"></div>
         </div>
         <div class="col-md-9 virtualAccountC8">
           <div class="row">
-            <!-- <div class="col-md-4">
-               <div :class="className" :id="id" :style="{height:height,width:width}" ref="myEchart"></div>
-             </div>-->
             <div class="col-md-6">
               <table cellspacing="0" cellpadding="0" border="0" style="float: right; margin-top: 13%"
                      class="virtable table table-striped table-bordered table-advance">
                 <tbody>
                 <tr>
                   <td>开始日期</td>
-                  <td>{{virtCount.startDate}}</td>
+                  <td>{{virtCount.start.date}}</td>
                 </tr>
                 <tr>
                   <td>总资产:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.initAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.start.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>持股价值:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.stockAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.start.stockAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>账户余额:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.balance|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.start.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>今日盈利率:</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCount.totalGain<0,Red:virtCount.totalGain>=0}">
-                      {{(virtCount.todayGain * 100).toFixed(2)}}%
+                    <div class="data_box" :class="{Green:virtCount.start.todayProfit<0,Red:virtCount.start.todayProfit>=0}">
+                      {{(virtCount.start.todayProfit * 100).toFixed(2)}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>平均仓位:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.coverAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.start.avgPosition|setNum}}</div>
                   </td>
 
                 </tr>
@@ -64,41 +61,41 @@
                 <tr>
                   <td>截止日期:</td>
                   <td>
-                    <div class="data_box">{{virtCount.date}}</div>
+                    <div class="data_box">{{virtCount.end.date}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>总资产:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.totalAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.end.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>持股价值(元):</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCount.totalGain<0,Red:virtCount.totalGain>=0}">
-                      {{(virtCount.todayGain * 100).toFixed(2)}}%
+                    <div class="data_box" :class="{Green:virtCount.end.stockAmount<0,Red:virtCount.end.stockAmount>=0}">
+                      {{(virtCount.end.stockAmount * 100).toFixed(2)}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>账户余额:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.balance|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.end.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>累计亏盈率:</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCount.totalGain<0,Red:virtCount.totalGain>=0}">
-                      {{virtCount.totalGain * 100 | toFixed2}}%
+                    <div class="data_box" :class="{Green:virtCount.end.totalProfit<0,Red:virtCount.end.totalProfit>=0}">
+                      {{virtCount.end.totalProfit * 100 | toFixed2}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>今日仓库:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.coverAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCount.end.todayPosition|setNum}}</div>
                   </td>
 
                 </tr>
@@ -110,56 +107,16 @@
 
       </div>
     </div>
-    <!--<div  class="row virtualAccountRow">
-      <div class="virtualAccountHeader">
-        <h3 class="virtureAllLook">总盈利率  <span class="virtualEmpty">(资金平均闲置率：{{virtualEmpPresent | toFixed2}}%)</span></h3>
-      </div>
-      <div class="row-fluid virtualAccountBox">
-        <div class="col-md-12 virtualAccountC4">
-          <div :class="className" :id="id1" :style="{height:height1,width:width}" ref="myEchart1"></div>
-        </div>
-      </div>
-    </div>-->
-
-  </div>
+     </div>
 </template>
 
 <script>
   import echarts from 'echarts'
-  import {httpUrl} from '../apiConfig/api'
-  /*  import {httpUrl} from './apiConfig/api'*/
   export default {
     name: "virtual-account",
     props: {
-      className: {
-        type: String,
-        default: 'yourClassName'
-      },
-      id: {
-        type: String,
-        default: 'yourID'
-      },
-      id1:{
-        type: String,
-      },
-      width: {
-        type: String,
-        default: '100%'
-      },
-      height: {
-        type: String,
-        default: '200px'
-      },
-      height1: {
-        type: String,
-        default: '200px'
-      },
       virtCount: {
         type: Object,
-        required: true
-      },
-      virtualEmpPresent:{
-        type: Number,
         required: true
       }
 
@@ -168,6 +125,8 @@
       return {
         chart: null,
         gain:[],
+        width:"100%",
+        height:"100%",
         time:[]
       }
     },
@@ -183,8 +142,7 @@
     },
     methods: {
       initChart() {
-        console.log("dsamdsk");
-        this.chart = echarts.init(this.$refs.myEchart);
+        this.chart = echarts.init(this.$refs.myEchart,'macarons');
         // 把配置和数据放这里
         this.chart.setOption({
           tooltip: {
@@ -209,11 +167,11 @@
               sort: 'ascending',
               data: [
                 {
-                  value: this.virtCount.initAmount,
+                  value: this.virtCount.start.totalAsset,
                   name: '投入资金'
                 },
                 {
-                  value: this.virtCount.totalAmount,
+                  value: this.virtCount.end.totalAsset,
                   name: '当前资金'
                 }
               ]

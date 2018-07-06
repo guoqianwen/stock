@@ -20,12 +20,13 @@
 
 <script>
   import echarts from 'echarts'
+  import {httpUrl} from '../apiConfig/api'
     export default {
       name: "index-contrast",
       props: {
-        indexContract:{
-          type: Object,
-          required: false
+        GainInfo:{
+          type:Object,
+          required:true
         },
         heading:{
           type: String,
@@ -45,9 +46,7 @@
         }
       },
       data(){
-        return {
-
-        }
+        return{}
       },
       mounted() {
         this.initChart();
@@ -84,7 +83,7 @@
               xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data:this.indexContract.time
+                data:this.GainInfo.time
               },
               yAxis: {
                 type: 'value'
@@ -94,18 +93,36 @@
                   name:'上证指数',
                   type:'line',
                   stack: '总量',
-                  data:this.indexContract.baseMarket
+                  data:this.GainInfo.stockGain,
                 },
                 {
-                  name:'千古指数',
+                  name:'上证指数收益率',
                   type:'line',
                   stack: '总量',
-                  data:this.indexContract.aiMarket
+                  data:this.GainInfo.szGain,
+                },
+                {
+                  name:'沪深300指收益率',
+                  type:'line',
+                  stack: '总量',
+                  data:this.GainInfo.hsGain,
+                },
+                {
+                  name:'创业板指收益率',
+                  type:'line',
+                  stack: '总量',
+                  data:this.GainInfo.cybGain,
                 }
               ]
             })
 
         },
+
+      },
+      watch:{
+        GainInfo:function(){
+          this.initChart();
+        }
       }
     }
 </script>

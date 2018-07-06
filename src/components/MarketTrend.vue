@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="clear"></div>
-        <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;">
+        <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
             <button  v-for="btn in btnArray" @click="changeTrendTime(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>
         </div>
       </div>
@@ -33,11 +33,11 @@
       },
       width: {
         type: String,
-        default: '100%'
+        default: (window.height*80)+"%"
       },
       height: {
         type: String,
-        default: '200px'
+        default: '500px'
       },
       trend:{
         type: Object,
@@ -61,11 +61,14 @@
           },{
             id:'YEAR',
             time:"1/年"
-          }]
+          }],
+        min:2000,
+        max:5000
       }
     },
     mounted() {
       this.initChart();
+      this.cpmputerMaxValue();
     },
     beforeDestroy() {
       if (!this.chart) {
@@ -106,7 +109,8 @@
             },
             yAxis: {
               type: 'value',
-              min: 2000,
+              min: this.min,
+              max:this.max,
               axisLabel: {
                 formatter: '{value}'
               }
@@ -163,7 +167,7 @@
           },
           yAxis: {
             type: 'value',
-            min: 2000,
+            min: this.min,
             axisLabel: {
               formatter: '{value}'
             }
@@ -197,10 +201,25 @@
       changeTrendTime(e) {
         console.log(e)
         this.$emit('filterTrendTime', e)
+      },
+      cpmputerMaxValue:function(){
+        var arr1 =  this.trend.baseMarket;
+        var arr2 =  this.trend.aiMarket;
+
+       this.max = Math.max.apply(null, arr1)>Math.max.apply(null, arr2)? Math.max.apply(null, arr1) : Math.max.apply(null, arr2);
+        this.min = Math.min.apply(null, arr1)<Math.min.apply(null, arr2)? Math.min.apply(null, arr1) : Math.min.apply(null, arr2);
+
       }
     },
     watch:{
       trend:function(){
+        this.initChart();
+        this.cpmputerMaxValue();
+      },
+      max:function () {
+        this.initChart();
+      },
+      min:function () {
         this.initChart();
       }
     }
@@ -209,6 +228,8 @@
 <style>
   *
   .marketTrendComponents{
+    margin-left: 21%;
+    width: 58%;
    padding: 20px 0;
   }
   h1, h2 {
@@ -223,10 +244,9 @@
     margin: 0 10px;
   }
   .marketTrendRow{
-    width: 96%;
+    width: 100%;
     height: auto;
     background: #ffffff;
-    margin:0 2%;
   }
   .marketTrendHeader{
     width: 96%;
@@ -234,7 +254,7 @@
     margin: 0 2%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
   .btn-group{
     display: flex;

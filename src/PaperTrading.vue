@@ -90,7 +90,7 @@
           holding: [],
           transactionRecord:[],
           profitRecord:[],
-          pageSize:10,
+          pageSize:30,
           pageNo:1,
           date:"",
           time:[],
@@ -106,91 +106,21 @@
         "profit-record":ProfitRecord
       },
       mounted: function () {
-        this.getVirtualAccount();
-
-        this.fetchTrendData();
-
         this.fetchCurTrendRecord();
-
-        this.getProfitLine();
-        /* this.fetchGetGainRecord();*/
-        this.getVirtualEmpPresent();
       },
       methods:{
-        /**
-         * 获取虚拟账户总览
-         */
-        getVirtualAccount:function () {
-          this.$http.get(httpUrl.tradeGetOverviewApi).then(function (res) {
-            //console.log(res.body.data)
-            if (res.body.code == 0) {
-              this.virtCount = res.body.data.entity;
-            } else {
-              alert(res.body.message)
-            }
-          }, function () {
-            console.log("请求失败")
-          });
-        },
 
-        /**
-         * 获取当前持股信息
-         */
-        fetchTrendData (){
-          this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
-            if(res.body.code==0){
-              this.holding=res.body.data.entities;
-            }else{
-              alert(res.body.message)
-            }
-          },function(){
-            console.log("请求失败")
-          });
-        },
 
         /**
          * 获取当前交易记录
          */
         fetchCurTrendRecord(){
-          this.$http.get(httpUrl.getLastTradeRecordApi).then(function(res){
-            console.log(res.body.data)
-            if(res.body.code==0){
-              this.transactionRecord=res.body.data.entities;
-            }else{
-              alert(res.body.message)
-            }
-          },function(){
-            console.log("请求失败")
-          });
-        },
-
-        /**
-         * 获取盈利历史记录
-         */
-        fetchGetGainRecord(){
-          this.$http.get(httpUrl.searchLastGainApi,{
+          this.$http.get(httpUrl.getTradeRecordApi,{
             params:{pageSize:this.pageSize,pageNo:this.pageNo}
           }).then(function(res){
-            console.log("dfasfs")
-            console.log(res.body.message)
-            if(res.body.code==0){
-              this.profitRecord=res.body.data.entities;
-            }else{
-              alert(res.body.message)
-            }
-          },function(){
-            console.log("请求失败")
-          });
-        },
-        changeSearchDate(e){
-          this.date=e;
-        },
-        getProfitLine(){
-          this.$http.get(httpUrl.getTotalProfitLineApi).then(function(res){
             console.log(res.body.data)
             if(res.body.code==0){
-              this.time = res.body.data.entity.time;
-              this.gain = res.body.data.entity.gain;
+              this.items=res.body.data.entities;
             }else{
               alert(res.body.message)
             }
@@ -198,20 +128,6 @@
             console.log("请求失败")
           });
         },
-        /**
-         * 获取闲置率
-         */
-        getVirtualEmpPresent () {
-          this.$http.get(httpUrl.getEmptyPresentApi).then(function(res){
-            if(res.body.code==0){
-              this.virtualEmpPresent=res.body.data.idleRate;
-            }else{
-              alert(res.body.message)
-            }
-          },function(){
-            console.log("请求失败")
-          });
-        }
       }
 
     }
