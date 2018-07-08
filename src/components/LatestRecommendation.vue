@@ -93,8 +93,8 @@
     font-size: 30px;
   }
   .recommendation-items{
-    margin-left: 20%;
-    width: 60%;
+    margin-left: 10%;
+    width: 80%;
     height: 25rem;
     display: flex;
     margin-top: 1rem;

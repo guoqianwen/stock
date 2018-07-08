@@ -39,159 +39,16 @@
     </div>
     <div class="recommdationBasciInfo" >
       <div class="basicInfoTitle"><h3>基本信息</h3></div>
-      <div class="row BasciInfoItem" >
+      <div class="row BasciInfoItem"  v-for="(item1,index) in recommendationArray" :item3="item1">
         <div class="col-md-8" >
-            <img src="../assets/logo.png"/>
+          <v-recomendation-img @filterCurImg="filterCurImg($event)" :index="index" :imgSrc="imgSrc? imgSrc:item1.daily" :select="select"></v-recomendation-img>
         </div>
         <div class="col-md-4">
           <table class="table table-striped table-bordered table-advance curHoldingTable">
             <tbody>
-            <tr class="recommend-thead-tr">
-              <td>所属地域:</td>
-              <td>浙江省</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>涉及概念:</td>
-              <td>融资融券，深股通，人工智能，机器...</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>主营业务:</td>
-              <td>经营分析 第二类增值电信业务中的信息服务业务（范围详见...</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>上市日期:</td>
-              <td>2009-12-25</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股净资产:</td>
-              <td>5.11元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股收益:</td>
-              <td>0.14元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>净利润:</td>
-              <td>0.75亿元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>净利润增长率:</td>
-              <td>-26.37%</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>营业收入:</td>
-              <td>2.38亿元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股现金流:</td>
-              <td>0.13元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股公积金:</td>
-              <td>0.66元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股未分配利润:</td>
-              <td>浙江省</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>总股本:</td>
-              <td>5.38亿</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>流通股 :</td>
-              <td>2.64亿</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>昨日收盘价：</td>
-              <td>12.12元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>成交额 :</td>
-              <td>123355555元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>成交数 :</td>
-              <td>123456600</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row BasciInfoItem" >
-        <div class="col-md-8" >
-          <img src="../assets/logo.png"/>
-        </div>
-        <div class="col-md-4">
-          <table class="table table-striped table-bordered table-advance curHoldingTable">
-            <tbody>
-            <tr class="recommend-thead-tr">
-              <td>所属地域:</td>
-              <td>浙江省</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>涉及概念:</td>
-              <td>融资融券，深股通，人工智能，机器...</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>主营业务:</td>
-              <td>经营分析 第二类增值电信业务中的信息服务业务（范围详见...</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>上市日期:</td>
-              <td>2009-12-25</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股净资产:</td>
-              <td>5.11元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股收益:</td>
-              <td>0.14元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>净利润:</td>
-              <td>0.75亿元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>净利润增长率:</td>
-              <td>-26.37%</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>营业收入:</td>
-              <td>2.38亿元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股现金流:</td>
-              <td>0.13元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股公积金:</td>
-              <td>0.66元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>每股未分配利润:</td>
-              <td>浙江省</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>总股本:</td>
-              <td>5.38亿</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>流通股 :</td>
-              <td>2.64亿</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>昨日收盘价：</td>
-              <td>12.12元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>成交额 :</td>
-              <td>123355555元</td>
-            </tr>
-            <tr class="recommend-thead-tr">
-              <td>成交数 :</td>
-              <td>123456600</td>
+            <tr v-for="itemDetail in item1.info" class="recommend-thead-tr row" >
+              <td class="col-md-6">{{itemDetail.k}}</td>
+              <td class="col-md-6" v-bind:title="itemDetail.v" >{{itemDetail.v}}</td>
             </tr>
             </tbody>
           </table>
@@ -201,14 +58,52 @@
   </div>
 </template>
 <script>
+  import RcomendationImg from './recomendationImg.vue';
+  import {httpUrl} from '../apiConfig/api'
   export default {
     name: 'Recommend',
-    props: ["recomHistory","recommends"],
+    props: ["recommends"],
+    components: {
+      'v-recomendation-img':RcomendationImg
+    },
+    data(){
+      return {
+        recommendationArray:[],
+        item3:{},
+        imgSrc:'',
+        select:"daily",
+        temp:'',
+
+      }
+    },
     mounted:function (){
-      console.log(this.recommends)
+      this.getRecommendationArray()
+
     },
     methods: {
+      filterCurImg:function (obj) {
+        var keyName=obj['id'];
+        this.temp =this.recommendationArray[obj.index];
+        this.imgSrc=this.temp[keyName];
+        this.select=obj.id;
+      },
 
+      getRecommendationArray:function () {
+        this.$http.get(httpUrl.getRecomendationApi).then(function (res) {
+          if (res.body.code == 0) {
+            this.recommendationArray = res.body.data.entities;
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
+      }
+    },
+    watch: {
+      item3:function () {
+        this.imgSrc=this.item3["daily"];
+      }
     }
   }
 </script>
@@ -290,7 +185,7 @@
     width: 100%;
     height: auto;
     padding-top: 1rem;
-    border-bottom: 1px solid #797979;
+   /* border-bottom: 1px solid #797979;*/
   }
   .recommdationBasciInfo{
     background: #ffffff;

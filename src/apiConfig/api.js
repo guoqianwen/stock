@@ -1,7 +1,7 @@
 let localhostDev = true;
 //如果是本地开发，就把localhostDev 设置成true，连接就是拼成‘http://localhost:8080/api/test’
 //生产环境，就把localhostDev 设置成false，连接就是拼成‘http://xxx.com/api/test’
-let _host= localhostDev ? 'http://fqm0925.vicp.io' : 'http://www.1000stock.com';
+let _host= localhostDev ? 'http://127.0.0.1:8082' : 'http://www.1000stock.com';
 let httpUrl = {
   'newSearchLastGainApi':_host + '/trade/find_gain',//首页0331修改后获取最新赢利数据接口
   'searchLastGainApi':_host + '/trade/search_gain',//首页获取最新赢利数据接口
@@ -35,5 +35,6 @@ let httpUrl = {
  "getUserAccoutInfoApi":_host + '/trade/get_asset_summary', // 用户账户信息总览
   "getOperatorSummaryApi":_host + '/trade/get_operator_summary', // 操作统计
   'getTradeRecordApi':_host + '/trade/search_trade',//查找交易记录
+  'getRecomendationApi':_host + '/recommend/get_info'//
 };
 export {httpUrl}

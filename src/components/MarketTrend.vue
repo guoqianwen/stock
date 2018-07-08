@@ -2,7 +2,7 @@
   <div id="marketTrend" class="marketTrendComponents">
     <div class="marketTrendRow">
       <div class="marketTrendHeader">
-        <h3>大盘与引擎的走势</h3>
+        <h3>千古指数与上证指数对比</h3>
       </div>
       <div class="row-fluid">
         <div class="span6" style="width: 90%; margin-left: 5%">
@@ -88,7 +88,7 @@
             },
             legend: {
               x: 'left',
-              data: ['大盘指数','', '引擎指数']
+              data: ['上证指数', '千古指数']
             },
             toolbox: {
               show: true,
@@ -117,23 +117,12 @@
             },
             series: [
               {
-                name: '大盘指数',
+                name: '上证指数',
                 type: 'line',
-                data:  this.trend.baseMarket,
-                markPoint: {
-                  data: [
-                    {type: 'max', name: '最大值'},
-                    {type: 'min', name: '最小值'}
-                  ]
-                },
-                markLine: {
-                  data: [
-                    {type: 'average', name: '平均值'}
-                  ]
-                }
+                data:  this.trend.baseMarket
               },
               {
-                name: '引擎指数',
+                name: '千古指数',
                 type: 'line',
                 data: this.trend.aiMarket
               }
@@ -146,7 +135,7 @@
             trigger: 'axis'
           },
           legend: {
-            data: ['大盘指数', '引擎指数']
+            data: ['上证指数', '千古指数']
           },
           toolbox: {
             show: true,
@@ -174,23 +163,12 @@
           },
           series: [
             {
-              name: '大盘指数',
+              name: '上证指数',
               type: 'line',
-              data:  this.trend.baseMarket,
-              markPoint: {
-                data: [
-                  {type: 'max', name: '最大值'},
-                  {type: 'min', name: '最小值'}
-                ]
-              },
-              markLine: {
-                data: [
-                  {type: 'average', name: '平均值'}
-                ]
-              }
+              data:  this.trend.baseMarket
             },
             {
-              name: '引擎指数',
+              name: '千古指数',
               type: 'line',
               data: this.trend.aiMarket
             }

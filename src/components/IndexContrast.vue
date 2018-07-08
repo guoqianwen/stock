@@ -63,17 +63,13 @@
           this.chart = echarts.init(this.$refs.myEchart1, 'macarons');
             // 把配置和数据放这里
             this.chart.setOption({
-              title: {
-                text: '折线图堆叠'
-              },
               tooltip: {
                 trigger: 'axis'
               },
-              grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
+            /*  color: ['blue', 'red','#5AB1EF','black'],*/
+              legend: {
+                x: 'center',
+                data: ['千古指数','上证指数', '沪深300指','创业板指']
               },
               toolbox: {
                 feature: {
@@ -90,27 +86,23 @@
               },
               series: [
                 {
-                  name:'上证指数',
+                  name:'千古指数',
                   type:'line',
-                  stack: '总量',
                   data:this.GainInfo.stockGain,
                 },
                 {
-                  name:'上证指数收益率',
+                  name:'上证指数',
                   type:'line',
-                  stack: '总量',
                   data:this.GainInfo.szGain,
                 },
                 {
-                  name:'沪深300指收益率',
+                  name:'沪深300指',
                   type:'line',
-                  stack: '总量',
                   data:this.GainInfo.hsGain,
                 },
                 {
-                  name:'创业板指收益率',
+                  name:'创业板指',
                   type:'line',
-                  stack: '总量',
                   data:this.GainInfo.cybGain,
                 }
               ]

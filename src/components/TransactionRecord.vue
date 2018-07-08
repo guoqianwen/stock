@@ -15,13 +15,12 @@
                 <tr class="recommend-thead-tr">
                   <th>序号</th>
                   <th>股票代码</th>
-                  <th>股票类型</th>
-                  <th>操作</th>
-                  <th>买入日期</th>
-                  <th>买入价格(元)</th>
-                  <th>卖出日期</th>
-                  <th>卖出价格(元)</th>
                   <th>股票份数</th>
+                  <th>买入价格(元)</th>
+                  <th>卖出价格(元)</th>
+                  <th>买入日期</th>
+                  <th>卖出日期</th>
+                  <th>操作类型</th>
                 </tr>
                 </thead>
                 <tbody v-if="items.length>0">
@@ -33,31 +32,25 @@
                     {{item.name}}
                   </td>
                   <td>
-                    {{item.type}}
+                    {{item.amount}}
                   </td>
                   <td>
-                    {{item.action}}
+                    {{item.oldPrice}}
+                  </td>
+                  <td>
+                    {{item.newPrice}}
                   </td>
                   <td>
                     {{item.oldDate}}
-                  </td>
-                  <td>
-                    <div class="data_box">
-                      {{item.oldPrice | toFixed2|setNum}}
-                    </div>
+                   <!-- <div class="data_box">
+                      {{item.oldDate | toFixed2}}
+                    </div>-->
                   </td>
                   <td>
                     {{item.newDate}}
                   </td>
                   <td>
-                    <div class="data_box">
-                      {{item.newPrice | toFixed2}}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="data_box">
-                    {{item.amount| toFixed2|setNum}}
-                    </div>
+                    {{item.type}}
                   </td>
                 </tr>
                 </tbody>
@@ -88,10 +81,11 @@
     name: "transaction-record",
     data() {
       return {
-        pageSize: 1, //每页显示20条数据
+        pageSize: 20, //每页显示20条数据
         currentPage: 1, //当前页码
         count: 0, //总记录数
         items:[],
+        temp:[]
       }
     },
     components: {
@@ -99,22 +93,25 @@
     },
     methods: {
       //获取数据
-      getList(date) {
-        this.getTransformRecord(date);
+      getList() {
+        this.getTransformRecord();
       },
 
       /**
        * 获取分页交易记录分页信息
        * @param pageSize currentPage
        */
-      getTransformRecord: function (date) {
-        console.log(date)
-        this.$http.get(httpUrl.tradeSearchApi, {
-          params: {date:date }
+      getTransformRecord: function () {
+        this.$http.get(httpUrl.getTradeRecordApi, {
+          params: {pageSize:this.pageSize,pageNo:this.currentPage}
         }).then(function (res) {
           if (res.body.code == 0) {
-            this.count = res.body.data.total
-            this.items = res.body.data.entities;
+            this.count = res.body.data.total;
+            this.temp= res.body.data.entities;
+            /*this.items = res.body.data.entities;*/
+           for(var i=0;i<this.temp.length;i++){
+             this.items=this.items.concat(this.temp[i].trade);
+           }
             console.log(this.items)
           } else {
             alert(res.body.message)
@@ -131,9 +128,8 @@
 
     },
     mounted() {
-      console.log(this.transactionRecord)
       //请求第一页数据
-      /*this.getList()*/
+      this.getList()
     },
     watch: {
       transactionRecord(val) {

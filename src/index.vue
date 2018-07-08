@@ -26,17 +26,19 @@
       <a class="carousel-control right" href="#myCarousel"
          data-slide="next">&rsaquo;</a>
     </div>
+
     <div class="latest_recommend_list">
       <latest-recommendation heading="最新推荐盈亏" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="index_contrast">
-      <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
-    </div>
-    <div class="index_contrast">
       <index-contrast  heading="盈亏率对比"  :curData="curData"  :GainInfo="GainInfo"></index-contrast>
     </div>
+    <div class="index_contrast">
+      <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
+    </div>
+
     <div class="paperTrading">
-      <virtual-account  :virtCount="virtCount"></virtual-account>
+      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd"></virtual-account>
       <current-holding :holding="holding"></current-holding>
     </div>
     <div class="operationAccount">
@@ -176,7 +178,8 @@
   export default {
     data () {
       return {
-        virtCount: {},
+        virtCountStart:{},
+        virtCountEnd:{},
         virtualEmpPresent:0,
         curData:"2018-07-03",
         recommendationsList:[],
@@ -209,8 +212,8 @@
       "index-contrast":IndexContrast
     },
     mounted: function () {
-      this.getGainInfo();
-      /**
+        this.getGainInfo();
+        /**
        * 获取首页的最新推荐赢亏数据
        */
         this.$http.get(httpUrl.newSearchLastGainApi
@@ -243,7 +246,8 @@
       /**
        *获取当前持股
        */
-      this.fetchCurStockeData()
+      this.fetchCurStockeData();
+
     },
 
     methods:{
@@ -255,9 +259,7 @@
        * 获取当前持股信息
        */
       fetchCurStockeData (){
-        this.$http.get(httpUrl.tradeFindStockApi,{
-          params:{step:this.curTime}
-        }).then(function(res){
+        this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
           if(res.body.code==0){
             this.holding=res.body.data.entities;
           }else{
@@ -274,7 +276,8 @@
       getVirtualAccount:function () {
         this.$http.get(httpUrl.getUserAccoutInfoApi).then(function (res) {
           if (res.body.code == 0) {
-            this.virtCount = res.body.data.entity;
+            this.virtCountStart = res.body.data.entity.start;
+            this.virtCountEnd= res.body.data.entity.end;
           } else {
             alert(res.body.message)
           }
@@ -326,14 +329,14 @@
         this.$http.get(httpUrl.getOperatorSummaryApi).then(function (res) {
           if (res.body.code == 0) {
             this.userAccount = res.body.data.entity;
-            console.log(this.userAccount)
           } else {
             alert(res.body.message)
           }
         }, function () {
           console.log("请求失败")
         });
-      }
+      },
+
 
 
     }

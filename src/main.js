@@ -15,7 +15,6 @@ Vue.config.productionTip = false;
 Vue.http.interceptors.push((request,next)=>{
   //request.credentials = true; // 接口每次请求会跨域携带cookie
   //request.method= 'POST'; // 请求方式（get,post）
-  console.log(getCookie("username"))
   if(getCookie("username")!=""){
     request.headers.set('Account-Code',getCookie("username")) // 请求headers携带参数
   }else {

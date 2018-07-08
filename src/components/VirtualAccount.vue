@@ -6,7 +6,7 @@
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-3 virtualAccountC4">
-          <div   ref="myEchart"></div>
+          <div  :class="className" :id="id" :style="{height:height,width:width}"  ref="myEchart"></div>
         </div>
         <div class="col-md-9 virtualAccountC8">
           <div class="row">
@@ -16,38 +16,38 @@
                 <tbody>
                 <tr>
                   <td>开始日期</td>
-                  <td>{{virtCount.start.date}}</td>
+                  <td>{{virtCountStart.date}}</td>
                 </tr>
                 <tr>
                   <td>总资产:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.start.totalAsset|setNum}}</div>
+                    <div class="data_box">¥{{virtCountStart.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>持股价值:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.start.stockAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCountStart.stockAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>账户余额:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.start.balanceAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCountStart.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>今日盈利率:</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCount.start.todayProfit<0,Red:virtCount.start.todayProfit>=0}">
-                      {{(virtCount.start.todayProfit * 100).toFixed(2)}}%
+                    <div class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
+                      {{(virtCountStart.todayProfit * 100).toFixed(2)}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>平均仓位:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.start.avgPosition|setNum}}</div>
+                    <div class="data_box">¥{{virtCountStart.avgPosition|setNum}}</div>
                   </td>
 
                 </tr>
@@ -61,41 +61,41 @@
                 <tr>
                   <td>截止日期:</td>
                   <td>
-                    <div class="data_box">{{virtCount.end.date}}</div>
+                    <div class="data_box">{{virtCountEnd.date}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>总资产:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.end.totalAsset|setNum}}</div>
+                    <div class="data_box">¥{{virtCountEnd.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>持股价值(元):</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCount.end.stockAmount<0,Red:virtCount.end.stockAmount>=0}">
-                      {{(virtCount.end.stockAmount * 100).toFixed(2)}}%
+                    <div class="data_box" :class="{Green:virtCountEnd.stockAmount<0,Red:virtCountEnd.stockAmount>=0}">
+                      {{(virtCountEnd.stockAmount * 100).toFixed(2)}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>账户余额:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.end.balanceAmount|setNum}}</div>
+                    <div class="data_box">¥{{virtCountEnd.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>累计亏盈率:</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCount.end.totalProfit<0,Red:virtCount.end.totalProfit>=0}">
-                      {{virtCount.end.totalProfit * 100 | toFixed2}}%
+                    <div class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
+                      {{virtCountEnd.totalProfit * 100 | toFixed2}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td>今日仓库:</td>
                   <td>
-                    <div class="data_box">¥{{virtCount.end.todayPosition|setNum}}</div>
+                    <div class="data_box">¥{{virtCountEnd.todayPosition|setNum}}</div>
                   </td>
 
                 </tr>
@@ -114,21 +114,31 @@
   import echarts from 'echarts'
   export default {
     name: "virtual-account",
-    props: {
-      virtCount: {
+    props:{
+      virtCountStart:{
         type: Object,
-        required: true
-      }
-
+        required:true
+      },
+      virtCountEnd:{
+        type: Object,
+        required:true
+      },
+      className: {
+      type: String,
+    default: 'yourClassName'
     },
-    data() {
-      return {
-        chart: null,
-        gain:[],
-        width:"100%",
-        height:"100%",
-        time:[]
-      }
+      id: {
+        type: String,
+      default: 'yourID'
+      },
+      width: {
+        type: String,
+      default: (window.height*80)+"%"
+      },
+        height: {
+          type: String,
+        default: '250px'
+        },
     },
     mounted() {
       this.initChart();
@@ -167,11 +177,11 @@
               sort: 'ascending',
               data: [
                 {
-                  value: this.virtCount.start.totalAsset,
+                  value: this.virtCountStart.totalAsset,
                   name: '投入资金'
                 },
                 {
-                  value: this.virtCount.end.totalAsset,
+                  value: this.virtCountEnd.totalAsset,
                   name: '当前资金'
                 }
               ]
@@ -183,7 +193,10 @@
 
     },
     watch: {
-      virtCount: function () {
+      virtCountStart: function () {
+        this.initChart();
+      },
+      virtCountEnd: function () {
         this.initChart();
       }
     },

@@ -1,7 +1,5 @@
 function setNum(num){//保留2位小数，如果没小数位自动补全.00
      if(num && num!=null){
-      console.log("132123123")
-      console.log(num)
       num = String(num);
       var left=num.split('.')[0],right=num.split('.')[1];
       right = right ? (right.length>=2 ? '.'+right.substr(0,2) : '.'+right+'0') : '.00';
@@ -14,8 +12,6 @@ function setNum(num){//保留2位小数，如果没小数位自动补全.00
     }
   }
 function toFixed2(value){
-  console.log("******************")
-  console.log(value)
   return parseFloat(value).toFixed(2);
 }
 export { setNum,toFixed2 }
