@@ -14,13 +14,12 @@
             <th>股票代码</th>
             <th>买入日期</th>
             <th>买入价格(元)</th>
-            <th>当前日期</th>
             <th>当前价格(元)</th>
             <th>股票份数</th>
             <th>成本(元)</th>
             <th>目前价值(元)</th>
-            <th>收益率</th>
-            <th>收益绝对值(元)</th>
+            <th>盈亏率</th>
+            <th>盈亏(元)</th>
           </tr>
           </thead>
           <tbody>
@@ -29,7 +28,6 @@
             <td>{{item.name}}</td>
             <td>{{item.oldDate}}</td>
             <td><div class="data_box2">{{item.oldPrice | setNum}}</div></td>
-            <td>{{item.newDate}}</td>
             <td><div class="data_box2">{{item.newPrice   | setNum}}</div></td>
             <td><div class="data_box2"></div>{{item.amount | setNum}}</td>
             <td><div class="data_box3">{{item.cost  | setNum}}</div></td>

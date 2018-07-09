@@ -43,7 +43,7 @@
     </div>
     <div class="operationAccount">
         <div class="currentHoldingHeader">
-          <h3>操作统计</h3>
+          <h3>交易统计</h3>
           <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
         </div>
         <div class="row operationAccountRow">
@@ -51,7 +51,7 @@
                 <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
                   <tbody>
                       <tr class="current-holding-thead-tr">
-                        <td>持仓股票</td>
+                        <td>当前持股</td>
                         <td>{{userAccount.holdNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
@@ -73,11 +73,11 @@
               <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
                 <tbody>
                     <tr class="current-holding-thead-tr">
-                      <td>平均收益率</td>
+                      <td>平均盈亏率</td>
                       <td :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}">{{userAccount.avgProfitRate}}%</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td>平均持有时长</td>
+                      <td>平均持有天数</td>
                       <td>{{userAccount.avgHoldDay}}天</td>
                     </tr>
                     <tr class="current-holding-thead-tr">

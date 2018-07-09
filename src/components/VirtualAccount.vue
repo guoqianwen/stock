@@ -37,7 +37,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>今日盈利率:</td>
+                  <td>今日盈亏率:</td>
                   <td>
                     <div class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
                       {{(virtCountStart.todayProfit * 100).toFixed(2)}}%
@@ -85,7 +85,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>累计亏盈率:</td>
+                  <td>累计盈亏率:</td>
                   <td>
                     <div class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
                       {{virtCountEnd.totalProfit * 100 | toFixed2}}%
