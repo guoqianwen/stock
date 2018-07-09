@@ -1,20 +1,12 @@
 <template>
   <div class="content1" style="width: 100%;height: 100%;">
-    <!--<v-header></v-header>-->
-   <!-- <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>-->
     <v-recommend :recommends="recommends" ></v-recommend>
-    <!--<v-loading v-if="show"></v-loading>-->
-    <!--<asset-records :record="record"></asset-records>
-    <current-holding :holding="holding"></current-holding>-->
   </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld';
   import Recommend from './components/Recommend';
-  import Header from './components/Header';
   import MarketTrend from './components/MarketTrend'
-  import AssetRecord from './components/AssetRecord'
   import CurrentHolding from './components/CurrentHolding'
   import Loading from './components/Loading.vue'
   import {httpUrl} from './apiConfig/api'
@@ -37,11 +29,8 @@
       }
     },
     components: {
-      'v-header':Header,
       'v-recommend':Recommend,
-      'hello-world':HelloWorld,
       'market-trend': MarketTrend,
-      'asset-records':AssetRecord,
       'current-holding':CurrentHolding,
       'v-loading':Loading
     },

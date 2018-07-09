@@ -2,7 +2,7 @@
     <div class="LatestRecommendation">
       <div class="header">
         <div class="heading">{{ heading }}  </div>
-        <div class="virtualEmpty">&nbsp;&nbsp;(预期年化：{{yearRate | toFixed2}}%)</div>
+        <div class="virtualEmpty">&nbsp;&nbsp;</div>
       </div>
       <div class="recommendation-items">
         <div v-for="(item,index) in recommendations" class="recommendation" >
@@ -12,12 +12,12 @@
           <div class="recommendation_time"></div>
           <div class="recommendation_income">{{item.title}}</div>
           <div class="recommendation_row">
-            <div>{{item.gain[0].indexName}}:<span>{{item.gain[0].profit}}</span></div>
-            <div>{{item.gain[1].indexName}}:<span>{{item.gain[1].profit}}</span></div>
+            <div>{{item.gain[0].indexName}}: <span :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">{{item.gain[0].profit}}%</span></div>
+            <div>{{item.gain[1].indexName}}:<span   :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">{{item.gain[1].profit}}%</span></div>
           </div>
           <div class="recommendation_row">
-            <div> {{item.gain[2].indexName}}:<span>{{item.gain[2].profit}}</span></div>
-            <div> {{item.gain[3].indexName}}:<span>{{item.gain[3].profit}}</span></div>
+            <div> {{item.gain[2].indexName}}:<span :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">{{item.gain[2].profit}}%</span></div>
+            <div> {{item.gain[3].indexName}}:<span :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">{{item.gain[3].profit}}%</span></div>
           </div>
         </div>
       </div>
@@ -33,31 +33,8 @@
           join(args){
             return args.join(',')
           }
-        },
-        data () {
-          return {
-            yearRate : ""
-          }
-        },
-      methods : {
-        //获取数据
-        getVirtualEmpPresent () {
-          this.$http.get(httpUrl.getYearRateApi).then(function(res){
-            if(res.body.code==0){
-              this.yearRate=res.body.data.yearRate;
-            }else{
-              alert(res.body.message)
-            }
-          },function(){
-            console.log("请求失败")
-          });
-        },
+        }
 
-
-      },
-      mounted() {
-       this.getVirtualEmpPresent();
-      }
     }
 </script>
 

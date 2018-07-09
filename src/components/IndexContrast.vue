@@ -3,7 +3,7 @@
         <div class="indexContrastRow">
             <div class="indexContrastHeader">
 
-              <h3>{{heading}}<span v-if="curData">{{"("+curData+")"}}</span></h3>
+              <h3>{{heading}}</h3>
             </div>
             <div class="row-fluid">
               <div class="span6" style="width: 90%; margin-left: 5%">
@@ -29,10 +29,6 @@
           required:true
         },
         heading:{
-          type: String,
-          default: ""
-        },
-        curData:{
           type: String,
           default: ""
         },

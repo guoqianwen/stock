@@ -4,8 +4,6 @@ import Index from '@/Index'
 import Forum from '@/Forum'
 import Login from '@/Login'
 
-import LatestPolicy from '@/LatestPolicy'
-import PaperTrading from '@/PaperTrading'
 import RecommendInfo from '@/RecommendInfo'
 import TransactionRecord from '../components/TransactionRecord'
 import VueResource from 'vue-resource'
@@ -24,16 +22,6 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: Index
-    } ,
-    {
-      path: '/latest-policy',
-      name: 'LatestPolicy',
-      component: LatestPolicy
-    },
-    {
-      path: '/paper-trading',
-      name: 'PaperTrading',
-      component:PaperTrading
     },
     {
       path: '/recommend-info',

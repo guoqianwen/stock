@@ -28,10 +28,10 @@
     </div>
 
     <div class="latest_recommend_list">
-      <latest-recommendation heading="最新推荐盈亏" :recommendations="recommendationsList"></latest-recommendation>
+      <latest-recommendation heading="历史业绩" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="index_contrast">
-      <index-contrast  heading="盈亏率对比"  :curData="curData"  :GainInfo="GainInfo"></index-contrast>
+      <index-contrast  heading="盈亏率对比"   :GainInfo="GainInfo"></index-contrast>
     </div>
     <div class="index_contrast">
       <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
@@ -64,7 +64,7 @@
                       </tr>
                       <tr class="current-holding-thead-tr">
                         <td>胜率</td>
-                        <td>{{userAccount.winRate}}%</td>
+                        <td >{{userAccount.winRate}}%</td>
                       </tr>
                   </tbody>
                 </table>
@@ -74,7 +74,7 @@
                 <tbody>
                     <tr class="current-holding-thead-tr">
                       <td>平均收益率</td>
-                      <td>{{userAccount.avgProfitRate}}%</td>
+                      <td :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}">{{userAccount.avgProfitRate}}%</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
                       <td>平均持有时长</td>
@@ -165,12 +165,9 @@
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld';
   import LatestRecommendation from './components/LatestRecommendation';
   import Recommend from './components/Recommend';
-  import Header from './components/Header';
   import MarketTrend from './components/MarketTrend';
-  import AssetRecord from './components/AssetRecord';
   import CurrentHolding from './components/CurrentHolding';
   import IndexContrast  from './components/IndexContrast';
   import VirtualAccount from "./components/VirtualAccount";
@@ -181,7 +178,6 @@
         virtCountStart:{},
         virtCountEnd:{},
         virtualEmpPresent:0,
-        curData:"2018-07-03",
         recommendationsList:[],
         indexCompare:[],
         recommends: [],
@@ -200,13 +196,9 @@
     },
     components: {
       MarketTrend,
-      HelloWorld,
-      'v-header':Header,
       'virtual-account': VirtualAccount,
       'v-recommend':Recommend,
-      'hello-world':HelloWorld,
      'market-trend': MarketTrend,
-      'asset-records':AssetRecord,
       'current-holding':CurrentHolding,
       "latest-recommendation":LatestRecommendation,
       "index-contrast":IndexContrast

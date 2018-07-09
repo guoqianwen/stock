@@ -19,21 +19,21 @@
                   <td>{{virtCountStart.date}}</td>
                 </tr>
                 <tr>
-                  <td>总资产:</td>
+                  <td>总资产(元):</td>
                   <td>
-                    <div class="data_box">¥{{virtCountStart.totalAsset|setNum}}</div>
+                    <div class="data_box">{{virtCountStart.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>持股价值:</td>
+                  <td>持股价值(元):</td>
                   <td>
-                    <div class="data_box">¥{{virtCountStart.stockAmount|setNum}}</div>
+                    <div class="data_box">{{virtCountStart.stockAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>账户余额:</td>
+                  <td>账户余额(元):</td>
                   <td>
-                    <div class="data_box">¥{{virtCountStart.balanceAmount|setNum}}</div>
+                    <div class="data_box">{{virtCountStart.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
                 <tr>
                   <td>平均仓位:</td>
                   <td>
-                    <div class="data_box">¥{{virtCountStart.avgPosition|setNum}}</div>
+                    <div class="data_box">{{virtCountStart.avgPosition|setNum}}%</div>
                   </td>
 
                 </tr>
@@ -65,23 +65,23 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>总资产:</td>
+                  <td>总资产(元):</td>
                   <td>
-                    <div class="data_box">¥{{virtCountEnd.totalAsset|setNum}}</div>
+                    <div class="data_box">{{virtCountEnd.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>持股价值(元):</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCountEnd.stockAmount<0,Red:virtCountEnd.stockAmount>=0}">
-                      {{(virtCountEnd.stockAmount * 100).toFixed(2)}}%
+                    <div class="data_box" >
+                      {{(virtCountEnd.stockAmount * 100) |setNum}}
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td>账户余额:</td>
+                  <td>账户余额(元):</td>
                   <td>
-                    <div class="data_box">¥{{virtCountEnd.balanceAmount|setNum}}</div>
+                    <div class="data_box">{{virtCountEnd.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
@@ -95,7 +95,7 @@
                 <tr>
                   <td>今日仓库:</td>
                   <td>
-                    <div class="data_box">¥{{virtCountEnd.todayPosition|setNum}}</div>
+                    <div class="data_box">{{virtCountEnd.todayPosition|setNum}}%</div>
                   </td>
 
                 </tr>
@@ -256,12 +256,12 @@
 
   .virtualAccountC4 {
     background: #ffffff;
-    margin-top: 0.5rem;
+    /*margin-top: 0.5rem;*/
   }
 
   .virtualAccountC8 {
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
+   /* margin-top: 0.5rem;
+    margin-left: 0.5rem;*/
     background: #ffffff;
   }
 

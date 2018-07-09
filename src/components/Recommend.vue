@@ -40,15 +40,15 @@
     <div class="recommdationBasciInfo" >
       <div class="basicInfoTitle"><h3>基本信息</h3></div>
       <div class="row BasciInfoItem"  v-for="(item1,index) in recommendationArray" :item3="item1">
-        <div class="col-md-8" >
+        <div class="col-md-9" >
           <v-recomendation-img @filterCurImg="filterCurImg($event)" :index="index" :imgSrc="imgSrc? imgSrc:item1.daily" :select="select"></v-recomendation-img>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <table class="table table-striped table-bordered table-advance curHoldingTable">
             <tbody>
             <tr v-for="itemDetail in item1.info" class="recommend-thead-tr row" >
-              <td class="col-md-6">{{itemDetail.k}}</td>
-              <td class="col-md-6" v-bind:title="itemDetail.v" >{{itemDetail.v}}</td>
+              <td class="col-md-6" >{{itemDetail.k}}</td>
+              <td class="col-md-6" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
             </tr>
             </tbody>
           </table>

@@ -33,7 +33,6 @@
 
 <script>
   import './assets/css/iconfont/iconfont.css';
-  /*import './assets/css/style.css';*/
 export default {
   name: 'App',
   data () {
