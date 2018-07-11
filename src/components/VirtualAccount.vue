@@ -2,7 +2,7 @@
   <div class="virtualAccount">
     <div class="row virtualAccountRow">
       <div class="virtualAccountHeader">
-        <h3 class="virtureAllLook">虚拟账户总览</h3>
+        <h3 class="virtureAllLook">账户总览</h3>
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-3 virtualAccountC4">

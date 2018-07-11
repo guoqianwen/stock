@@ -12,6 +12,7 @@
           <tr class="current-holding-thead-tr" >
             <th>序号</th>
             <th>股票代码</th>
+            <th>公司名称</th>
             <th>买入日期</th>
             <th>买入价格(元)</th>
             <th>当前价格(元)</th>
@@ -26,6 +27,7 @@
           <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
             <td>{{index+1}}</td>
             <td>{{item.name}}</td>
+            <td>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
             <td><div class="data_box2">{{item.oldPrice | setNum}}</div></td>
             <td><div class="data_box2">{{item.newPrice   | setNum}}</div></td>
