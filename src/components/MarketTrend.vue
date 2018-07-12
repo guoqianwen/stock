@@ -37,7 +37,7 @@
       },
       height: {
         type: String,
-        default: '500px'
+        default: '400px'
       },
       trend:{
         type: Object,
@@ -88,7 +88,7 @@
             },
             legend: {
               x: 'left',
-              data: ['上证指数', '千古指数']
+              data: ['千古指数','','上证指数']
             },
             toolbox: {
               show: true,
@@ -112,19 +112,22 @@
               min: this.min,
               max:this.max,
               axisLabel: {
-                formatter: '{value}'
+                formatter: '{value}',
               }
             },
+            grid: {
+              x:39
+            },
             series: [
-              {
-                name: '上证指数',
-                type: 'line',
-                data:  this.trend.baseMarket
-              },
               {
                 name: '千古指数',
                 type: 'line',
                 data: this.trend.aiMarket
+              },
+              {
+                name: '上证指数',
+                type: 'line',
+                data:  this.trend.baseMarket
               }
             ]
           })
@@ -252,6 +255,8 @@
   */
   @media screen and (max-width:600px){
     .marketTrendComponents{
+      margin-left: 0.5%;
+      width: 100%;
       padding: 20px 0;
     }
     h1, h2 {
