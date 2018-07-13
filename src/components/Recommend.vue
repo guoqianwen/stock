@@ -26,7 +26,7 @@
             </tbody>
             <tbody v-else>
               <tr >
-                <td colspan="7">当前股市波动较大，不推荐进一步操作，请等待明天的推荐结果
+                <td colspan="7">当前股市波动较大，无推荐，请等待明天的推荐结果
                 </td>
               </tr>
 
@@ -196,9 +196,14 @@
     padding-bottom: 2rem;
   }
   .basicInfoTitle>h3{
+    width: 96%;
+    margin-left: 2%;
     text-align: center;
-    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(193, 199, 186, 0.47);
   }
+
 
   /*
 屏幕兼容(手机)

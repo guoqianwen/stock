@@ -306,7 +306,7 @@
       padding: 1px;
     }
     .virtureAllLook{
-      font-size: 1.5rem;
+      /*font-size: 1.5rem;*/
     }
     .virtualEmpty{
       font-size: 1.5rem;

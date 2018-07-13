@@ -11,9 +11,9 @@
           </div>
         </div>
         <div class="clear"></div>
-        <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
+        <!--<div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">-->
           <!--  <button  v-for="btn in btnArray" @click="changeTrendTime(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>-->
-        </div>
+        <!--</div>-->
       </div>
     </div>
   </div>
@@ -277,9 +277,9 @@
       margin:0 2%;
     }
     .marketTrendHeader{
-      width: 96%;
+      width: 80%;
       border-bottom: 1px solid #EEF1F5;
-      margin: 0 2%;
+      margin-left: 12%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
