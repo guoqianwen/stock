@@ -13,44 +13,49 @@
               <table class="transactionRecordTable table table-striped table-bordered table-advance">
                 <thead>
                 <tr class="recommend-thead-tr">
-                  <th>序号</th>
+                  <th>交易日期</th>
                   <th>股票代码</th>
+                  <th>公司名称</th>
                   <th>股票份数</th>
-                  <th>买入价格(元)</th>
-                  <th>卖出价格(元)</th>
+                  <th>操作</th>
                   <th>买入日期</th>
+                  <th>买入价格(元)</th>
                   <th>卖出日期</th>
-                  <th>操作类型</th>
+                  <th>卖出价格(元)</th>
+                  <th>盈亏率</th>
                 </tr>
                 </thead>
                 <tbody v-if="items.length>0">
                 <tr v-for="(item,index) in items">
                   <td>
-                    {{index+1}}
+                    {{item.tradeDate}}
                   </td>
                   <td>
                     {{item.name}}
                   </td>
                   <td>
+                    {{item.companyName}}
+                  </td>
+                  <td>
                     {{item.amount}}
+                  </td>
+                  <td>
+                    {{item.action}}
+                  </td>
+                  <td>
+                    {{item.oldDate}}
                   </td>
                   <td>
                     {{item.oldPrice}}
                   </td>
                   <td>
-                    {{item.newPrice}}
-                  </td>
-                  <td>
-                    {{item.oldDate}}
-                   <!-- <div class="data_box">
-                      {{item.oldDate | toFixed2}}
-                    </div>-->
-                  </td>
-                  <td>
                     {{item.newDate}}
                   </td>
                   <td>
-                    {{item.type}}
+                    {{item.newPrice}}
+                  </td>
+                  <td>
+                    {{item.gainRate}}
                   </td>
                 </tr>
                 </tbody>
@@ -61,7 +66,7 @@
                     </tr>
                 </tbody>
               </table>
-              <pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
+              <pagination :perPages="perPages" :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
               </pagination>
             </template>
           </div>
@@ -81,6 +86,7 @@
     name: "transaction-record",
     data() {
       return {
+        perPages:3,
         pageSize: 20, //每页显示20条数据
         currentPage: 1, //当前页码
         count: 0, //总记录数
@@ -107,11 +113,7 @@
         }).then(function (res) {
           if (res.body.code == 0) {
             this.count = res.body.data.total;
-            this.temp= res.body.data.entities;
-            /*this.items = res.body.data.entities;*/
-           for(var i=0;i<this.temp.length;i++){
-             this.items=this.items.concat(this.temp[i].trade);
-           }
+            this.items= res.body.data.entities;
             console.log(this.items)
           } else {
             alert(res.body.message)

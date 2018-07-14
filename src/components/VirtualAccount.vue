@@ -15,7 +15,7 @@
                      class="virtable table table-striped table-bordered table-advance">
                 <tbody>
                 <tr>
-                  <td>开始日期</td>
+                  <td>开始日期:</td>
                   <td>{{virtCountStart.date}}</td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>今日仓库:</td>
+                  <td>今日仓位:</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.todayPosition|setNum}}%</div>
                   </td>
