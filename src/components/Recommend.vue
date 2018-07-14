@@ -47,8 +47,8 @@
           <table class="table table-striped table-bordered table-advance curHoldingTable">
             <tbody>
             <tr v-for="itemDetail in item1.info" class="recommend-thead-tr row" >
-              <td class="col-md-6" >{{itemDetail.k}}</td>
-              <td class="col-md-6" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
+              <td class="col-md-6 base_head_td" >{{itemDetail.k}}</td>
+              <td class="col-md-6 base_right_td" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
             </tr>
             </tbody>
           </table>
@@ -249,6 +249,21 @@
       /*display: flex;*/
       /*flex-direction: row;*/
       /*justify-content:left;*/
+    }
+    .BasciInfoItem{
+      border-bottom: 1px solid #b0c3e3;
+    }
+    .curHoldingTable{
+      width: 97%;
+      margin-top: 10px;
+      margin-left: 4%;
+    }
+    .base_head_td{
+      width: 41%;
+      text-align: left;
+    }
+    .base_right_td{
+      /*text-align: right;*/
     }
   }
 </style>
