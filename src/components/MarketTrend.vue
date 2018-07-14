@@ -2,7 +2,7 @@
   <div id="marketTrend" class="marketTrendComponents">
     <div class="marketTrendRow">
       <div class="marketTrendHeader">
-        <h3>千古指数与上证指数对比</h3>
+        <h3>指数对比</h3>
       </div>
       <div class="row-fluid">
         <div class="span6" style="width: 90%; margin-left: 5%">
@@ -91,7 +91,7 @@
               data: ['千古指数','','上证指数']
             },
             toolbox: {
-              show: true,
+              show: false,
               feature: {
                 dataZoom: {
                   yAxisIndex: 'none'
@@ -138,10 +138,10 @@
             trigger: 'axis'
           },
           legend: {
-            data: ['上证指数', '千古指数']
+            data: ['千古指数','上证指数']
           },
           toolbox: {
-            show: true,
+            show: false,
             feature: {
               dataZoom: {
                 yAxisIndex: 'none'
@@ -166,15 +166,18 @@
           },
           series: [
             {
-              name: '上证指数',
-              type: 'line',
-              data:  this.trend.baseMarket
-            },
-            {
+              symbol: "none",
               name: '千古指数',
               type: 'line',
               data: this.trend.aiMarket
+            },
+            {
+              symbol: "none",
+              name: '上证指数',
+              type: 'line',
+              data:  this.trend.baseMarket
             }
+
           ]
         })
         }

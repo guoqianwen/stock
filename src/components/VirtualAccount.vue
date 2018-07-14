@@ -2,7 +2,7 @@
   <div class="virtualAccount">
     <div class="row virtualAccountRow">
       <div class="virtualAccountHeader">
-        <h3 class="virtureAllLook">虚拟账户总览</h3>
+        <h3 class="virtureAllLook">账户总览</h3>
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-3 virtualAccountC4">
@@ -15,37 +15,40 @@
                      class="virtable table table-striped table-bordered table-advance">
                 <tbody>
                 <tr>
-                  <td class="head_td">开始日期:</td>
+                  <td class="head_td">开始日期</td>
                   <td><div class="data_box">{{virtCountStart.date}}</div></td>
                 </tr>
                 <tr>
-                  <td class="head_td">总资产(元):</td>
+                  <td class="head_td">总资产(元)</td>
                   <td>
                     <div class="data_box">{{virtCountStart.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">持股价值(元):</td>
+                  <td class="head_td">持股价值(元)</td>
                   <td>
                     <div class="data_box">{{virtCountStart.stockAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">账户余额(元):</td>
+                  <td class="head_td">账户余额(元)</td>
                   <td>
                     <div class="data_box">{{virtCountStart.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">今日盈亏率:</td>
+                  <td class="head_td">今日盈亏率</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
+                    <div v-if="virtCountStart.todayProfit>0" class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
+                      +{{(virtCountStart.todayProfit * 100).toFixed(2)}}%
+                    </div>
+                    <div v-else="virtCountStart.todayProfit<=0" class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
                       {{(virtCountStart.todayProfit * 100).toFixed(2)}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">平均仓位:</td>
+                  <td class="head_td">平均仓位</td>
                   <td>
                     <div class="data_box">{{virtCountStart.avgPosition|setNum}}%</div>
                   </td>
@@ -59,19 +62,19 @@
                      class="virtable table table-striped table-bordered table-advance">
                 <tbody>
                 <tr>
-                  <td class="head_td">截止日期:</td>
+                  <td class="head_td">截止日期</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.date}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">总资产(元):</td>
+                  <td class="head_td">总资产(元)</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">持股价值(元):</td>
+                  <td class="head_td">持股价值(元)</td>
                   <td>
                     <div class="data_box" >
                       {{(virtCountEnd.stockAmount * 100) |setNum}}
@@ -79,21 +82,24 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">账户余额(元):</td>
+                  <td class="head_td">账户余额(元)</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">累计盈亏率:</td>
+                  <td class="head_td">累计盈亏率</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
+                    <div v-if="virtCountEnd.totalProfit>0" class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
+                      +{{virtCountEnd.totalProfit * 100 | toFixed2}}%
+                    </div>
+                    <div v-else="virtCountEnd.totalProfit<=0" class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
                       {{virtCountEnd.totalProfit * 100 | toFixed2}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="head_td">今日仓位:</td>
+                  <td class="head_td">今日仓位</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.todayPosition|setNum}}%</div>
                   </td>

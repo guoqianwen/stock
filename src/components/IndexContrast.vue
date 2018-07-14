@@ -14,6 +14,9 @@
               <div class="clear"></div>
 
             </div>
+            <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
+              <button   v-for="btn in dataArray" @click="changeCurImg(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>
+            </div>
         </div>
   </div>
 </template>
@@ -39,10 +42,26 @@
         height: {
           type: String,
           default: 400+"px"
-        }
+        },
+        select:String
       },
       data(){
-        return{}
+        return{
+          dataArray:[
+            {
+              id:'30',
+              time:"近1月"
+            },{
+              id:'90',
+              time:"近3月"
+            },{
+              id:'180',
+              time:"近6月"
+            },{
+              id:'365',
+              time:"近1年"
+            }]
+        }
       },
       mounted() {
         this.initChart();
@@ -65,9 +84,10 @@
             /*  color: ['blue', 'red','#5AB1EF','black'],*/
               legend: {
                 x: 'center',
-                data: ['千古指数','上证指数', '沪深300指','创业板指']
+                data: ['千古指数','上证指数','创业板指', '沪深300指']
               },
               toolbox: {
+                show: false,
                 feature: {
                   saveAsImage: {}
                 }
@@ -78,39 +98,52 @@
                 data:this.GainInfo.time
               },
               yAxis: {
-                type: 'value'
+                type: 'value',
+                axisLabel:{
+                  formatter:'{value}%'
+                }
               },
               series: [
                 {
+                  symbol: "none",
                   name:'千古指数',
                   type:'line',
                   data:this.GainInfo.stockGain,
                 },
                 {
+                  symbol: "none",
                   name:'上证指数',
                   type:'line',
                   data:this.GainInfo.szGain,
                 },
                 {
-                  name:'沪深300指',
-                  type:'line',
-                  data:this.GainInfo.hsGain,
-                },
-                {
+                  symbol: "none",
                   name:'创业板指',
                   type:'line',
                   data:this.GainInfo.cybGain,
+                },
+                {
+                  symbol: "none",
+                  name:'沪深300指',
+                  type:'line',
+                  data:this.GainInfo.hsGain,
                 }
               ]
             })
 
         },
-
+        changeCurImg(e) {
+          var obj={};
+          obj.id=e;
+          obj.index=this.index;
+          this.$emit('filterIndexCurImg', obj)
+        }
       },
       watch:{
         GainInfo:function(){
           this.initChart();
-        }
+        },
+
       }
     }
 </script>
