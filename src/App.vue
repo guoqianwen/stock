@@ -50,11 +50,12 @@ export default {
         {
           title:'讨论区',
           url:'Forum'
-        },
-        {
-          title:'登录',
-          url:'Login'
         }
+//        ,
+//        {
+//          title:'登录',
+//          url:'Login'
+//        }
       ]
     }
 
