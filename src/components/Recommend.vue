@@ -26,7 +26,7 @@
             </tbody>
             <tbody v-else>
               <tr >
-                <td colspan="7">当前股市波动较大，不推荐进一步操作，请等待明天的推荐结果
+                <td colspan="7">当前股市波动较大，无推荐，请等待明天的推荐结果
                 </td>
               </tr>
 
@@ -47,8 +47,8 @@
           <table class="table table-striped table-bordered table-advance curHoldingTable">
             <tbody>
             <tr v-for="itemDetail in item1.info" class="recommend-thead-tr row" >
-              <td class="col-md-6" >{{itemDetail.k}}</td>
-              <td class="col-md-6" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
+              <td class="col-md-6 base_head_td" >{{itemDetail.k}}</td>
+              <td class="col-md-6 base_right_td" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
             </tr>
             </tbody>
           </table>
@@ -196,9 +196,14 @@
     padding-bottom: 2rem;
   }
   .basicInfoTitle>h3{
+    width: 96%;
+    margin-left: 2%;
     text-align: center;
-    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(193, 199, 186, 0.47);
   }
+
 
   /*
 屏幕兼容(手机)
@@ -244,6 +249,21 @@
       /*display: flex;*/
       /*flex-direction: row;*/
       /*justify-content:left;*/
+    }
+    .BasciInfoItem{
+      border-bottom: 1px solid #b0c3e3;
+    }
+    .curHoldingTable{
+      width: 97%;
+      margin-top: 10px;
+      margin-left: 4%;
+    }
+    .base_head_td{
+      width: 41%;
+      text-align: left;
+    }
+    .base_right_td{
+      /*text-align: right;*/
     }
   }
 </style>
