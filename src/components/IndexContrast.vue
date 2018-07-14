@@ -38,7 +38,7 @@
         },
         height: {
           type: String,
-          default: 500+"px"
+          default: 400+"px"
         }
       },
       data(){
@@ -171,6 +171,8 @@
   */
   @media screen and (max-width:600px){
     .indexContrastComponents{
+      margin-left: 2%;
+      width: 96%;
       padding: 20px 0;
     }
     h1, h2 {
