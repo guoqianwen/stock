@@ -163,20 +163,20 @@
         this.chart.setOption({
           tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b} : {c} 元"
           },
           color: ['#2EC7C9', '#5AB1EF'],
-          legend: {
-            x: 'center',
-            y: 'bottom',
-            data: ['投入资金', '当前资金']
-          },
+          // legend: {
+          //   // x: 'center',
+          //   // y: 'bottom',
+          //   // data: ['投入资金', '当前资金']
+          // },
           series: [
             {
               name: '盈利状况',
               type: 'pie',
-              radius: [10, 50],
-              center: ['50%', '50%'],
+              radius: '60',
+              // center: ['50%', '50%'],
               roseType: 'area',
               x: '50%',
               max: 40,

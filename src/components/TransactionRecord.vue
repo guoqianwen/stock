@@ -18,10 +18,10 @@
                   <th>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
-                  <th>买入日期</th>
-                  <th>买入价格(元)</th>
-                  <th>卖出日期</th>
-                  <th>卖出价格(元)</th>
+                  <th class="pc_app_dis_th">买入日期</th>
+                  <th>买入价(元)</th>
+                  <th class="pc_app_dis_th">卖出日期</th>
+                  <th>卖出价(元)</th>
                   <th>盈亏率</th>
                 </tr>
                 </thead>
@@ -42,13 +42,13 @@
                   <td>
                     {{item.action}}
                   </td>
-                  <td>
+                  <td class="pc_app_dis_td">
                     {{item.oldDate}}
                   </td>
                   <td>
                     {{item.oldPrice}}
                   </td>
-                  <td>
+                  <td class="pc_app_dis_td">
                     {{item.newDate}}
                   </td>
                   <td>
@@ -397,6 +397,12 @@
       word-break: keep-all;
       padding: 0px;
       overflow: scroll;
+    }
+    .pc_app_dis_th{
+      display: none;
+    }
+    .pc_app_dis_td{
+      display: none;
     }
   }
 </style>
