@@ -410,7 +410,7 @@
   }
   .desc {
     padding: 0rem 10%;
-    text-align: center;
+    text-align: left;
     line-height: 200%;
     font-size:1.5rem;
     color: #595959;
