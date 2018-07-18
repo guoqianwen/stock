@@ -48,7 +48,7 @@
         </div>
         <div class="row operationAccountRow">
             <div class="col-md-6 now_tb">
-                <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+                <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
                   <tbody>
                       <tr class="current-holding-thead-tr">
                         <td class="head_td">当前持股</td>
@@ -70,7 +70,7 @@
                 </table>
             </div>
             <div class="col-md-6 avg_tb">
-              <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+              <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
                 <tbody>
                     <tr class="current-holding-thead-tr">
                       <td class="head_td">平均盈亏率</td>
@@ -595,9 +595,16 @@
       padding: 0px;
     }
     .table{
-      /*float: left;*/
+      border: none;
+      float: left;
+      margin-bottom: 0px;
+    }
+    .table_now{
+      border-right: 2px solid #b20030;
     }
     .table td{
+      border: none;
+      /*border-right: 3px solid #b20030;*/
       padding: 5px;
     }
     .now_tb{
@@ -606,12 +613,12 @@
       padding: 0px;
     }
     .avg_tb{
-      width: 50%;
+      width: 48%;
       float: left;
       padding: 0px;
     }
     .operationAccountRow {
-      margin: 20px 2%;
+      margin: 20px 1%;
     }
   }
 </style>

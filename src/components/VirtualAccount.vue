@@ -346,13 +346,18 @@
     }
     .table td{
       padding: 5px;
+      border: none;
     }
     .col-md-6{
       min-height: 0px;
       padding: 0px;
     }
+    .end_tb{
+      border: none;
+    }
     .start_tb{
-      border-right: 3px double #c1c7ba;
+      border: none;
+      border-right: 2px solid #b20030;
     }
   }
 </style>
