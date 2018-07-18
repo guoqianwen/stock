@@ -42,11 +42,13 @@ export default {
         {
           title:'首页',
           url:'index'
-        },
-        {
-          title:'推荐信息',
-          url:'RecommendInfo'
-        },
+        }
+//        ,
+//        {
+//          title:'推荐信息',
+//          url:'RecommendInfo'
+//        }
+        ,
         {
           title:'讨论区',
           url:'Forum'

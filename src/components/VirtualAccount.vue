@@ -77,7 +77,7 @@
                   <td class="head_td">持股价值(元)</td>
                   <td>
                     <div class="data_box" >
-                      {{(virtCountEnd.stockAmount * 100) |setNum}}
+                      {{(virtCountEnd.stockAmount) |setNum}}
                     </div>
                   </td>
                 </tr>
