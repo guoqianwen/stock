@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
-      <button  v-for="btn in imgArray" @click="changeCurImg(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>
+    <div class="img_box">
+      <img :src="imgSrc">
     </div>
-    <img :src="imgSrc" style="width: 90%">
+    <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
+      <button   v-for="btn in imgArray" @click="changeCurImg(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>
+    </div>
   </div>
 </template>
 <script>
@@ -37,8 +39,6 @@
         var obj={};
         obj.id=e;
         obj.index=this.index;
-        console.log("22222222222222222222")
-        console.log(e)
         this.$emit('filterCurImg', obj)
       }
     }
@@ -72,6 +72,9 @@ background-color: #ffffff;
 .activeBtn{
 background-color: #D4D4D4;
 }
+.img_box img{
+  width: 90%;
+}
 
 /*
 屏幕兼容(手机)
@@ -101,6 +104,15 @@ background-color: #ffffff;
 .activeBtn{
 background-color: #D4D4D4;
 }
+
+.img_box{
+  overflow: scroll;
+}
+.img_box img{
+  width: auto;
+  height: 250px;
+}
+
 
 }
 </style>

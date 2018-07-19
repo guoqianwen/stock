@@ -31,7 +31,7 @@
       <latest-recommendation heading="历史业绩" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="index_contrast">
-      <index-contrast  heading="盈亏率对比"   :GainInfo="GainInfo"></index-contrast>
+      <index-contrast  heading="盈亏率对比"  @filterIndexCurImg="filterIndexCurImg($event)"  :GainInfo="GainInfo"  :select="curTime"></index-contrast>
     </div>
     <div class="index_contrast">
       <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
@@ -47,46 +47,47 @@
           <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
         </div>
         <div class="row operationAccountRow">
-            <div class="col-md-6">
+            <div class="col-md-6 now_tb">
                 <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
                   <tbody>
                       <tr class="current-holding-thead-tr">
-                        <td>当前持股</td>
-                        <td>{{userAccount.holdNumber}}只</td>
+                        <td class="head_td">当前持股</td>
+                        <td class="data_box">{{userAccount.holdNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td>挣钱股票</td>
-                        <td>{{userAccount.profitNumber}}只</td>
+                        <td class="head_td">挣钱股票</td>
+                        <td class="data_box">{{userAccount.profitNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td>赔钱股票</td>
-                        <td>{{userAccount.lossNumber}}只</td>
+                        <td class="head_td">赔钱股票</td>
+                        <td class="data_box">{{userAccount.lossNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td>胜率</td>
-                        <td >{{userAccount.winRate}}%</td>
+                        <td class="head_td">胜率</td>
+                        <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
                       </tr>
                   </tbody>
                 </table>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 avg_tb">
               <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
                 <tbody>
                     <tr class="current-holding-thead-tr">
-                      <td>平均盈亏率</td>
-                      <td :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}">{{userAccount.avgProfitRate}}%</td>
+                      <td class="head_td">平均盈亏率</td>
+                      <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate}}%</td>
+                      <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate}}%</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td>平均持有天数</td>
-                      <td>{{userAccount.avgHoldDay}}天</td>
+                      <td class="head_td">平均持有天数</td>
+                      <td class="data_box">{{userAccount.avgHoldDay}}天</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td>买入次数</td>
-                      <td>{{userAccount.buyNumber}}次</td>
+                      <td class="head_td">买入次数</td>
+                      <td class="data_box">{{userAccount.buyNumber}}次</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td>卖出次数</td>
-                      <td>{{userAccount.sellNumber}}次</td>
+                      <td class="head_td">卖出次数</td>
+                      <td class="data_box">{{userAccount.sellNumber}}次</td>
                     </tr>
                 </tbody>
               </table>
@@ -107,43 +108,43 @@
       <div class="featureTitle">
         <h3>关于我们</h3>
       </div>
-      <div class="row" style="padding-bottom: 100px;">
-        <div class="row">
-          <div class="col-md-6">
+      <div class="row_top">
+        <div class="row row_about">
+          <div class="col-md-6 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-zhinengsuanfa iconfont-icon"></i>
             </div>
             <div class="title">方法论</div>
-            <div class="desc">基于股票市场非理性的影响经常有股票价格偏离其价值的现象，基于深度学习的技术每天从大量股票中选中最优的股票，从而保证最大可能的盈利。</div>
+            <div class="desc">理财专家进行价值选股，量化风控程序实时跟踪检测风险，基于海量交易数据训练良好的必达深度学习机器人分析推荐股票的必达三角勾股理论。</div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-md-6_about">
             <div class="icon">
-              <i class="iconfont icon-gupiao-copy iconfont-icon"></i>
+              <i class="iconfont icon-anquandunpai1 iconfont-icon"></i>
             </div>
             <div class="title">原则</div>
-            <div class="desc">选择基本面良好的公司，从中基于股票价格趋势变动，挑选最安全，最稳健的投资组合，保证资金安全的前提下，将收益最大化。</div>
+            <div class="desc">挑选最安全，最稳健的投资组合，在充分保证资金安全的前提下，最大限度的将收益最大化。</div>
           </div>
-
         </div>
       </div>
-      <div class="row ">
-        <div class="ant-row">
-          <div class="col-md-6">
+      <div class="row row_about">
+          <div class="col-md-6 col-md-6_about">
             <div class="icon">
-              <i class="iconfont icon-tuijian iconfont-icon"></i>
+              <i class="iconfont icon-tuandui-tianchong iconfont-icon"></i>
             </div>
             <div class="title">团队</div>
-            <div class="desc">团队成员由硅谷资深的人工智能开发专家，和20年投资经验的理财顾问领头外加在上海从事互联网的技术人员组成</div>
+            <div class="desc">团队成员由硅谷资深的人工智能开发专家，20余年投资经验的理财顾问领头以及从事互联网开发的团队组成，成员分布于硅谷，北京，上海等科技金融最为活跃的城市。</div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-md-6_about">
             <div class="icon">
-              <i class="iconfont icon-jisuxiangying iconfont-icon"></i>
+              <i class="iconfont icon-taolun iconfont-icon"></i>
             </div>
-            <div class="title">共同参与</div>
-            <div class="desc">如果您有好的建议或者批评，希望您在讨论区发表，我们会虚心接受并改正，同时承诺将在24小时给与回复。</div>
+            <div class="title">讨论交流</div>
+            <div class="desc">如果您有好的建议或者批评，希望您在<a>
+              <router-link :to="{ path: '/forum' }" >
+              （讨论区）
+              </router-link>
+            </a>发表，我们会虚心接受并改正，以提高您的体验或收益，同时我们承诺将在24H答复您的疑问。</div>
           </div>
-
-        </div>
       </div>
     </div>
     <div class="footer">
@@ -186,7 +187,7 @@
         record:{},
         curAmount:'',
         totalAmount:'',
-        curTime:"MONTH",
+        curTime:"365",
         pageSize:100,
         currentPage:1,
         indexContract:{},
@@ -247,6 +248,11 @@
         this.curTime = time;
         this.fetchTrendData();
       },
+
+      filterIndexCurImg(obj){
+        this.curTime = obj.id;
+        this.getGainInfo();
+      },
       /**
        * 获取当前持股信息
        */
@@ -302,7 +308,9 @@
       },
 
       getGainInfo:function(){
-        this.$http.get(httpUrl.getGainInfoApi).then(function (res) {
+        this.$http.get(httpUrl.getGainInfoApi,{
+          params:{diff:this.curTime}
+        }).then(function (res) {
           if (res.body.code == 0) {
             this.GainInfo = res.body.data.entity;
           } else {
@@ -407,7 +415,9 @@
     font-size:1.5rem;
     color: #595959;
   }
-
+  .row_top{
+    padding-bottom: 100px;
+  }
   .iconfont-icon{
     font-size:5rem;
   }
@@ -493,12 +503,9 @@
     .item{
       height:18rem;
     }
-    .row {
-      margin-bottom: -30px;
-    }
     .feature {
-      margin: auto;
-      width: 100%;
+      margin: 20px auto;
+      width: 96%;
 
     }
 
@@ -546,7 +553,65 @@
       font-size:3rem;
     }
     .row{
-      margin: 0;
+      margin: 20px 0;
+    }
+    .head_td{
+      width: 50%;
+      text-align: left;
+    }
+    .data_box{
+      text-align: right;
+    }
+    tr{
+      font-size: 1rem;
+    }
+    .row_top{
+      padding-bottom: 0px;
+    }
+    .row_about{
+      margin-top: 0px;
+    }
+    .col-md-6_about{
+      /*float: left;*/
+      /*margin-top: 5px;*/
+      /*border: 0.5px outset #b0c3e3;*/
+    }
+    .icon{
+      float: left;
+      margin-left: 10%;
+      margin-top: 20px;
+    }
+    .title{
+      float: left;
+      margin: 27px 5%;
+    }
+    .desc{
+      float: left;
+      text-align: left;
+      margin-top: -20px;
+      border-left: 0.5px outset #b0c3e3;
+    }
+    .col-md-12{
+      padding: 0px;
+    }
+    .table{
+      /*float: left;*/
+    }
+    .table td{
+      padding: 5px;
+    }
+    .now_tb{
+      width: 50%;
+      float: left;
+      padding: 0px;
+    }
+    .avg_tb{
+      width: 50%;
+      float: left;
+      padding: 0px;
+    }
+    .operationAccountRow {
+      margin: 20px 2%;
     }
   }
 </style>

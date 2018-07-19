@@ -10,23 +10,26 @@
             <thead>
             <tr class="recommend-thead-tr">
               <th>股票代码</th>
-              <th>股票类型</th>
+              <th>公司名称</th>
               <th>推荐操作</th>
+              <th>股票类型</th>
               <th>备注</th>
             </tr>
             </thead>
             <tbody v-if="recommends.length>0">
               <tr v-for="(item,index) in recommends">
                 <td >{{item.name}}</td>
-                <td >{{item.action}}</td>
+                <td>{{item.stockName}}</td>
+                <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
                 <!-- <td >{{item.newDate}}</td>-->
+
                 <td>{{item.type}}</td>
               <td>{{item.note}}</td>
             </tr>
             </tbody>
             <tbody v-else>
               <tr >
-                <td colspan="7">当前股市波动较大，不推荐进一步操作，请等待明天的推荐结果
+                <td colspan="7">当前股市波动较大，无推荐，请等待明天的推荐结果
                 </td>
               </tr>
 
@@ -41,14 +44,18 @@
       <div class="basicInfoTitle"><h3>基本信息</h3></div>
       <div class="row BasciInfoItem"  v-for="(item1,index) in recommendationArray" :item3="item1">
         <div class="col-md-9" >
+<!--
           <v-recomendation-img @filterCurImg="filterCurImg($event)" :index="index" :imgSrc="imgSrc? imgSrc:item1.daily" :select="select"></v-recomendation-img>
+-->
+          <v-recomendation-img @filterCurImg="filterCurImg($event)" :index="index"  :imgSrc="item1.showImg" :select="item1.select"></v-recomendation-img>
+
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 recommdationInfo" >
           <table class="table table-striped table-bordered table-advance curHoldingTable">
             <tbody>
             <tr v-for="itemDetail in item1.info" class="recommend-thead-tr row" >
-              <td class="col-md-6" >{{itemDetail.k}}</td>
-              <td class="col-md-6" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
+              <td class="col-md-6 base_head_td" >{{itemDetail.k}}</td>
+              <td class="col-md-6 base_right_td" v-bind:title="itemDetail.v"  >{{itemDetail.v}}</td>
             </tr>
             </tbody>
           </table>
@@ -71,7 +78,7 @@
         recommendationArray:[],
         item3:{},
         imgSrc:'',
-        select:"daily",
+        select:'',
         temp:'',
 
       }
@@ -84,14 +91,18 @@
       filterCurImg:function (obj) {
         var keyName=obj['id'];
         this.temp =this.recommendationArray[obj.index];
-        this.imgSrc=this.temp[keyName];
-        this.select=obj.id;
+        this.recommendationArray[obj.index]["showImg"]=this.temp[keyName];
+        this.recommendationArray[obj.index]["select"]=keyName;
+        console.log(this.recommendationArray)
+       /* this.select=obj.id;*/
+
       },
 
       getRecommendationArray:function () {
         this.$http.get(httpUrl.getRecomendationApi).then(function (res) {
           if (res.body.code == 0) {
             this.recommendationArray = res.body.data.entities;
+            console.log(this.recommendationArray)
           } else {
             alert(res.body.message)
           }
@@ -103,7 +114,11 @@
     watch: {
       item3:function () {
         this.imgSrc=this.item3["daily"];
+      },
+      item3:function () {
+
       }
+
     }
   }
 </script>
@@ -196,9 +211,17 @@
     padding-bottom: 2rem;
   }
   .basicInfoTitle>h3{
+    width: 96%;
+    margin-left: 2%;
     text-align: center;
-    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(193, 199, 186, 0.47);
   }
+  .recommdationInfo{
+    margin-top: 1.5rem;
+  }
+
 
   /*
 屏幕兼容(手机)
@@ -244,6 +267,21 @@
       /*display: flex;*/
       /*flex-direction: row;*/
       /*justify-content:left;*/
+    }
+    .BasciInfoItem{
+      border-bottom: 1px solid #b0c3e3;
+    }
+    .curHoldingTable{
+      width: 97%;
+      margin-top: 10px;
+      margin-left: 4%;
+    }
+    .base_head_td{
+      width: 41%;
+      text-align: left;
+    }
+    .base_right_td{
+      /*text-align: right;*/
     }
   }
 </style>

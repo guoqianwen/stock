@@ -2,7 +2,7 @@
   <div id="marketTrend" class="marketTrendComponents">
     <div class="marketTrendRow">
       <div class="marketTrendHeader">
-        <h3>千古指数与上证指数对比</h3>
+        <h3>指数对比</h3>
       </div>
       <div class="row-fluid">
         <div class="span6" style="width: 90%; margin-left: 5%">
@@ -11,9 +11,9 @@
           </div>
         </div>
         <div class="clear"></div>
-        <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
+        <!--<div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">-->
           <!--  <button  v-for="btn in btnArray" @click="changeTrendTime(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>-->
-        </div>
+        <!--</div>-->
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
       },
       height: {
         type: String,
-        default: '500px'
+        default: '400px'
       },
       trend:{
         type: Object,
@@ -88,10 +88,10 @@
             },
             legend: {
               x: 'left',
-              data: ['上证指数', '千古指数']
+              data: ['千古指数','','上证指数']
             },
             toolbox: {
-              show: true,
+              show: false,
               feature: {
                 dataZoom: {
                   yAxisIndex: 'none'
@@ -112,19 +112,22 @@
               min: this.min,
               max:this.max,
               axisLabel: {
-                formatter: '{value}'
+                formatter: '{value}',
               }
             },
+            grid: {
+              x:39
+            },
             series: [
-              {
-                name: '上证指数',
-                type: 'line',
-                data:  this.trend.baseMarket
-              },
               {
                 name: '千古指数',
                 type: 'line',
                 data: this.trend.aiMarket
+              },
+              {
+                name: '上证指数',
+                type: 'line',
+                data:  this.trend.baseMarket
               }
             ]
           })
@@ -135,10 +138,10 @@
             trigger: 'axis'
           },
           legend: {
-            data: ['上证指数', '千古指数']
+            data: ['千古指数','上证指数']
           },
           toolbox: {
-            show: true,
+            show: false,
             feature: {
               dataZoom: {
                 yAxisIndex: 'none'
@@ -163,15 +166,18 @@
           },
           series: [
             {
-              name: '上证指数',
-              type: 'line',
-              data:  this.trend.baseMarket
-            },
-            {
+              symbol: "none",
               name: '千古指数',
               type: 'line',
               data: this.trend.aiMarket
+            },
+            {
+              symbol: "none",
+              name: '上证指数',
+              type: 'line',
+              data:  this.trend.baseMarket
             }
+
           ]
         })
         }
@@ -252,6 +258,8 @@
   */
   @media screen and (max-width:600px){
     .marketTrendComponents{
+      margin-left: 0.5%;
+      width: 100%;
       padding: 20px 0;
     }
     h1, h2 {
@@ -272,9 +280,9 @@
       margin:0 2%;
     }
     .marketTrendHeader{
-      width: 96%;
+      width: 80%;
       border-bottom: 1px solid #EEF1F5;
-      margin: 0 2%;
+      margin-left: 12%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;

@@ -18,10 +18,10 @@
                   <th>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
-                  <th>买入日期</th>
-                  <th>买入价格(元)</th>
-                  <th>卖出日期</th>
-                  <th>卖出价格(元)</th>
+                  <th class="pc_app_dis_th">买入日期</th>
+                  <th>买入价(元)</th>
+                  <th class="pc_app_dis_th">卖出日期</th>
+                  <th>卖出价(元)</th>
                   <th>盈亏率</th>
                 </tr>
                 </thead>
@@ -42,17 +42,27 @@
                   <td>
                     {{item.action}}
                   </td>
-                  <td>
+                  <td class="pc_app_dis_td">
                     {{item.oldDate}}
+
                   </td>
                   <td>
                     {{item.oldPrice}}
                   </td>
-                  <td>
+                  <td class="pc_app_dis_td">
                     {{item.newDate}}
                   </td>
                   <td>
                     {{item.newPrice}}
+                  </td>
+                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
+                    +{{item.gainRate}}%
+                  </td>
+                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
+                    {{item.gainRate}}%
+                  </td>
+                  <td v-else="item.gainRate==undefined">
+
                   </td>
                   <td>
                     {{item.gainRate}}
@@ -70,7 +80,7 @@
                     </tr>
                 </tbody>
               </table>
-              <pagination :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
+              <pagination :perPages="perPages" :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
               </pagination>
             </template>
           </div>
@@ -80,29 +90,29 @@
       </div>
     </div>
     <div class="operationAccount1">
-      <div class="currentHoldingHeader">
-        <h3 style="padding-top: 1rem;margin-top: 10px!important;">交易统计</h3>
-      <!--  <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>-->
+      <div class="recommendHeader">
+        <h4 class="transactionRecordText1">交易统计</h4>
+        <!--<h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>-->
       </div>
       <div class="row operationAccountRow">
         <div class="col-md-6">
           <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
             <tbody>
             <tr class="current-holding-thead-tr">
-              <td>当前持股</td>
-              <td>{{userAccount.holdNumber}}只</td>
+              <td class="head_td">当前持股</td>
+              <td >{{userAccount.holdNumber}}只</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td>挣钱股票</td>
+              <td class="head_td">挣钱股票</td>
               <td>{{userAccount.profitNumber}}只</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td>赔钱股票</td>
-              <td>{{userAccount.lossNumber}}只</td>
+              <td class="head_td">赔钱股票</td>
+              <td >{{userAccount.lossNumber}}只</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td>胜率</td>
-              <td >{{userAccount.winRate}}%</td>
+              <td class="head_td">胜率</td>
+              <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
             </tr>
             </tbody>
           </table>
@@ -111,20 +121,21 @@
           <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
             <tbody>
             <tr class="current-holding-thead-tr">
-              <td>平均盈亏率</td>
-              <td :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}">{{userAccount.avgProfitRate}}%</td>
+              <td class="head_td">平均盈亏率</td>
+              <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" >+{{userAccount.avgProfitRate}}%</td>
+              <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" >{{userAccount.avgProfitRate}}%</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td>平均持有天数</td>
-              <td>{{userAccount.avgHoldDay}}天</td>
+              <td class="head_td">平均持有天数</td>
+              <td >{{userAccount.avgHoldDay}}天</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td>买入次数</td>
-              <td>{{userAccount.buyNumber}}次</td>
+              <td class="head_td">买入次数</td>
+              <td >{{userAccount.buyNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td>卖出次数</td>
-              <td>{{userAccount.sellNumber}}次</td>
+              <td class="head_td">卖出次数</td>
+              <td >{{userAccount.sellNumber}}次</td>
             </tr>
             </tbody>
           </table>
@@ -142,12 +153,13 @@
     name: "transaction-record",
     data() {
       return {
-        pageSize: 10, //每页显示20条数据
+        perPages:3,
+        pageSize: 20, //每页显示20条数据
         currentPage: 1, //当前页码
         count: 0, //总记录数
         items:[],
         temp:[],
-        userAccount:{}
+        userAccount:[]
       }
     },
     components: {
@@ -169,7 +181,8 @@
         }).then(function (res) {
           if (res.body.code == 0) {
             this.count = res.body.data.total;
-            this.items = res.body.data.entities;
+            this.items= res.body.data.entities;
+            console.log(this.items)
           } else {
             alert(res.body.message)
           }
@@ -181,6 +194,20 @@
       pageChange(page) {
         this.currentPage = page
         this.getList()
+      },
+      /**
+       * 获取操作统计数据
+       */
+      getOperatorSummary:function () {
+        this.$http.get(httpUrl.getOperatorSummaryApi).then(function (res) {
+          if (res.body.code == 0) {
+            this.userAccount = res.body.data.entity;
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
       },
 
       /**
@@ -206,7 +233,6 @@
       //请求第一页数据
       this.getList();
       this.getOperatorSummary();
-
     },
     watch: {
       transactionRecord(val) {
@@ -225,7 +251,10 @@
     width: 96%;
     height: auto;
     margin: 0 2% 2% 2%;
-
+    /*background: #ffffff;*/
+  }
+  .recommendRow{
+    background: #fff;
   }
 .recommendRow{
   background: #ffffff;
@@ -237,22 +266,14 @@
     text-align: center;
     margin: 0 0%;
   }
-  .operationAccount1{
-    width: 100%;
-    height: auto;
-    background: #ffffff;
-    padding-bottom: 2rem;
-    margin-top: 2rem;
+  .transactionRecordText1 {
+    height: 4rem;
+    font-size: 24px;
+    line-height: 4rem;
+    text-align: center;
+
   }
-  .operationAccountRow{
-    margin-top: 2rem;
-    margin-right: 0px;
-    margin-left: 0px;
-    background: #ffffff;
-  }
-  .showTransactionRecord{
-    padding-bottom: 2rem;
-  }
+
   .forum-list-right {
     width: 66%;
     background: #F2F2F2;
@@ -372,10 +393,25 @@
   tr > th {
     text-align: center;
   }
+  tr>td{
+    text-align: center;
+  }
 
   .data_box{
     width:60%;
     text-align: right;
+  }
+  .operationAccount1{
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    padding-bottom: 2rem;
+  }
+  .operationAccountRow{
+    margin-top: 2rem;
+    margin-right: 0px;
+    margin-left: 0px;
+    background: #ffffff;
   }
 
   /*
@@ -389,6 +425,12 @@
       word-break: keep-all;
       padding: 0px;
       overflow: scroll;
+    }
+    .pc_app_dis_th{
+      display: none;
+    }
+    .pc_app_dis_td{
+      display: none;
     }
   }
 </style>

@@ -53,7 +53,6 @@
         type : Number,
         default : 1
       },
-
     },
     methods : {
       prev(){

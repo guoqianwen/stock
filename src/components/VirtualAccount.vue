@@ -11,41 +11,44 @@
         <div class="col-md-9 virtualAccountC8">
           <div class="row">
             <div class="col-md-6">
-              <table cellspacing="0" cellpadding="0" border="0" style="float: right; margin-top: 13%"
-                     class="virtable table table-striped table-bordered table-advance">
+              <table cellspacing="0" cellpadding="0" border="0"
+                     class="virtable table table-striped table-bordered table-advance start_tb">
                 <tbody>
                 <tr>
-                  <td>开始日期</td>
-                  <td>{{virtCountStart.date}}</td>
+                  <td class="head_td">开始日期</td>
+                  <td><div class="data_box">{{virtCountStart.date}}</div></td>
                 </tr>
                 <tr>
-                  <td>总资产(元):</td>
+                  <td class="head_td">总资产(元)</td>
                   <td>
                     <div class="data_box">{{virtCountStart.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>持股价值(元):</td>
+                  <td class="head_td">持股价值(元)</td>
                   <td>
                     <div class="data_box">{{virtCountStart.stockAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>账户余额(元):</td>
+                  <td class="head_td">账户余额(元)</td>
                   <td>
                     <div class="data_box">{{virtCountStart.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>今日盈亏率:</td>
+                  <td class="head_td">今日盈亏率</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
+                    <div v-if="virtCountStart.todayProfit>0" class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
+                      +{{(virtCountStart.todayProfit * 100).toFixed(2)}}%
+                    </div>
+                    <div v-else="virtCountStart.todayProfit<=0" class="data_box" :class="{Green:virtCountStart.todayProfit<0,Red:virtCountStart.todayProfit>=0}">
                       {{(virtCountStart.todayProfit * 100).toFixed(2)}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td>平均仓位:</td>
+                  <td class="head_td">平均仓位</td>
                   <td>
                     <div class="data_box">{{virtCountStart.avgPosition|setNum}}%</div>
                   </td>
@@ -54,24 +57,25 @@
                 </tbody>
               </table>
             </div>
+            <div></div>
             <div class="col-md-6">
-              <table cellspacing="0" cellpadding="0" border="0" style="float: right; margin-top: 13%"
-                     class="virtable table table-striped table-bordered table-advance">
+              <table cellspacing="0" cellpadding="0" border="0"
+                     class="virtable table table-striped table-bordered table-advance end_tb">
                 <tbody>
                 <tr>
-                  <td>截止日期:</td>
+                  <td class="head_td">截止日期</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.date}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>总资产(元):</td>
+                  <td class="head_td">总资产(元)</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>持股价值(元):</td>
+                  <td class="head_td">持股价值(元)</td>
                   <td>
                     <div class="data_box" >
                       {{(virtCountEnd.stockAmount * 100) |setNum}}
@@ -79,25 +83,27 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>账户余额(元):</td>
+                  <td class="head_td">账户余额(元)</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.balanceAmount|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <td>累计盈亏率:</td>
+                  <td class="head_td">累计盈亏率</td>
                   <td>
-                    <div class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
+                    <div v-if="virtCountEnd.totalProfit>0" class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
+                      +{{virtCountEnd.totalProfit * 100 | toFixed2}}%
+                    </div>
+                    <div v-else="virtCountEnd.totalProfit<=0" class="data_box" :class="{Green:virtCountEnd.totalProfit<0,Red:virtCountEnd.totalProfit>=0}">
                       {{virtCountEnd.totalProfit * 100 | toFixed2}}%
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td>今日仓库:</td>
+                  <td class="head_td">今日仓位</td>
                   <td>
                     <div class="data_box">{{virtCountEnd.todayPosition|setNum}}%</div>
                   </td>
-
                 </tr>
                 </tbody>
               </table>
@@ -157,20 +163,20 @@
         this.chart.setOption({
           tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b} : {c} 元"
           },
           color: ['#2EC7C9', '#5AB1EF'],
-          legend: {
-            x: 'center',
-            y: 'bottom',
-            data: ['投入资金', '当前资金']
-          },
+          // legend: {
+          //   // x: 'center',
+          //   // y: 'bottom',
+          //   // data: ['投入资金', '当前资金']
+          // },
           series: [
             {
               name: '盈利状况',
               type: 'pie',
-              radius: [10, 50],
-              center: ['50%', '50%'],
+              radius: '60',
+              // center: ['50%', '50%'],
               roseType: 'area',
               x: '50%',
               max: 40,
@@ -273,6 +279,10 @@
     font-size: 1.8rem;
     color: red;
   }
+  .table{
+    float: right;
+    margin-top: 13%;
+  }
 
   /*
 屏幕兼容(手机)
@@ -294,8 +304,8 @@
       margin-left: 1%;
     }
     .row{
-      width: 96%;
-      margin: 0 2%;
+      width: 100%;
+      margin: 0px;
 
     }
     .virtualAccountC8 {
@@ -306,7 +316,7 @@
       padding: 1px;
     }
     .virtureAllLook{
-      font-size: 1.5rem;
+      /*font-size: 1.5rem;*/
     }
     .virtualEmpty{
       font-size: 1.5rem;
@@ -322,6 +332,27 @@
     .data_box {
       width: 100%;
       text-align: right;
+    }
+    .head_td {
+      width: 52%;
+      text-align: left;
+    }
+    tr {
+      font-size: 1rem;
+    }
+    .table{
+      width: 50%;
+      float: left;
+    }
+    .table td{
+      padding: 5px;
+    }
+    .col-md-6{
+      min-height: 0px;
+      padding: 0px;
+    }
+    .start_tb{
+      border-right: 3px double #c1c7ba;
     }
   }
 </style>
