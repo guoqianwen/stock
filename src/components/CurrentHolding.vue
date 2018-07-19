@@ -50,7 +50,7 @@
         <table class="table table-striped table-bordered table-advance curHoldingTable app_table" contenteditable="false" >
           <thead>
           <tr class="current-holding-thead-tr" >
-            <th>股票代码/公司名称</th>
+            <th>股票代码<br>公司名称</th>
             <!--<th>公司名称</th>-->
             <th>买入日期</th>
             <th>买入价/当前价<br>(元)</th>
@@ -64,7 +64,7 @@
           </thead>
           <tbody>
           <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
-            <td>{{item.name}} /{{item.stockName}}</td>
+            <td>{{item.name}}<br>{{item.stockName}}</td>
             <!--<td>{{item.stockName}}</td>-->
             <td>{{item.oldDate}}</td>
             <td><div class="data_box2">{{item.oldPrice | setNum}}/{{item.newPrice   | setNum}}</div></td>
@@ -186,14 +186,16 @@
       text-align: center;
     }
     .curHoldingTable {
-      font-size: 0.5rem;
+      font-size: 1rem;
       word-break: keep-all;
     }
     .table th{
       padding: 0px;
+      /*vertical-align: middle;*/
     }
     .table td{
       padding: 0px;
+      vertical-align: middle;
     }
     .data_box2{
       width:100%;
