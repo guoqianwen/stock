@@ -3,7 +3,7 @@
     <div class="recommendRow">
       <div class="recommendHeader">
         <h3></h3>
-        <h4 class="transactionRecordText">交易记录</h4>
+        <h4 class="transactionRecordText" >交易记录</h4>
       </div>
       <div class="row-fluid">
         <div class="span12">
@@ -18,10 +18,10 @@
                   <th>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
-                  <th>买入日期</th>
-                  <th>买入价格(元)</th>
-                  <th>卖出日期</th>
-                  <th>卖出价格(元)</th>
+                  <th class="pc_app_dis_th">买入日期</th>
+                  <th>买入价(元)</th>
+                  <th class="pc_app_dis_th">卖出日期</th>
+                  <th>卖出价(元)</th>
                   <th>盈亏率</th>
                 </tr>
                 </thead>
@@ -42,13 +42,14 @@
                   <td>
                     {{item.action}}
                   </td>
-                  <td>
+                  <td class="pc_app_dis_td">
                     {{item.oldDate}}
+
                   </td>
                   <td>
                     {{item.oldPrice}}
                   </td>
-                  <td>
+                  <td class="pc_app_dis_td">
                     {{item.newDate}}
                   </td>
                   <td>
@@ -63,6 +64,13 @@
                   <td v-else="item.gainRate==undefined">
 
                   </td>
+                  <td>
+                    {{item.gainRate}}
+                   <!-- <div class="data_box">
+                      {{item.oldDate | toFixed2}}
+                    </div>-->
+                  </td>
+
                 </tr>
                 </tbody>
                 <tbody v-else>
@@ -202,6 +210,24 @@
         });
       },
 
+      /**
+       * 获取操作统计数据
+       */
+      getOperatorSummary:function () {
+        this.$http.get(httpUrl.getOperatorSummaryApi).then(function (res) {
+          if (res.body.code == 0) {
+            this.userAccount = res.body.data.entity;
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
+      },
+
+
+
+
     },
     mounted() {
       //请求第一页数据
@@ -230,7 +256,9 @@
   .recommendRow{
     background: #fff;
   }
-
+.recommendRow{
+  background: #ffffff;
+}
   .transactionRecordText {
     height: 4rem;
     font-size: 24px;
@@ -397,6 +425,12 @@
       word-break: keep-all;
       padding: 0px;
       overflow: scroll;
+    }
+    .pc_app_dis_th{
+      display: none;
+    }
+    .pc_app_dis_td{
+      display: none;
     }
   }
 </style>
