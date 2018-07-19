@@ -114,6 +114,10 @@
               <td class="head_td">胜率</td>
               <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
             </tr>
+            <tr class="current-holding-thead-tr">
+              <td class="head_td">当日最大盈亏率</td>
+              <td  :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100}}%</td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -136,6 +140,10 @@
             <tr class="current-holding-thead-tr">
               <td class="head_td">卖出次数</td>
               <td >{{userAccount.sellNumber}}次</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <td class="head_td">当日最小盈亏率</td>
+              <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100}}%</td>
             </tr>
             </tbody>
           </table>
