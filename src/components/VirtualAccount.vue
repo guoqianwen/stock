@@ -32,8 +32,8 @@
         <div class="col-md-8 virtualAccountC8">
           <div class="row">
             <div class="col-md-6">
-              <table cellspacing="0" cellpadding="0" border="0" style="float: right; margin-top: 13%"
-                     class="virtable table table-striped table-bordered table-advance">
+              <table cellspacing="0" cellpadding="0" border="0"
+                     class="virtable table table-striped table-bordered table-advance start_tb">
                 <tbody>
                 <tr>
                   <td class="head_td">开始日期</td>
@@ -78,9 +78,10 @@
                 </tbody>
               </table>
             </div>
+            <div></div>
             <div class="col-md-6">
-              <table cellspacing="0" cellpadding="0" border="0" style="float: right; margin-top: 13%"
-                     class="virtable table table-striped table-bordered table-advance">
+              <table cellspacing="0" cellpadding="0" border="0"
+                     class="virtable table table-striped table-bordered table-advance end_tb">
                 <tbody>
                 <tr>
                   <td class="head_td">截止日期</td>
@@ -169,9 +170,6 @@
           type: String,
         default: '250px'
         },
-    },
-    mounted() {
-
     },
     methods: {
     },
@@ -284,8 +282,8 @@
       margin-left: 1%;
     }
     .row{
-      width: 96%;
-      margin: 0 2%;
+      width: 100%;
+      margin: 0px;
 
     }
     .virtualAccountC8 {
@@ -314,11 +312,25 @@
       text-align: right;
     }
     .head_td {
-      width: 50%;
-      text-align: center;
+      width: 52%;
+      text-align: left;
     }
     tr {
       font-size: 1rem;
+    }
+    .table{
+      width: 50%;
+      float: left;
+    }
+    .table td{
+      padding: 5px;
+    }
+    .col-md-6{
+      min-height: 0px;
+      padding: 0px;
+    }
+    .start_tb{
+      border-right: 3px double #c1c7ba;
     }
   }
 </style>

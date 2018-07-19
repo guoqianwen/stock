@@ -92,7 +92,7 @@
           <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
         </div>
         <div class="row operationAccountRow">
-            <div class="col-md-6">
+            <div class="col-md-6 now_tb">
                 <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
                   <tbody>
                       <tr class="current-holding-thead-tr">
@@ -118,7 +118,7 @@
                   </tbody>
                 </table>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 avg_tb">
               <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
                 <tbody>
                     <tr class="current-holding-thead-tr">
@@ -656,7 +656,7 @@
     }
     .head_td{
       width: 50%;
-      text-align: center;
+      text-align: left;
     }
     .data_box{
       text-align: right;
@@ -692,6 +692,25 @@
     }
     .col-md-12{
       padding: 0px;
+    }
+    .table{
+      /*float: left;*/
+    }
+    .table td{
+      padding: 5px;
+    }
+    .now_tb{
+      width: 50%;
+      float: left;
+      padding: 0px;
+    }
+    .avg_tb{
+      width: 50%;
+      float: left;
+      padding: 0px;
+    }
+    .operationAccountRow {
+      margin: 20px 2%;
     }
   }
 </style>
