@@ -5,10 +5,31 @@
         <h3 class="virtureAllLook">账户总览</h3>
       </div>
       <div class="row-fluid virtualAccountBox">
-        <div class="col-md-3 virtualAccountC4">
-          <div  :class="className" :id="id" :style="{height:height,width:width}"  ref="myEchart"></div>
+        <div class="col-md-4 virtualAccountC4">
+          <div class="virtualTotalMoney" style="height:7rem;padding-top: 2rem;">
+                <div class="virtualTotalMoneyTitle" style="height: 2rem;line-height: 2rem;color: #7E7E7E;font-size: 1.8rem">总金额(元)</div>
+                <div class="virtualTotalMoneyValue" style="height: 3rem;line-height: 3rem;color: #E9531E;font-size: 3rem">{{parseInt(virtCountSummary.total)}}</div>
+          </div>
+          <div class="row-fluid" style="margin-top: 2rem;width: 100%;height: 8rem;">
+              <div class="col-sm-4" >
+                  <div class="virtualTotalMoneyTitleName" >最新盈亏(元)</div>
+                  <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)}}</div>
+                  <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)}}</div>
+
+              </div>
+              <div class="col-sm-4" >
+                <div class="virtualTotalMoneyTitleName">持有盈亏(元)</div>
+                <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)}}</div>
+                <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)}}</div>
+              </div>
+              <div class="col-sm-4 virtualTotalMoneyItem">
+                <div class="virtualTotalMoneyTitleName">持有盈亏率</div>
+                <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100}}%</div>
+                <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100}}%</div>
+              </div>
+          </div>
         </div>
-        <div class="col-md-9 virtualAccountC8">
+        <div class="col-md-8 virtualAccountC8">
           <div class="row">
             <div class="col-md-6">
               <table cellspacing="0" cellpadding="0" border="0"
@@ -78,7 +99,7 @@
                   <td class="head_td">持股价值(元)</td>
                   <td>
                     <div class="data_box" >
-                      {{(virtCountEnd.stockAmount * 100) |setNum}}
+                      {{virtCountEnd.stockAmount|setNum}}
                     </div>
                   </td>
                 </tr>
@@ -129,6 +150,10 @@
         type: Object,
         required:true
       },
+      virtCountSummary:{
+        type: Object,
+          required:true
+      },
       className: {
       type: String,
     default: 'yourClassName'
@@ -146,65 +171,7 @@
         default: '250px'
         },
     },
-    mounted() {
-      this.initChart();
-    },
-    beforeDestroy() {
-      if (!this.chart) {
-        return
-      }
-      this.chart.dispose();
-      this.chart = null;
-    },
     methods: {
-      initChart() {
-        this.chart = echarts.init(this.$refs.myEchart,'macarons');
-        // 把配置和数据放这里
-        this.chart.setOption({
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} 元"
-          },
-          color: ['#2EC7C9', '#5AB1EF'],
-          // legend: {
-          //   // x: 'center',
-          //   // y: 'bottom',
-          //   // data: ['投入资金', '当前资金']
-          // },
-          series: [
-            {
-              name: '盈利状况',
-              type: 'pie',
-              radius: '60',
-              // center: ['50%', '50%'],
-              roseType: 'area',
-              x: '50%',
-              max: 40,
-              sort: 'ascending',
-              data: [
-                {
-                  value: this.virtCountStart.totalAsset,
-                  name: '投入资金'
-                },
-                {
-                  value: this.virtCountEnd.totalAsset,
-                  name: '当前资金'
-                }
-              ]
-            }
-          ]
-        })
-
-      }
-
-    },
-    watch: {
-      virtCountStart: function () {
-        this.initChart();
-      },
-      virtCountEnd: function () {
-        this.initChart();
-      }
     },
     filters: {
       toFixed2: function (value) {
@@ -279,9 +246,20 @@
     font-size: 1.8rem;
     color: red;
   }
-  .table{
-    float: right;
-    margin-top: 13%;
+  .virtualTotalMoneyTitleValue{
+    font-size: 2.5rem
+  }
+  .virtualTotalMoneyTitleName{
+    height: 2rem;
+    line-height: 2rem;
+    color: #7E7E7E;
+    font-size: 1.5rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .virtualTotalMoneyItem{
+    padding-left: 0;
+    padding-right: 0;
   }
 
   /*
