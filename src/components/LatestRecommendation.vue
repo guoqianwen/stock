@@ -120,10 +120,10 @@
     font-size: 2rem;
   }
   .Green{
-    color: green;
+    color: #0B9F91;
   }
   .Red{
-    color: red;
+    color: #E9531E;
   }
   .virtualEmpty{
     font-size: 1.8rem;

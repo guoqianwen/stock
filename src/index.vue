@@ -83,7 +83,7 @@
 
     </div>
     <div class="paperTrading">
-      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd"></virtual-account>
+      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
       <current-holding :holding="holding"></current-holding>
     </div>
     <div class="operationAccount">
@@ -215,6 +215,7 @@
       return {
         virtCountStart:{},
         virtCountEnd:{},
+        virtCountSummary:{},
         virtualEmpPresent:0,
         recommendationsList:[],
         indexCompare:[],
@@ -319,6 +320,7 @@
           if (res.body.code == 0) {
             this.virtCountStart = res.body.data.entity.start;
             this.virtCountEnd= res.body.data.entity.end;
+            this.virtCountSummary=res.body.data.entity.summary;
           } else {
             alert(res.body.message)
           }

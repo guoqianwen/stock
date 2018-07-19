@@ -159,9 +159,9 @@ a {
     color: #FFFFFF!important;
   }
   .Green{
-    color: green;
+    color: #0B9F91;
   }
   .Red{
-    color: red;
+    color: #E9531E;
   }
 </style>
