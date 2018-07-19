@@ -36,9 +36,54 @@
     <div class="index_contrast">
       <market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>
     </div>
+    <div class="index_recommend">
+      <div class="recommendRow1 recommendRownew">
+        <div class="recommendHeader">
+          <h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <table class="table table-striped table-bordered table-advance" >
+              <thead>
+              <tr class="recommend-thead-tr">
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>推荐操作</th>
+                <th>股票类型</th>
+                <th>备注</th>
+              </tr>
+              </thead>
+              <tbody v-if="recommends.length>0">
+              <tr v-for="(item,index) in recommends">
+                <td >{{item.name}}</td>
+                <td>{{item.stockName}}</td>
+                <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
+                 <td>{{item.type}}</td>
+                <td>{{item.note}}</td>
+              </tr>
+              </tbody>
+              <tbody v-else>
+              <tr >
+                <td colspan="7">当前股市风险较高，暂不推荐操作
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="showTransactionRecord">
+          <a>
+            <router-link :to="{ path: '/recommend-info' }" >
+              查看推荐详情
+            </router-link>
+          </a>
+        </div>
+      </div>
 
+    </div>
     <div class="paperTrading">
-      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd"></virtual-account>
+      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
       <current-holding :holding="holding"></current-holding>
     </div>
     <div class="operationAccount">
@@ -66,6 +111,10 @@
                         <td class="head_td">胜率</td>
                         <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
                       </tr>
+                      <tr class="current-holding-thead-tr">
+                        <td class="head_td">当日最大盈亏率</td>
+                        <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100}}%</td>
+                      </tr>
                   </tbody>
                 </table>
             </div>
@@ -89,6 +138,10 @@
                       <td class="head_td">卖出次数</td>
                       <td class="data_box">{{userAccount.sellNumber}}次</td>
                     </tr>
+                    <tr class="current-holding-thead-tr">
+                      <td class="head_td">当日最小盈亏率</td>
+                      <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100}}%</td>
+                    </tr>
                 </tbody>
               </table>
             </div>
@@ -101,50 +154,34 @@
           </a>
         </div>
     </div>
-    <div class="aboutUs">
 
-    </div>
     <div class="feature">
-      <div class="featureTitle">
-        <h3>关于我们</h3>
-      </div>
       <div class="row_top">
         <div class="row row_about">
-          <div class="col-md-6 col-md-6_about">
+          <div class="col-md-4 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-zhinengsuanfa iconfont-icon"></i>
             </div>
-            <div class="title">方法论</div>
-            <div class="desc">理财专家进行价值选股，量化风控程序实时跟踪检测风险，基于海量交易数据训练良好的必达深度学习机器人分析推荐股票的必达三角勾股理论。</div>
+            <div class="title">必达公告：</div>
+            <div class="desc">必达科技的勾股系统于2018/8/1正式上线测试。测试期间，账号免费公开。系统业绩透明。欢迎批评指导。也可以参考或跟随勾股系统交易。必达科技不做任何承诺（包括系统的稳定性，推荐的正确性与数据的及时性），盈亏用户自负。请用户根据自身财力与风险承受力合理理财。</div>
           </div>
-          <div class="col-md-6 col-md-6_about">
-            <div class="icon">
-              <i class="iconfont icon-anquandunpai1 iconfont-icon"></i>
-            </div>
-            <div class="title">原则</div>
-            <div class="desc">挑选最安全，最稳健的投资组合，在充分保证资金安全的前提下，最大限度的将收益最大化。</div>
-          </div>
-        </div>
-      </div>
-      <div class="row row_about">
-          <div class="col-md-6 col-md-6_about">
+          <div class="col-md-4 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-tuandui-tianchong iconfont-icon"></i>
             </div>
-            <div class="title">团队</div>
-            <div class="desc">团队成员由硅谷资深的人工智能开发专家，20余年投资经验的理财顾问领头以及从事互联网开发的团队组成，成员分布于硅谷，北京，上海等科技金融最为活跃的城市。</div>
+            <div class="title">关于我们：</div>
+            <div class="desc">必达科技是核心团队由硅谷资深的人工智能专家，及股票投资资深人士领头创建。主要开发人员分布于硅谷，北京，上海三地。勾股是必达科技公司（Pyttatec.com）科学家及人工智能工程师为中国股市量身打造的股票交易系统。勾股系统的交易算法集巴菲特的价值投资，华尔街的量化风控策略，及机器深度学习于一身。勾股交易属于低频，稳健，长短结合型的价值投资。</div>
           </div>
-          <div class="col-md-6 col-md-6_about">
+          <div class="col-md-4 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-taolun iconfont-icon"></i>
             </div>
-            <div class="title">讨论交流</div>
-            <div class="desc">如果您有好的建议或者批评，希望您在<a>
-              <router-link :to="{ path: '/forum' }" >
+            <div class="title">合作交流：</div>
+            <div class="desc">必达正在策划私募基金，希望能与您共赢。与此同时，也愿与大资金机构或个人合作（5000万元资本以上），为您量身制定交易策略。有意者请与bd@pyttatec.com联系。如对我们的产品系统等有建议，请联系tec@pyttatec.com， 或前往 <router-link :to="{ path: '/forum' }" >
               （讨论区）
-              </router-link>
-            </a>发表，我们会虚心接受并改正，以提高您的体验或收益，同时我们承诺将在24H答复您的疑问。</div>
+            </router-link>提出您的宝贵建议。谢谢！</div>
           </div>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -178,6 +215,7 @@
       return {
         virtCountStart:{},
         virtCountEnd:{},
+        virtCountSummary:{},
         virtualEmpPresent:0,
         recommendationsList:[],
         indexCompare:[],
@@ -241,6 +279,12 @@
        */
       this.fetchCurStockeData();
 
+
+      /**
+       * 获取推荐信息
+       */
+      this.fetchLastRecomData();
+
     },
 
     methods:{
@@ -276,6 +320,7 @@
           if (res.body.code == 0) {
             this.virtCountStart = res.body.data.entity.start;
             this.virtCountEnd= res.body.data.entity.end;
+            this.virtCountSummary=res.body.data.entity.summary;
           } else {
             alert(res.body.message)
           }
@@ -337,7 +382,20 @@
         });
       },
 
-
+      /**
+       * 获取最新推荐的数据
+       */
+      fetchLastRecomData (){
+        this.$http.get(httpUrl.lastRecommendationApi).then(function(res){
+          if(res.body.code==0){
+            this.recommends=res.body.data.entities;
+          }else{
+            alert(res.body.message)
+          }
+        },function(){
+          console.log("请求失败")
+        });
+      }
 
     }
 
@@ -410,12 +468,13 @@
   }
   .desc {
     padding: 0rem 10%;
-    text-align: center;
+    text-align: left;
     line-height: 200%;
     font-size:1.5rem;
     color: #595959;
   }
   .row_top{
+    padding-top: 2rem;
     padding-bottom: 100px;
   }
   .iconfont-icon{
@@ -462,6 +521,46 @@
   .currentHoldingHeader h3{
     width: 100%;
     text-align: center;
+  }
+  .recommendRow1{
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin-top: 1rem;
+  }
+  .recommendRownew{
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin-top: 1rem;
+    margin:0 2%;
+  }
+
+  .recommendHeader{
+    width: 96%;
+    border-bottom: 1px solid #EEF1F5;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .row-fluid{
+    padding-top:20px;
+    width: 96%;
+    margin:0 2%;
+    padding-bottom: 5px;
+  }
+  .recommend-thead-tr th{
+    text-align: center;
+  }
+
+
+  .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fbfcfd;
+  }
+  .recommendComponents{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   /*

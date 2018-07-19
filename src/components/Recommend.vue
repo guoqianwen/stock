@@ -2,7 +2,7 @@
   <div id="recommend" class="recommendComponents">
     <div class="recommendRow1 recommendRownew">
       <div class="recommendHeader">
-        <h3>最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>
+        <h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>
       </div>
       <div class="row-fluid">
         <div class="span12">
@@ -41,16 +41,16 @@
       </div>
     </div>
     <div class="recommdationBasciInfo" >
-      <div class="basicInfoTitle"><h3>基本信息</h3></div>
-      <div class="row BasciInfoItem"  v-for="(item1,index) in recommendationArray" :item3="item1">
-        <div class="col-md-9" >
+      <div class="basicInfoTitle"><h3 style="width: 100%">基本信息</h3></div>
+      <div class="row BasciInfoItem"  style="margin-left: 0;margin-right: 0" v-for="(item1,index) in recommendationArray" :item3="item1">
+        <div  :class="item1.info!=null? 'col-md-9':'col-md-12'">
 <!--
           <v-recomendation-img @filterCurImg="filterCurImg($event)" :index="index" :imgSrc="imgSrc? imgSrc:item1.daily" :select="select"></v-recomendation-img>
 -->
           <v-recomendation-img @filterCurImg="filterCurImg($event)" :index="index"  :imgSrc="item1.showImg" :select="item1.select"></v-recomendation-img>
 
         </div>
-        <div class="col-md-3 recommdationInfo" >
+        <div v-if="item1.info!=null" class="col-md-3 recommdationInfo" >
           <table class="table table-striped table-bordered table-advance curHoldingTable">
             <tbody>
             <tr v-for="itemDetail in item1.info" class="recommend-thead-tr row" >
@@ -128,6 +128,10 @@
     font-weight: normal;
     text-align: left;
 
+  }
+  row{
+    margin-left: 0;
+    margin-right: 0;
   }
   ul {
     list-style-type: none;

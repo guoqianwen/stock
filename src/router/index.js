@@ -5,6 +5,7 @@ import Forum from '@/Forum'
 import Login from '@/Login'
 
 import RecommendInfo from '@/RecommendInfo'
+import Recommend from '../components/Recommend'
 import TransactionRecord from '../components/TransactionRecord'
 import VueResource from 'vue-resource'
 import {getCookie} from "../apiConfig/cookie";

@@ -3,7 +3,7 @@
     <div class="recommendRow">
       <div class="recommendHeader">
         <h3></h3>
-        <h4 class="transactionRecordText" >交易记录</h4>
+        <h4 class="transactionRecordText" style="width: 100%;text-align: center">交易记录</h4>
       </div>
       <div class="row-fluid">
         <div class="span12">
@@ -89,9 +89,9 @@
         </div>
       </div>
     </div>
-    <div class="operationAccount1">
+    <div class="operationAccount1" style="margin-top: 1.5rem">
       <div class="recommendHeader">
-        <h4 class="transactionRecordText1">交易统计</h4>
+        <h4 class="transactionRecordText1" style="width: 100%;text-align: center">交易统计</h4>
         <!--<h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>-->
       </div>
       <div class="row operationAccountRow">
@@ -113,6 +113,10 @@
             <tr class="current-holding-thead-tr">
               <td class="head_td">胜率</td>
               <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <td class="head_td">当日最大盈亏率</td>
+              <td  :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100}}%</td>
             </tr>
             </tbody>
           </table>
@@ -137,6 +141,10 @@
               <td class="head_td">卖出次数</td>
               <td >{{userAccount.sellNumber}}次</td>
             </tr>
+            <tr class="current-holding-thead-tr">
+              <td class="head_td">当日最小盈亏率</td>
+              <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100}}%</td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -153,7 +161,7 @@
     name: "transaction-record",
     data() {
       return {
-        perPages:3,
+        perPages:1,
         pageSize: 20, //每页显示20条数据
         currentPage: 1, //当前页码
         count: 0, //总记录数
@@ -270,6 +278,7 @@
     height: 4rem;
     font-size: 24px;
     line-height: 4rem;
+    margin-top: 1.5rem;
     text-align: center;
 
   }
