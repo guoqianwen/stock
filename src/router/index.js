@@ -5,6 +5,7 @@ import Forum from '@/Forum'
 import Login from '@/Login'
 
 import RecommendInfo from '@/RecommendInfo'
+import DataInquiry   from "@/DataInquiry"
 import Recommend from '../components/Recommend'
 import TransactionRecord from '../components/TransactionRecord'
 import VueResource from 'vue-resource'
@@ -34,6 +35,12 @@ export default new Router({
       name: 'Forum',
       component: Forum
     },
+    {
+      path: '/data-inquiry',
+      name: 'DataInquiry',
+      component: DataInquiry
+    }
+    ,
     {
       path: '/Login',
       name: 'Login',

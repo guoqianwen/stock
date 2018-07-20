@@ -35,6 +35,7 @@ let httpUrl = {
  "getUserAccoutInfoApi":_host + '/trade/get_asset_summary', // 用户账户信息总览
   "getOperatorSummaryApi":_host + '/trade/get_operator_summary', // 操作统计
   'getTradeRecordApi':_host + '/trade/search_trade',//查找交易记录
-  'getRecomendationApi':_host + '/recommend/get_info'//
+  'getRecomendationApi':_host + '/recommend/get_info',
+  "getDataInquriyInfoApi":_host + '/data/search',//获取股权质押的数据板块
 };
 export {httpUrl}

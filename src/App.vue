@@ -52,6 +52,10 @@ export default {
         {
           title:'讨论区',
           url:'Forum'
+        } ,
+        {
+          title:'数据披露',
+          url:'DataInquiry'
         }
 //        ,
 //        {
