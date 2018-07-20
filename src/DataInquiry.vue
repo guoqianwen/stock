@@ -130,16 +130,22 @@
 </script>
 
 <style scoped>
+  html{
+    height: 100%!important;
+    background: #E9ECF3;
+  }
+  .content{
+    padding-top: 0.1rem;
+  }
   .DataInquiry{
     width: 96%;
     height: auto;
     background: #ffffff;
-    margin-top: 1rem;
-    margin: 0 2%;
-    margin-top: 2rem;
+    margin: 2rem 2% 3rem 2%;
   }
   .DataInquiryHead{
     padding-top: 1rem;
+
   }
   .DataInquiryInfo{
     padding-bottom: 2rem;
@@ -148,6 +154,7 @@
   }
   .DataInquiryHead >h3{
     height: 3rem;
+    text-align: center;
   }
   .DataInquiry-thead-tr th{
     text-align: center;

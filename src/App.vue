@@ -103,6 +103,7 @@ nav ul{
 }
 .content{
   background: #E9ECF3;
+  padding-top: 0.1rem;
 }
 .nav>li>a:focus, .nav>li>a:hover {
   text-decoration: none;
@@ -167,5 +168,8 @@ a {
   }
   .Red{
     color: #E9531E;
+  }
+  .navbar {
+    margin-bottom: 0px;
   }
 </style>
