@@ -169,20 +169,22 @@
       /*overflow: scroll;*/
     }
     .currentHoldingTable{
-      overflow: scroll;
+      /*overflow: scroll;*/
     }
     .current-holding-thead-tr th{
       text-align: center;
     }
     .curHoldingTable {
-      font-size: 0.5rem;
+      font-size: 1rem;
       word-break: keep-all;
     }
     .table th{
       padding: 0px;
+      /*vertical-align: middle;*/
     }
     .table td{
       padding: 0px;
+      vertical-align: middle;
     }
     .data_box2{
       width:100%;
@@ -196,7 +198,8 @@
       display: none;
     }
     .app_table {
-      display: table;
+      display: inline-table;
+      margin-left: 0px;
     }
 
   }
