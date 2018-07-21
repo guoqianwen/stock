@@ -64,12 +64,12 @@
                   <td v-else="item.gainRate==undefined">
 
                   </td>
-                  <td>
-                    {{item.gainRate}}
-                   <!-- <div class="data_box">
-                      {{item.oldDate | toFixed2}}
-                    </div>-->
-                  </td>
+                  <!--<td>-->
+                    <!--{{item.gainRate}}-->
+                   <!--&lt;!&ndash; <div class="data_box">-->
+                      <!--{{item.oldDate | toFixed2}}-->
+                    <!--</div>&ndash;&gt;-->
+                  <!--</td>-->
 
                 </tr>
                 </tbody>
