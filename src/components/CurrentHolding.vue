@@ -51,35 +51,24 @@
           <thead>
           <tr class="current-holding-thead-tr" >
             <th>股票代码/公司名称</th>
-            <!--<th>公司名称</th>-->
             <th>买入日期</th>
             <th>(买入价)<br>当前价<br>(元)</th>
-            <!--<th>当前价格(元)</th>-->
             <th>(股票份数)<br>买入成本<br>(元)</th>
-            <!--<th>成本(元)</th>-->
             <th>目前价值(元)</th>
             <th>(盈亏率)<br>浮动盈亏<br>(元)</th>
-            <!--<th>浮动盈亏(元)</th>-->
           </tr>
           </thead>
           <tbody>
           <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
             <td>{{item.name}} /{{item.stockName}}</td>
-            <!--<td>{{item.stockName}}</td>-->
             <td>{{item.oldDate}}</td>
             <td><div class="data_box2">({{item.oldPrice | setNum}}) {{item.newPrice   | setNum}}</div></td>
-            <!--<td><div class="data_box2">{{item.newPrice   | setNum}}</div></td>-->
             <td><div class="data_box2"></div>({{item.amount | setNum}}) {{item.cost  | setNum}}</td>
-            <!--<td><div class="data_box3">{{item.cost  | setNum}}</div></td>-->
             <td><div class="data_box3">{{item.value  | setNum}}</div></td>
             <td><div class="data_box3">
-              <span v-if="item.gain>0" :class="{Green:item.gain<0,Red:item.gain>=0,Green:item.earning<0,Red:item.earning>=0}">+({{item.gain  | toFixed2 }}%) {{item.earning  | setNum}}</span>
-              <span v-else="item.gain<=0" :class="{Green:item.gain<0,Red:item.gain>=0,Green:item.earning<0,Red:item.earning>=0}">({{item.gain  | toFixed2 }}%) {{item.earning  | setNum}}</span>
+              <span v-if="item.gain>0" :class="{Green:item.earning<0,Red:item.earning>=0}">+({{item.gain  | toFixed2 }}%) {{item.earning  | setNum}}</span>
+              <span v-else="item.gain<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">({{item.gain  | toFixed2 }}%) {{item.earning  | setNum}}</span>
             </div></td>
-            <!--<td><div class="data_box3">-->
-            <!--<span v-if="item.earning>0"  :class="{Green:item.earning<0,Red:item.earning>=0}">+{{item.earning  | setNum}}</span>-->
-            <!--<span v-else="item.earning<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning  | setNum}}</span>-->
-            <!--</div></td>-->
           </tr>
           <tr v-else>
             <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
