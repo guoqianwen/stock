@@ -96,23 +96,23 @@
       </div>
       <div class="row operationAccountRow">
         <div class="col-md-6">
-          <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+          <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
             <tbody>
             <tr class="current-holding-thead-tr">
               <td class="head_td">当前持股</td>
-              <td >{{userAccount.holdNumber}}只</td>
+              <td class="data_td">{{userAccount.holdNumber}}只</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">挣钱股票</td>
-              <td>{{userAccount.profitNumber}}只</td>
+              <td class="data_td">{{userAccount.profitNumber}}只</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">赔钱股票</td>
-              <td >{{userAccount.lossNumber}}只</td>
+              <td class="data_td">{{userAccount.lossNumber}}只</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">胜率</td>
-              <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
+              <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}" class="data_td">{{userAccount.winRate}}%</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">当日最大盈亏率</td>
@@ -122,24 +122,24 @@
           </table>
         </div>
         <div class="col-md-6">
-          <table class="table table-striped table-bordered table-advance curHoldingTable" contenteditable="false" >
+          <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
             <tbody>
             <tr class="current-holding-thead-tr">
               <td class="head_td">平均盈亏率</td>
-              <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" >+{{userAccount.avgProfitRate}}%</td>
-              <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" >{{userAccount.avgProfitRate}}%</td>
+              <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_td">+{{userAccount.avgProfitRate}}%</td>
+              <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_td">{{userAccount.avgProfitRate}}%</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">平均持有天数</td>
-              <td >{{userAccount.avgHoldDay}}天</td>
+              <td class="data_td">{{userAccount.avgHoldDay}}天</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">买入次数</td>
-              <td >{{userAccount.buyNumber}}次</td>
+              <td class="data_td">{{userAccount.buyNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">卖出次数</td>
-              <td >{{userAccount.sellNumber}}次</td>
+              <td class="data_td">{{userAccount.sellNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">当日最小盈亏率</td>
@@ -435,11 +435,46 @@
       padding: 0px;
       overflow: scroll;
     }
+    .table>thead>tr>th {
+      padding: 1px;
+    }
+    .transactionRecordTable td{
+      padding: 0px;
+    }
+    .transactionRecordText{
+      width: 100%;
+    }
+    .transactionRecordText1{
+      width: 100%;
+    }
     .pc_app_dis_th{
       display: none;
     }
     .pc_app_dis_td{
       display: none;
+    }
+    .curHoldingTable{
+      width: 50%;
+      float: left;
+      margin-left: 0px;
+      font-size: 10px;
+    }
+    .data_td{
+      width: 45%;
+    }
+    .head_td{
+      width: 55%;
+      text-align: left;
+    }
+    .col-md-6{
+      /*padding-top: 0px;*/
+      padding-left: 2%;
+      padding-right: 2%;
+    }
+    .table_avg{
+      /*padding-top: -2px;*/
+      float: left;
+      margin-left: 1px;
     }
   }
 </style>

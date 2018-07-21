@@ -10,19 +10,19 @@
                 <div class="virtualTotalMoneyTitle" style="height: 2rem;line-height: 2rem;color: #7E7E7E;font-size: 1.8rem">总金额(元)</div>
                 <div class="virtualTotalMoneyValue" style="height: 3rem;line-height: 3rem;color: #E9531E;font-size: 3rem">{{parseInt(virtCountSummary.total)|setNum}}</div>
           </div>
-          <div class="row-fluid" style="margin-top: 2rem;width: 100%;height: 8rem;">
-              <div class="col-sm-4" >
+          <div class="row-fluid virtual_item">
+              <div class="col-sm-4 virtual_sm virtual_sm_1" >
                   <div class="virtualTotalMoneyTitleName" >最新盈亏(元)</div>
                   <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
                   <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
 
               </div>
-              <div class="col-sm-4" >
+              <div class="col-sm-4 virtual_sm virtual_sm_2" >
                 <div class="virtualTotalMoneyTitleName">持有盈亏(元)</div>
                 <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
                 <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
               </div>
-              <div class="col-sm-4 virtualTotalMoneyItem">
+              <div class="col-sm-4 virtualTotalMoneyItem virtual_sm virtual_sm_3">
                 <div class="virtualTotalMoneyTitleName">持有盈亏率</div>
                 <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100}}%</div>
                 <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100}}%</div>
@@ -192,6 +192,27 @@
     padding-top: 0px;
   }
 
+  .virtualTotalMoney{
+    height:7rem;
+    padding-top: 2rem;
+  }
+  .virtualTotalMoneyTitle{
+    height: 2rem;
+    line-height: 2rem;
+    color: #7E7E7E;
+    font-size: 1.8rem;
+  }
+  .virtualTotalMoneyValue{
+    height: 3rem;
+    line-height: 3rem;
+    color: #E9531E;
+    font-size: 3rem;
+  }
+  .virtual_item{
+    margin-top: 2rem;
+    width: 100%;
+    height: 8rem;
+  }
   .span6 {
     width: 50%;
   }
@@ -296,6 +317,19 @@
     .virtureAllLook{
       /*font-size: 1.5rem;*/
     }
+    .virtual_item{
+      float: left;
+    }
+    .virtual_sm{
+      float: left;
+      margin-left: 2px;
+    }
+    .virtual_sm_1{
+      border-right: 1px solid #c1c7ba;
+    }
+    .virtual_sm_2{
+      border-right: 1px solid #c1c7ba;
+    }
     .virtualEmpty{
       font-size: 1.5rem;
     }
@@ -324,13 +358,18 @@
     }
     .table td{
       padding: 5px;
+      border: none;
     }
     .col-md-6{
       min-height: 0px;
       padding: 0px;
     }
+    .end_tb{
+      border: none;
+    }
     .start_tb{
-      border-right: 3px double #c1c7ba;
+      border: none;
+      border-right: 2px solid #b20030;
     }
   }
 </style>

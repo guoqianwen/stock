@@ -287,6 +287,10 @@
       flex-direction: row;
       justify-content: space-between;
     }
+    .marketTrendHeader h3{
+      width: 100%;
+      text-align: center;
+    }
     .btn-group{
       display: flex;
       flex-direction: row;
