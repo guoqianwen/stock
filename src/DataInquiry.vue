@@ -57,7 +57,7 @@
                     </tbody>
                     <tbody v-else>
                     <tr >
-                      <td colspan="9">当前股市波动较大，无交易操作
+                      <td colspan="9">暂无披露数据
                       </td>
                     </tr>
                     </tbody>
@@ -107,6 +107,7 @@
           this.$http.get(httpUrl.getDataInquriyInfoApi, {
             params: {pageSize:this.pageSize,pageNo:this.currentPage,name:this.name,code:this.code}
           }).then(function (res) {
+            console.log(res.body)
             if (res.body.code == 0) {
               this.count = res.body.data.total;
               this.items= res.body.data.entities;
