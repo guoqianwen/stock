@@ -311,6 +311,7 @@
     height:100%;
   }
   .content{
+    padding-top: 0.1rem;
     height: 85.5%;
   }
   .chooseStyle{

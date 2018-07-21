@@ -6,21 +6,21 @@
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-4 virtualAccountC4">
-          <div class="virtualTotalMoney">
-                <div class="virtualTotalMoneyTitle">总金额(元)</div>
-                <div class="virtualTotalMoneyValue">{{parseInt(virtCountSummary.total)}}</div>
+          <div class="virtualTotalMoney" style="height:7rem;padding-top: 2rem;">
+                <div class="virtualTotalMoneyTitle" style="height: 2rem;line-height: 2rem;color: #7E7E7E;font-size: 1.8rem">总金额(元)</div>
+                <div class="virtualTotalMoneyValue" style="height: 3rem;line-height: 3rem;color: #E9531E;font-size: 3rem">{{parseInt(virtCountSummary.total)|setNum}}</div>
           </div>
           <div class="row-fluid virtual_item">
               <div class="col-sm-4 virtual_sm virtual_sm_1" >
                   <div class="virtualTotalMoneyTitleName" >最新盈亏(元)</div>
-                  <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)}}</div>
-                  <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)}}</div>
+                  <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
+                  <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
 
               </div>
               <div class="col-sm-4 virtual_sm virtual_sm_2" >
                 <div class="virtualTotalMoneyTitleName">持有盈亏(元)</div>
-                <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)}}</div>
-                <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)}}</div>
+                <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
+                <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
               </div>
               <div class="col-sm-4 virtualTotalMoneyItem virtual_sm virtual_sm_3">
                 <div class="virtualTotalMoneyTitleName">持有盈亏率</div>

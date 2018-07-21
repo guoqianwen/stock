@@ -164,21 +164,21 @@
             <div class="icon">
               <i class="iconfont icon-zhinengsuanfa iconfont-icon"></i>
             </div>
-            <div class="title">必达公告：</div>
+            <div class="title">必达公告</div>
             <div class="desc">必达科技的勾股系统于2018/8/1正式上线测试。测试期间，账号免费公开。系统业绩透明。欢迎批评指导。也可以参考或跟随勾股系统交易。必达科技不做任何承诺（包括系统的稳定性，推荐的正确性与数据的及时性），盈亏用户自负。请用户根据自身财力与风险承受力合理理财。</div>
           </div>
           <div class="col-md-4 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-tuandui-tianchong iconfont-icon"></i>
             </div>
-            <div class="title">关于我们：</div>
+            <div class="title">关于我们</div>
             <div class="desc">必达科技是核心团队由硅谷资深的人工智能专家，及股票投资资深人士领头创建。主要开发人员分布于硅谷，北京，上海三地。勾股是必达科技公司（Pyttatec.com）科学家及人工智能工程师为中国股市量身打造的股票交易系统。勾股系统的交易算法集巴菲特的价值投资，华尔街的量化风控策略，及机器深度学习于一身。勾股交易属于低频，稳健，长短结合型的价值投资。</div>
           </div>
           <div class="col-md-4 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-taolun iconfont-icon"></i>
             </div>
-            <div class="title">合作交流：</div>
+            <div class="title">合作交流</div>
             <div class="desc">必达正在策划私募基金，希望能与您共赢。与此同时，也愿与大资金机构或个人合作（5000万元资本以上），为您量身制定交易策略。有意者请与bd@pyttatec.com联系。如对我们的产品系统等有建议，请联系tec@pyttatec.com， 或前往 <router-link :to="{ path: '/forum' }" >
               （讨论区）
             </router-link>提出您的宝贵建议。谢谢！</div>
@@ -473,6 +473,7 @@
     text-align: left;
     line-height: 200%;
     font-size:1.5rem;
+    text-indent: 2.8rem;
     color: #595959;
   }
   .row_top{
