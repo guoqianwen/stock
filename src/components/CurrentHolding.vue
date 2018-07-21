@@ -67,14 +67,14 @@
             <td>{{item.name}}<br>{{item.stockName}}</td>
             <!--<td>{{item.stockName}}</td>-->
             <td>{{item.oldDate}}</td>
-            <td><div class="data_box2">{{item.oldPrice | setNum}}/{{item.newPrice   | setNum}}</div></td>
+            <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice   | setNum}}</div></td>
             <!--<td><div class="data_box2">{{item.newPrice   | setNum}}</div></td>-->
-            <td><div class="data_box2"></div>{{item.amount | setNum}}/{{item.cost  | setNum}}</td>
+            <td class="data_box2_td"><div class="data_box2"></div>{{item.amount | setNum}}<br>{{item.cost  | setNum}}</td>
             <!--<td><div class="data_box3">{{item.cost  | setNum}}</div></td>-->
             <td><div class="data_box3">{{item.value  | setNum}}</div></td>
             <td><div class="data_box3">
-              <span v-if="item.gain>0" :class="{Green:item.gain<0,Red:item.gain>=0,Green:item.earning<0,Red:item.earning>=0}">+{{item.gain  | toFixed2 }}%/{{item.earning  | setNum}}</span>
-              <span v-else="item.gain<=0" :class="{Green:item.gain<0,Red:item.gain>=0,Green:item.earning<0,Red:item.earning>=0}">{{item.gain  | toFixed2 }}%/{{item.earning  | setNum}}</span>
+              <span v-if="item.gain>0" :class="{Green:item.gain<0,Red:item.gain>=0,Green:item.earning<0,Red:item.earning>=0}">+{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
+              <span v-else="item.gain<=0" :class="{Green:item.gain<0,Red:item.gain>=0,Green:item.earning<0,Red:item.earning>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
             </div></td>
             <!--<td><div class="data_box3">-->
             <!--<span v-if="item.earning>0"  :class="{Green:item.earning<0,Red:item.earning>=0}">+{{item.earning  | setNum}}</span>-->
@@ -186,7 +186,7 @@
       text-align: center;
     }
     .curHoldingTable {
-      font-size: 1rem;
+      font-size: 1.2rem;
       word-break: keep-all;
     }
     .table th{
@@ -194,12 +194,19 @@
       /*vertical-align: middle;*/
     }
     .table td{
-      padding: 0px;
+      /*padding: 0px;*/
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 1px;
+      padding-right: 1px;
       vertical-align: middle;
     }
     .data_box2{
       width:100%;
-      /*text-align: right;*/
+      text-align: right;
+    }
+    .data_box2_td{
+      text-align: right;
     }
     .data_box3{
       width:100%;
