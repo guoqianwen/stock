@@ -4,64 +4,79 @@
             <h3>质押率查询</h3>
         </div>
         <div class="DataInquiryBar">
-              <label>输入公司名称关键字:</label><input name="companyName" v-model="name"/>
-              <label>输入股票代码:</label><input name="code" v-model="code"/>
-              <button v-on:click="searchInquriyInfo">查询</button>
+              <label class="DataInquiry_lab">输入公司名称关键字:</label><input class="DataInquiry_inp" name="companyName" v-model="name"/>
+              <label class="DataInquiry_lab">输入股票代码:</label><input class="DataInquiry_inp" name="code" v-model="code"/>
+              <button class="DataInquiry_btn" v-on:click="searchInquriyInfo">查询</button>
         </div>
         <div class="DataInquiryInfo">
           <div class="row-fluid">
             <div class="span12">
               <div class="list">
                 <template>
-                  <table class=" table table-striped table-bordered table-advance">
-                    <thead>
-                    <tr class="DataInquiry-thead-tr">
-                      <th>日期</th>
-                      <th>证券代码</th>
-                      <th>证券简称</th>
-                      <th>质押笔数</th>
-                      <th>无限售股份质押数量(万)</th>
-                      <th>有限售股份质押数量(万)</th>
-                      <th>A股总股本数(万)</th>
-                      <th>质押比例(%)</th>
-                    </tr>
-                    </thead>
-                    <tbody v-if="items.length>0">
-                    <tr v-for="(item,index) in items">
-                      <td>
-                        {{item.date}}
-                      </td>
-                      <td>
-                        {{item.code}}
-                      </td>
-                      <td>
-                        {{item.name}}
-                      </td>
-                      <td>
-                        {{item.pledgeNumber}}
-                      </td>
-                      <td>
-                        {{item.unlimitedPledge}}
-                      </td>
-                      <td >
-                        {{item.limitedPledge}}
+                  <div class="list_tab">
+                    <table class=" table table-striped table-bordered table-advance">
+                      <thead>
+                      <tr class="DataInquiry-thead-tr">
+                        <th>日期</th>
+                        <th>证券代码</th>
+                        <th>证券简称</th>
+                        <th>质押笔数</th>
+                        <th>无限售股份质押数量(万)</th>
+                        <th>有限售股份质押数量(万)</th>
+                        <th>A股总股本数(万)</th>
+                        <th>质押比例(%)</th>
+                      </tr>
+                      <tr class="DataInquiry-thead-tr-app">
+                        <th>日期</th>
+                        <th>证券代码/<br>证券简称</th>
+                        <!--<th>证券简称</th>-->
+                        <th>质押笔数</th>
+                        <th>无限售<br>质押数量(万)</th>
+                        <th>有限售<br>质押数量(万)</th>
+                        <th>A股<br>总股本数(万)</th>
+                        <th>质押比例(%)</th>
+                      </tr>
+                      </thead>
+                      <tbody v-if="items.length>0">
+                      <tr v-for="(item,index) in items">
+                        <td>
+                          {{item.date}}
+                        </td>
+                        <td class="app_td">
+                          {{item.code}}<br>{{item.name}}
+                        </td>
+                        <td class="pc_td">
+                          {{item.code}}
+                        </td>
+                        <td class="pc_td">
+                          {{item.name}}
+                        </td>
+                        <td>
+                          {{item.pledgeNumber}}
+                        </td>
+                        <td>
+                          {{item.unlimitedPledge}}
+                        </td>
+                        <td >
+                          {{item.limitedPledge}}
 
-                      </td>
-                      <td>
-                        {{item.total}}
-                      </td>
-                      <td >
-                        {{item.rate}}
-                      </td>
-                    </tr>
-                    </tbody>
-                    <tbody v-else>
-                    <tr >
-                      <td colspan="9">暂无披露数据
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
+                        </td>
+                        <td>
+                          {{item.total}}
+                        </td>
+                        <td >
+                          {{item.rate}}
+                        </td>
+                      </tr>
+                      </tbody>
+                      <tbody v-else>
+                      <tr >
+                        <td colspan="9">暂无披露数据
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
                   <pagination  :perPages="perPages" :page-index="currentPage" :total="count" :page-size="pageSize" @change="pageChange">
                   </pagination>
                 </template>
@@ -131,6 +146,7 @@
 </script>
 
 <style scoped>
+  *
   html{
     height: 100%!important;
     background: #E9ECF3;
@@ -160,10 +176,70 @@
   .DataInquiry-thead-tr th{
     text-align: center;
   }
+  .DataInquiry-thead-tr-app{
+    display: none;
+  }
+  .app_td{
+    display: none;
+  }
   .row-fluid {
     padding-top: 20px;
     width: 96%;
     margin: 0 2%;
     padding-bottom: 5px;
+  }
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    .DataInquiryBar{
+      font-size: 1rem;
+      float: left;
+      margin-bottom: 15px;
+    }
+    .DataInquiry_lab{
+      float: left;
+      width: 35%;
+      text-align: left;
+      margin-left: 4%;
+    }
+    .DataInquiry_inp{
+      float: left;
+      width: 70%;
+      margin-left: 4%;
+    }
+    .DataInquiry_btn{
+      float: left;
+      margin-left: 10%;
+    }
+    .DataInquiry-thead-tr{
+      display: none;
+    }
+    .DataInquiry-thead-tr-app{
+      display: table;
+    }
+    .app_td{
+      display: table;
+    }
+    .pc_td{
+      display: none;
+    }
+    .list{
+      font-size: 0.5rem;
+      word-break: keep-all;
+    }
+    .list_tab{
+      /*float: left;*/
+      /*width: 100%;*/
+      /*overflow-x: scroll;*/
+    }
+    .list th{
+      padding: 0px;
+      padding-left: 2px;
+      padding-right: 2px;
+      vertical-align: middle;
+      text-align: center;
+    }
   }
 </style>
