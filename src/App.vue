@@ -57,11 +57,11 @@ export default {
           title:'数据区',
           url:'DataInquiry'
         }
-//        ,
-//        {
-//          title:'登录',
-//          url:'Login'
-//        }
+       ,
+       {
+         title:'登录',
+         url:'Login'
+       }
       ]
     }
 
@@ -79,8 +79,9 @@ export default {
     width: 0px;
     height: 0px;
   }
-  body{
-    background: #E9ECF3;
+  html,body{
+    height: 100%!important;
+    background: #E9ECF3!important;
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

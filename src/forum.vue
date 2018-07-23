@@ -312,7 +312,7 @@
   }
   .content{
     padding-top: 0.1rem;
-    height: 85.5%;
+    height: 100%;
   }
   .chooseStyle{
     background: #5BC0DE!important;
