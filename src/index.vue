@@ -98,23 +98,23 @@
                 <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
                   <tbody>
                       <tr class="current-holding-thead-tr">
-                        <td class="head_td">当前持股</td>
+                        <th class="head_td">当前持股</th>
                         <td class="data_box">{{userAccount.holdNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td class="head_td">挣钱股票</td>
+                        <th class="head_td">挣钱股票</th>
                         <td class="data_box">{{userAccount.profitNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td class="head_td">赔钱股票</td>
+                        <th class="head_td">赔钱股票</th>
                         <td class="data_box">{{userAccount.lossNumber}}只</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td class="head_td">胜率</td>
+                        <th class="head_td">胜率</th>
                         <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <td class="head_td">当日最大盈亏率</td>
+                        <th class="head_td">单日最大盈亏率</th>
                         <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100}}%</td>
                       </tr>
                   </tbody>
@@ -124,24 +124,24 @@
               <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
                 <tbody>
                     <tr class="current-holding-thead-tr">
-                      <td class="head_td">平均盈亏率</td>
+                      <th class="head_td">平均盈亏率</th>
                       <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate}}%</td>
                       <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate}}%</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td class="head_td">平均持有天数</td>
+                      <th class="head_td">平均持有天数</th>
                       <td class="data_box">{{userAccount.avgHoldDay}}天</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td class="head_td">买入次数</td>
+                      <th class="head_td">买入次数</th>
                       <td class="data_box">{{userAccount.buyNumber}}次</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td class="head_td">卖出次数</td>
+                      <th class="head_td">卖出次数</th>
                       <td class="data_box">{{userAccount.sellNumber}}次</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
-                      <td class="head_td">当日最小盈亏率</td>
+                      <th class="head_td">单日最小盈亏率</th>
                       <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100}}%</td>
                     </tr>
                 </tbody>
@@ -160,21 +160,21 @@
     <div class="feature">
       <div class="row_top">
         <div class="row row_about">
-          <div class="col-md-4 col-md-6_about">
+          <div class="col-md-12 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-zhinengsuanfa iconfont-icon"></i>
             </div>
             <div class="title">必达公告</div>
             <div class="desc">必达科技的勾股系统于2018/8/1正式上线测试。测试期间，账号免费公开。系统业绩透明。欢迎批评指导。也可以参考或跟随勾股系统交易。必达科技不做任何承诺（包括系统的稳定性，推荐的正确性与数据的及时性），盈亏用户自负。请用户根据自身财力与风险承受力合理理财。</div>
           </div>
-          <div class="col-md-4 col-md-6_about">
+          <div class="col-md-12 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-tuandui-tianchong iconfont-icon"></i>
             </div>
             <div class="title">关于我们</div>
             <div class="desc">必达科技是核心团队由硅谷资深的人工智能专家，及股票投资资深人士领头创建。主要开发人员分布于硅谷，北京，上海三地。勾股是必达科技公司（Pyttatec.com）科学家及人工智能工程师为中国股市量身打造的股票交易系统。勾股系统的交易算法集巴菲特的价值投资，华尔街的量化风控策略，及机器深度学习于一身。勾股交易属于低频，稳健，长短结合型的价值投资。</div>
           </div>
-          <div class="col-md-4 col-md-6_about">
+          <div class="col-md-12 col-md-6_about">
             <div class="icon">
               <i class="iconfont icon-taolun iconfont-icon"></i>
             </div>
@@ -459,10 +459,12 @@
     padding-bottom: 100px;
   }
   .icon {
+    padding: 0rem 10%;
     font-size: 50px;
     color: #00add2;
   }
  .title {
+   padding: 0rem 10%;
     font-size: 2rem;
     line-height: 300%;
     font-weight: bold;
@@ -564,6 +566,9 @@
   .recommendComponents{
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+  .current-holding-thead-tr th{
+    text-align: center;
   }
 
   /*
@@ -673,6 +678,8 @@
     }
     .row_about{
       margin-top: 0px;
+      display: flex;
+      flex-direction: column;
     }
     .col-md-6_about{
       /*float: left;*/

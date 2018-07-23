@@ -54,7 +54,7 @@ export default {
           url:'Forum'
         } ,
         {
-          title:'数据披露',
+          title:'数据区',
           url:'DataInquiry'
         }
 //        ,
@@ -171,5 +171,8 @@ a {
   }
   .navbar {
     margin-bottom: 0px;
+  }
+  .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fbfcfd;
   }
 </style>

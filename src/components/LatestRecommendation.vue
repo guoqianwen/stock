@@ -1,7 +1,7 @@
 <template>
     <div class="LatestRecommendation">
       <div class="header">
-        <div class="heading">{{ heading }}  </div>
+        <div class="heading"><h3>{{ heading }}</h3></div>
         <div class="virtualEmpty">&nbsp;&nbsp;</div>
       </div>
       <div class="recommendation-items">
@@ -80,7 +80,7 @@
     border-bottom: 1px solid #ECECEC;
   }
   .heading{
-    color: #585858;
+    color: rgb(51, 51, 51);
     font-size: 30px;
   }
   .recommendation-items{

@@ -88,7 +88,7 @@
             },
             legend: {
               x: 'left',
-              data: ['千古指数','','上证指数']
+              data: ['千古指数','上证指数']
             },
             toolbox: {
               show: false,

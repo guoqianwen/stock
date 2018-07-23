@@ -23,7 +23,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
+         <!-- <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">-->
+          <tr v-if="holding.length>0" v-for="(item,index) in holding" >
             <td>{{item.name}}</td>
             <td>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
