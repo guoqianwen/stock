@@ -190,6 +190,7 @@
    /* overflow-x: scroll;*/
     margin: 0%;
     padding-top: 0px;
+    margin-bottom:2rem;
   }
 
   .virtualTotalMoney{
@@ -232,7 +233,7 @@
   }
 
   .virtualAccountHeader {
-    margin-top: 1.5rem;
+    /*margin-top: 1.5rem;*/
     background: #ffffff;
     width: 100%;
     border-bottom: 1px solid #EEF1F5;
@@ -257,6 +258,8 @@
    /* margin-top: 0.5rem;
     margin-left: 0.5rem;*/
     background: #ffffff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .data_box {

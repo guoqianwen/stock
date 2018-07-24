@@ -85,8 +85,11 @@
 
     </div>
     <div class="paperTrading">
-      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
       <current-holding :holding="holding"></current-holding>
+    </div>
+    <div class="paperTrading">
+      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
+      <!--<current-holding :holding="holding"></current-holding>-->
     </div>
     <div class="operationAccount">
         <div class="currentHoldingHeader">
