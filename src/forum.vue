@@ -340,7 +340,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80%;
+    /*height: 80%;*/
     background: #E9ECF3;
   }
   .forum-list-left{
@@ -474,7 +474,7 @@
     padding-top:20px;
     width: 96%;
     margin:0 2%;
-    padding-bottom: 5px;
+    /*padding-bottom: 5px;*/
   }
   .recommend-thead-tr th{
     text-align: center;

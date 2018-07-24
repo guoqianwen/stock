@@ -22,7 +22,7 @@
             <th>浮动盈亏(元)</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody >
          <!-- <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">-->
           <tr v-if="holding.length>0" v-for="(item,index) in holding" >
             <td>{{item.name}}</td>
@@ -42,9 +42,12 @@
               <span v-else="item.earning<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning  | setNum}}</span>
             </div></td>
           </tr>
-          <tr v-else>
-            <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
+          <tr v-else-if="holding.length==0">
+            <td colspan="12">您暂无持仓</td>
           </tr>
+         <tr v-else>
+           <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
+         </tr>
           </tbody>
         </table>
 
@@ -88,7 +91,10 @@
 <script>
     export default {
         name: "current-holding",
-        props:['holding']
+        props:['holding'],
+      mounted: function () {
+          console.log(this.holding.length)
+      }
     }
 </script>
 

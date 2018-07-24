@@ -61,7 +61,15 @@ export default {
        {
          title:'登录',
          url:'Login'
-       }
+       },
+        {
+          title:'注册',
+          url:'Register'
+        },
+        {
+          title:'注册1',
+          url:'SignUp'
+        }
       ]
     }
 
@@ -136,6 +144,9 @@ li {
 }
 a {
   color: #00ADD2;
+}
+a:hover{
+  text-decoration: none;
 }
 .logoimg{
   height: 70px;

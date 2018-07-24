@@ -311,8 +311,11 @@
        */
       fetchCurStockeData (){
         this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
+
           if(res.body.code==0){
+            // console.log(res.body.data.entities)
             this.holding=res.body.data.entities;
+            console.log(this.holding)
           }else{
             alert(res.body.message)
           }
@@ -585,6 +588,9 @@
   .col-md-6_about{
     padding-top: 5rem;
     padding-bottom: 5rem;
+  }
+  a:hover{
+    text-decoration:none;
   }
 
   /*
