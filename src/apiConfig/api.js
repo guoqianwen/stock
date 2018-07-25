@@ -3,7 +3,7 @@ let localhostDev = false;
 //生产环境，就把localhostDev 设置成false，连接就是拼成‘http://xxx.com/api/test’
 
 let _host= localhostDev ? 'https://1000stock.com:8082' : 'https://www.1000stock.com';
-lethttpUrl = {
+let httpUrl = {
   'newSearchLastGainApi':_host + '/trade/find_gain',//首页0331修改后获取最新赢利数据接口
   'searchLastGainApi':_host + '/trade/search_gain',//首页获取最新赢利数据接口
   'lastRecommendationApi':_host + '/recommend/find',//获取推荐信息中的最新推荐
