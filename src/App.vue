@@ -54,14 +54,22 @@ export default {
           url:'Forum'
         } ,
         {
-          title:'数据披露',
+          title:'数据区',
           url:'DataInquiry'
         }
-//        ,
-//        {
-//          title:'登录',
-//          url:'Login'
-//        }
+       ,
+       {
+         title:'登录',
+         url:'Login'
+       },
+        {
+          title:'注册',
+          url:'Register'
+        },
+        {
+          title:'注册1',
+          url:'SignUp'
+        }
       ]
     }
 
@@ -79,8 +87,9 @@ export default {
     width: 0px;
     height: 0px;
   }
-  body{
-    background: #E9ECF3;
+  html,body{
+    height: 100%!important;
+    background: #E9ECF3!important;
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -136,6 +145,9 @@ li {
 a {
   color: #00ADD2;
 }
+a:hover{
+  text-decoration: none;
+}
 .logoimg{
   height: 70px;
   margin-left: 10rem;
@@ -171,5 +183,8 @@ a {
   }
   .navbar {
     margin-bottom: 0px;
+  }
+  .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fbfcfd;
   }
 </style>

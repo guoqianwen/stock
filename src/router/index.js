@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Index from '@/Index'
 import Forum from '@/Forum'
 import Login from '@/Login'
+import Register from '@/Register'
+import SignUp from '@/SignUp'
 
 import RecommendInfo from '@/RecommendInfo'
 import DataInquiry   from "@/DataInquiry"
@@ -49,6 +51,14 @@ export default new Router({
       path: '/components/transaction-record',
       name: 'TransactionRecord',
       component: TransactionRecord
+    },{
+      path: '/Register',
+      name: 'Register',
+      component: Register
+    },{
+      path: '/sign-up',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
 
