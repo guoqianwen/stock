@@ -86,9 +86,10 @@
             tooltip: {
               trigger: 'axis'
             },
+            color: ['#C23531',"#2F4554"],
             legend: {
               x: 'left',
-              data: ['千古指数','','上证指数']
+              data: ['千古指数','上证指数']
             },
             toolbox: {
               show: false,
@@ -212,8 +213,9 @@
 <style>
   *
   .marketTrendComponents{
-    margin-left: 21%;
-    width: 58%;
+    margin-left: 2%;
+    /* width: 80%; */
+    width: 96%;
    padding: 20px 0;
   }
   h1, h2 {

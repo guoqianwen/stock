@@ -22,8 +22,9 @@
             <th>浮动盈亏(元)</th>
           </tr>
           </thead>
-          <tbody>
-          <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
+          <tbody >
+         <!-- <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">-->
+          <tr v-if="holding.length>0" v-for="(item,index) in holding" >
             <td>{{item.name}}</td>
             <td>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
@@ -41,9 +42,12 @@
               <span v-else="item.earning<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning  | setNum}}</span>
             </div></td>
           </tr>
-          <tr v-else>
-            <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
+          <tr v-else-if="holding.length==0">
+            <td colspan="12">您暂无持仓</td>
           </tr>
+         <tr v-else>
+           <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
+         </tr>
           </tbody>
         </table>
 
@@ -62,7 +66,6 @@
           <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
             <td>{{item.name}}<br>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
-
             <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice   | setNum}}</div></td>
             <td class="data_box2_td"><div class="data_box2"></div>{{item.amount | setNum}}</td>
             <td><div class="data_box3">{{item.cost  | setNum}}<br>{{item.value  | setNum}}</div></td>
@@ -88,7 +91,10 @@
 <script>
     export default {
         name: "current-holding",
-        props:['holding']
+        props:['holding'],
+      mounted: function () {
+          console.log(this.holding.length)
+      }
     }
 </script>
 

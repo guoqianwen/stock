@@ -157,8 +157,9 @@
   }
   .indexContrastComponents{
     margin-top: 2rem;
-    margin-left: 21%;
-    width: 58%;
+    margin-left: 2%;
+    /* width: 80%; */
+    width: 96%;
     padding: 20px 0;
   }
   h1, h2 {
