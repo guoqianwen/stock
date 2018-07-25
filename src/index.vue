@@ -30,6 +30,10 @@
     <div class="latest_recommend_list">
       <latest-recommendation heading="历史业绩" :recommendations="recommendationsList"></latest-recommendation>
     </div>
+    <div class="paperTrading">
+      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
+      <!--<current-holding :holding="holding"></current-holding>-->
+    </div>
     <div class="index_contrast">
       <index-contrast  heading="盈亏率对比"  @filterIndexCurImg="filterIndexCurImg($event)"  :GainInfo="GainInfo"  :select="curTime"></index-contrast>
     </div>
@@ -87,10 +91,7 @@
     <div class="paperTrading">
       <current-holding :holding="holding"></current-holding>
     </div>
-    <div class="paperTrading">
-      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
-      <!--<current-holding :holding="holding"></current-holding>-->
-    </div>
+
     <div class="operationAccount">
         <div class="currentHoldingHeader">
           <h3>交易统计</h3>
@@ -592,7 +593,9 @@
   a:hover{
     text-decoration:none;
   }
-
+  .paperTrading{
+    margin-top: 2rem;
+  }
   /*
  屏幕兼容(平板)
   */

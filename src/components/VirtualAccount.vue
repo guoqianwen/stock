@@ -190,7 +190,7 @@
    /* overflow-x: scroll;*/
     margin: 0%;
     padding-top: 0px;
-    margin-bottom:2rem;
+    /*margin-bottom:2rem;*/
   }
 
   .virtualTotalMoney{

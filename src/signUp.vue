@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import { setCookie,getCookie } from './apiConfig/cookie.js'
+  import { setSession,getSession } from './apiConfig/cookie.js'
   import {httpUrl} from './apiConfig/api'
   export default {
     name: "sign-up",
@@ -45,7 +45,7 @@
       }
     },
     mounted(){
-      if(getCookie('username')){
+      if(getSession('username')){
         this.$router.push('/index')
       }
     },
@@ -59,34 +59,12 @@
             console.log(res)
             if(res.body.code == 0){
               alert("登录成功")
-              setCookie('username',this.username,1000*60)
+              setSession('username',this.username);
               setTimeout(function(){
                 this.$router.push({path:'index',query:{id:1}})
               }.bind(this),1000)
             }else{
                alert(res.body.message)
-            }
-          })
-        }
-      },
-      register(){
-        if(this.newUsername == "" || this.newPassword == ""){
-          alert("请输入用户名或密码")
-        }else{
-          let data = {'name':this.newUsername,'password':this.newPassword, "initAmount":this.newInitAmount, "initNum":this.newInitNum}
-          this.$http.post(httpUrl.userRegisterApi,data).then((res)=>{
-            console.log(res)
-            if(res.body.code == 0){
-              this.tishi = "注册成功"
-              setCookie('username',this.newUsername,1000*60)
-              this.showTishi = true
-              this.username = ''
-              this.password = ''
-              setTimeout(function(){
-                this.showRegister = false
-                this.showLogin = true
-                this.showTishi = false
-              }.bind(this),1000)
             }
           })
         }
