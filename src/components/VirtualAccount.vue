@@ -366,6 +366,10 @@
       padding: 5px;
       border: none;
     }
+    .table th{
+      text-align: left;
+      border: none;
+    }
     .col-md-6{
       min-height: 0px;
       padding: 0px;

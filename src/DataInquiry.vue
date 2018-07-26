@@ -217,10 +217,10 @@
       display: none;
     }
     .DataInquiry-thead-tr-app{
-      display: table;
+      display: contents;
     }
     .app_td{
-      display: table;
+      display: table-cell;
     }
     .pc_td{
       display: none;
@@ -230,9 +230,9 @@
       word-break: keep-all;
     }
     .list_tab{
-      /*float: left;*/
-      /*width: 100%;*/
-      /*overflow-x: scroll;*/
+      float: left;
+      width: 100%;
+      overflow-x: scroll;
     }
     .list th{
       padding: 0px;
