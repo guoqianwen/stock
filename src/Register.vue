@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import { setCookie,getCookie } from './apiConfig/cookie.js'
+  import { setCookie,getSession } from './apiConfig/cookie.js'
   import {httpUrl} from './apiConfig/api'
   export default {
     name: "register",
@@ -72,7 +72,7 @@
       }
     },
     mounted(){
-      if(getCookie('username')){
+      if(getSession('username')){
         this.$router.push('/index')
       }
     },
@@ -93,14 +93,9 @@
             console.log(res)
             if(res.body.code == 0){
               alert("注册成功")
-              // setCookie('username',this.newUsername,1000*60)
-              // this.username = ''
-              // this.password = ''
-              // setTimeout(function(){
-              //   this.showRegister = false
-              //   this.showLogin = true
-              //   this.showTishi = false
-              // }.bind(this),1000)
+              setTimeout(function(){
+                this.$router.push({path:'sign-up'})
+              }.bind(this),1000)
             }
           })
         }

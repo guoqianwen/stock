@@ -88,7 +88,7 @@
             },
             color: ['#C23531',"#2F4554"],
             legend: {
-              x: 'left',
+              x: 'center',
               data: ['千古指数','上证指数']
             },
             toolbox: {
@@ -104,6 +104,9 @@
               }
             },
             xAxis: {
+              axisTick: {
+                show: false
+              },
               type: 'category',
               boundaryGap: false,
               data: this.trend.time
@@ -139,6 +142,7 @@
             trigger: 'axis'
           },
           legend: {
+            x: 'center',
             data: ['千古指数','上证指数']
           },
           toolbox: {
@@ -154,6 +158,9 @@
             }
           },
           xAxis: {
+            axisTick: {
+              show: false
+            },
             type: 'category',
             boundaryGap: false,
             data: this.trend.time

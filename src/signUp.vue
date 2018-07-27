@@ -46,7 +46,7 @@
     },
     mounted(){
       if(getSession('username')){
-        this.$router.push('/index')
+        this.$router.push({path:'index',query:{id:1}})
       }
     },
     methods: {
@@ -58,11 +58,32 @@
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
             console.log(res)
             if(res.body.code == 0){
-              alert("登录成功")
               setSession('username',this.username);
+              var tempArr=[
+                {
+                  title:'首页',
+                  url:'index'
+                }
+                ,
+                {
+                  title:'讨论区',
+                  url:'Forum'
+                } ,
+                {
+                  title:'数据区',
+                  url:'DataInquiry'
+                },
+                {
+                  title:'退出',
+                  url:'SignUp'
+                }
+              ];
+              this.aa.seturl(tempArr);
+              console.log(this.aa.url)
               setTimeout(function(){
                 this.$router.push({path:'index',query:{id:1}})
-              }.bind(this),1000)
+              }.bind(this),1000);
+
             }else{
                alert(res.body.message)
             }

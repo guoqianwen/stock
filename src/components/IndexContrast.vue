@@ -93,12 +93,17 @@
                 }
               },
               xAxis: {
+                axisTick: {
+                  show: false
+                },
                 type: 'category',
                 boundaryGap: false,
                 data:this.GainInfo.time
               },
               yAxis: {
                 type: 'value',
+                min: this.min,
+                max:this.max,
                 axisLabel:{
                   formatter:'{value}%'
                 }
@@ -142,8 +147,7 @@
       watch:{
         GainInfo:function(){
           this.initChart();
-        },
-
+        }
       }
     }
 </script>
