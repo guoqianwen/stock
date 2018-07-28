@@ -164,7 +164,8 @@
     margin-left: 2%;
     /* width: 80%; */
     width: 96%;
-    padding: 20px 0;
+    /*padding: 20px 0;*/
+    padding-bottom: 20px;
   }
   h1, h2 {
     font-weight: normal;
@@ -211,7 +212,8 @@
     .indexContrastComponents{
       margin-left: 2%;
       width: 96%;
-      padding: 20px 0;
+      /*padding: 20px 0;*/
+      padding-bottom: 20px;
     }
     h1, h2 {
       font-weight: normal;
