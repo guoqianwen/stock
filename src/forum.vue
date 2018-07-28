@@ -9,7 +9,7 @@
               <div class="recommendRow">
                 <div class="recommendHeader">
                   <h3></h3>
-                  <h4 class="recommentTime">千古讨论区</h4>
+                  <h4 class="recommentTime">必达讨论区</h4>
                 </div>
               </div>
               <div class="forumBox" >

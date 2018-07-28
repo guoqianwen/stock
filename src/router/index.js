@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import App from '@/App'
 import Index from '@/Index'
 import Forum from '@/Forum'
 import Login from '@/Login'
@@ -19,9 +20,9 @@ export default new Router({
   routes: [
    {
       path: '/',
-      name: 'Index',
+      name: 'index',
       component: Index
-    } ,
+    },
     {
       path: '/index',
       name: 'index',

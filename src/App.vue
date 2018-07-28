@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li v-for="(item,index) in items" v-on:click="addClass(index)" v-bind:class="{ active:index==current}">
-                <router-link :to="{ name : item.url }" data-toggle="collapse"  data-target="#example-navbar-collapse">
+                <router-link :to="{ name :item.url }" data-toggle="collapse"  data-target="#example-navbar-collapse">
                   {{item.title}}
                 </router-link>
               </li>
@@ -33,21 +33,28 @@
 
 <script>
   import './assets/css/iconfont/iconfont.css';
+  import { setSession,getSession } from './apiConfig/cookie.js'
 export default {
   name: 'App',
   data () {
     return{
       current:0,
-      items:[
+      items:this.aa.url
+    }
+
+  },
+  provide:function(){
+    return {
+      reload:this.reload
+    }
+  },
+  mounted: function () {
+    if(getSession('username')){
+      var tempArr=[
         {
           title:'首页',
           url:'index'
         }
-//        ,
-//        {
-//          title:'推荐信息',
-//          url:'RecommendInfo'
-//        }
         ,
         {
           title:'讨论区',
@@ -56,29 +63,32 @@ export default {
         {
           title:'数据区',
           url:'DataInquiry'
-        }
-       ,
-       {
-         title:'登录',
-         url:'Login'
-       },
-        {
-          title:'注册',
-          url:'Register'
         },
         {
-          title:'注册1',
+          title:'退出',
           url:'SignUp'
         }
-      ]
+      ];
+      this.aa.seturl(tempArr);
+      this.items=this.aa.url;
     }
-
   },
   methods:{
     addClass:function(index){
       this.current=index;
+    },
+    reload(){
+      this.$nextTick(function () {
+        this.items=this.aa.url;
+      })
+    }
+  },
+  watch: {
+    items:function () {
+      this.items=this.aa.url;
     }
   }
+
 }
 </script>
 

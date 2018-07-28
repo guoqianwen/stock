@@ -6,17 +6,17 @@ import router from './router'
 import $ from 'jquery'
 import 'bootstrap/js/bootstrap.min.js'
 import 'bootstrap/css/bootstrap.min.css'
-import {getCookie} from "./apiConfig/cookie";
+import {getSession} from "./apiConfig/cookie";
 import * as custom from "./apiConfig/filters"
-
+import aa from "./apiConfig/global";
 
 Vue.config.productionTip = false;
 //Vue.http.headers.common['Account-Code'] = 'root';
 Vue.http.interceptors.push((request,next)=>{
   //request.credentials = true; // 接口每次请求会跨域携带cookie
   //request.method= 'POST'; // 请求方式（get,post）
-  if(getCookie("username")!=""){
-    request.headers.set('Account-Code',getCookie("username")) // 请求headers携带参数
+  if(getSession("username")!=""){
+    request.headers.set('Account-Code',getSession("username")) // 请求headers携带参数
   }else {
     request.headers.set('Account-Code',"echo_gou") // 请求headers携带参数
   }
@@ -26,6 +26,8 @@ Vue.http.interceptors.push((request,next)=>{
 
   });
 })
+Vue.prototype.aa = aa;
+console.log(aa)
 Object.keys(custom).forEach(key => {
   Vue.filter(key, custom[key])
 })

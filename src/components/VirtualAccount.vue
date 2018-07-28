@@ -24,8 +24,8 @@
               </div>
               <div class="col-sm-4 virtualTotalMoneyItem virtual_sm virtual_sm_3">
                 <div class="virtualTotalMoneyTitleName">持有盈亏率</div>
-                <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100}}%</div>
-                <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100}}%</div>
+                <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
+                <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
               </div>
           </div>
         </div>
@@ -287,6 +287,9 @@
   }
   .accountOverview th{
     text-align: center;
+  }
+  .fontColor{
+    color: rgb(51, 51, 51);
   }
 
   /*
