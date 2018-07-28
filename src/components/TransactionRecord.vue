@@ -458,6 +458,7 @@
       float: left;
       margin-left: 0px;
       font-size: 10px;
+      border: none;
     }
     .table_now{
       border-right: 2px solid #b20030;
