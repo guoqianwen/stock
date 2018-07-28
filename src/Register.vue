@@ -25,18 +25,18 @@
                 <label for="input3" class="col-sm-3 control-label">份数</label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="input3" placeholder="请输入份数" min="0"  v-model="newInitNum">
-                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>将总金额按照份数分成等分,每次按照推荐的信息进行最接近该份数的股票交易。</span>
+                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>将总金额按照份数分成等分，按照每一个推荐股票买入一份金额的规则进行交易</span>
                 </div>
               </div>
 
               <div class="form-group clearMargin clearPadding">
-                <label for="input3" class="col-sm-3 control-label clearPaddingTop" >融资</label>
+                <label for="input3" class="col-sm-3 control-label clearPaddingTop" >允许融资</label>
                 <div class="col-sm-9">
                   <label class="labeAlignText">
                     <input type="radio" name="newFinance" value="1" v-model="newFinance">是
                     <input type="radio" name="newFinance" value="0"  v-model="newFinance">否
                   </label>
-                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>资金不足之时，是否采用借贷的形式买入股票。</span>
+                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>资金不足之时，是否采用融资的形式买入股票。</span>
                 </div>
               </div>
               <div class="form-group clearMargin clearPadding">

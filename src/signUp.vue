@@ -46,7 +46,7 @@
     },
     inject:['reload'],
     mounted(){
-      if(getSession('username')){
+      if(getSession('username')&& getSession('username')!=undefined && getSession('username')!=""){
         setSession('username',"");
         var tempArr=[
           {
@@ -80,6 +80,7 @@
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
             if(res.body.code == 0){
+              alert("dsflsdfjkasd")
               setSession('username',this.username);
               var tempArr=[
                 {
@@ -101,10 +102,10 @@
                 }
               ];
               this.aa.seturl(tempArr);
-              this.reload()
               setTimeout(function(){
                 this.$router.push({path:'index'})
               }.bind(this),1000);
+              this.reload();
             }else{
                alert(res.body.message)
             }
