@@ -193,7 +193,7 @@
       text-align: center;
     }
     .curHoldingTable {
-      font-size: 1rem;
+      font-size: 1.2rem;
       word-break: keep-all;
     }
     .table th{
@@ -201,12 +201,19 @@
       /*vertical-align: middle;*/
     }
     .table td{
-      padding: 0px;
+      /*padding: 0px;*/
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 1px;
+      padding-right: 1px;
       vertical-align: middle;
     }
     .data_box2{
       width:100%;
-      /*text-align: right;*/
+      text-align: right;
+    }
+    .data_box2_td{
+      text-align: right;
     }
     .data_box3{
       width:100%;
