@@ -59,10 +59,12 @@
   }
   .LatestRecommendation{
     margin-top: 0.5%;
-    width: 100%;
+    width: 96%;
+    margin: auto;
     height: auto;
     padding: 0% 1%;
-    background: #ECECEC;
+    /*background: #ECECEC;*/
+    background: #ffffff;
     font-size: 20px;
   }
   .recommendation:hover {
@@ -74,7 +76,7 @@
     display: flex;
     margin:  2rem 0;
     justify-content:center;
-    height:4rem ;
+    /*height:4rem ;*/
     width: 100%;
     line-height:4rem;
     border-bottom: 1px solid #ECECEC;
@@ -144,6 +146,9 @@
  */
   @media screen and (max-width:600px)
   {
+    .LatestRecommendation{
+      padding: 0px;
+    }
     .recommendation-items {
       width: 100%;
       height:20rem;
@@ -151,17 +156,22 @@
       color: #5F5F5F;
       /*line-height: 4rem;*/
       font-size: 1.6rem;
+      font-weight: 700;
     }
 
     .recommendation{
+      margin: 0px;
       width: 25%;
-      height: 100%;
+      height: 96%;
       background: #e0e0e0;
       background: #ffffff;
       /*padding: 2% 10%;*/
+      border-right: 0.2px solid #e0e0e0;
+      border-top: none;
+      border-bottom: none;
     }
     .header{
-      margin: 1rem 0;
+      margin: 2rem 0;
     }
     .heading{
       font-size: 15px;

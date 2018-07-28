@@ -594,7 +594,7 @@
     text-decoration:none;
   }
   .paperTrading{
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
   }
   /*
  屏幕兼容(平板)
@@ -679,6 +679,7 @@
       width: 100%;
       margin: auto;
       padding-right: 5%;
+      padding-left: 10%;
       color: #595959;
     }
 
@@ -708,12 +709,14 @@
       flex-direction: column;
     }
     .col-md-6_about{
-      width: 100%;
+      width: 96%;
+      margin-left: 5%;
     }
     .icon{
       float: left;
-      margin-left: 10%;
+      /*margin-left: 1%;*/
       margin-top: 20px;
+      padding: 0rem 0rem 0rem 11%;
     }
     .title{
       float: left;

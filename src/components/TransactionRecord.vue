@@ -116,7 +116,7 @@
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">当日最大盈亏率</td>
-              <td  :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100}}%</td>
+              <td  :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}" class="data_td">+{{userAccount.maxGain *100}}%</td>
             </tr>
             </tbody>
           </table>
@@ -143,7 +143,7 @@
             </tr>
             <tr class="current-holding-thead-tr">
               <td class="head_td">当日最小盈亏率</td>
-              <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100}}%</td>
+              <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}" class="data_td">{{userAccount.minGain *100}}%</td>
             </tr>
             </tbody>
           </table>
@@ -459,12 +459,17 @@
       margin-left: 0px;
       font-size: 10px;
     }
+    .table_now{
+      border-right: 2px solid #b20030;
+    }
     .data_td{
       width: 45%;
+      border:none;
     }
     .head_td{
       width: 55%;
       text-align: left;
+      border:none;
     }
     .col-md-6{
       /*padding-top: 0px;*/

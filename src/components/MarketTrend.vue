@@ -284,7 +284,8 @@
     .marketTrendHeader{
       width: 80%;
       border-bottom: 1px solid #EEF1F5;
-      margin-left: 12%;
+      /*margin-left: 12%;*/
+      margin: auto;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
