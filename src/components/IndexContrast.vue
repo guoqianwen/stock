@@ -84,7 +84,7 @@
             /*  color: ['blue', 'red','#5AB1EF','black'],*/
               legend: {
                 x: 'center',
-                data: ['千古指数','上证指数','创业板指', '沪深300指']
+                data: ['必达指数','上证指数','创业板指', '沪深300指']
               },
               toolbox: {
                 show: false,
@@ -93,12 +93,17 @@
                 }
               },
               xAxis: {
+                axisTick: {
+                  show: false
+                },
                 type: 'category',
                 boundaryGap: false,
                 data:this.GainInfo.time
               },
               yAxis: {
                 type: 'value',
+                min: this.min,
+                max:this.max,
                 axisLabel:{
                   formatter:'{value}%'
                 }
@@ -106,7 +111,7 @@
               series: [
                 {
                   symbol: "none",
-                  name:'千古指数',
+                  name:'必达指数',
                   type:'line',
                   data:this.GainInfo.stockGain,
                 },
@@ -142,8 +147,7 @@
       watch:{
         GainInfo:function(){
           this.initChart();
-        },
-
+        }
       }
     }
 </script>

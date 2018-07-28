@@ -44,9 +44,32 @@
         password: ''
       }
     },
+    inject:['reload'],
     mounted(){
-      if(getSession('username')){
-        this.$router.push('/index')
+      if(getSession('username')&& getSession('username')!=undefined && getSession('username')!=""){
+        setSession('username',"");
+        var tempArr=[
+          {
+            title:'首页',
+            url:'index'
+          }
+          ,
+          {
+            title:'讨论区',
+            url:'Forum'
+          } ,
+          {
+            title:'数据区',
+            url:'DataInquiry'
+          },
+          {
+            title:'登陆',
+            url:'SignUp'
+          }
+        ];
+        this.aa.seturl(tempArr);
+        this.reload()
+        this.$router.push({path:'sign-up',query:{id:1}})
       }
     },
     methods: {
@@ -56,13 +79,33 @@
         }else{
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
-            console.log(res)
             if(res.body.code == 0){
-              alert("登录成功")
+              alert("dsflsdfjkasd")
               setSession('username',this.username);
+              var tempArr=[
+                {
+                  title:'首页',
+                  url:'index'
+                }
+                ,
+                {
+                  title:'讨论区',
+                  url:'Forum'
+                } ,
+                {
+                  title:'数据区',
+                  url:'DataInquiry'
+                },
+                {
+                  title:'退出',
+                  url:'SignUp'
+                }
+              ];
+              this.aa.seturl(tempArr);
               setTimeout(function(){
-                this.$router.push({path:'index',query:{id:1}})
-              }.bind(this),1000)
+                this.$router.push({path:'index'})
+              }.bind(this),1000);
+              this.reload();
             }else{
                alert(res.body.message)
             }

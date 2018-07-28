@@ -24,7 +24,7 @@ export function setSession(c_name,value) {
 
 
 export  function getSession(c_name) {
-  if(window.sessionStorage.getItem("userName")!=null) {
+  if(window.sessionStorage.getItem("username")!=null) {
         return window.sessionStorage.getItem(c_name)
   }else {
          return ""

@@ -115,11 +115,11 @@
                       </tr>
                       <tr class="current-holding-thead-tr">
                         <th class="head_td">胜率</th>
-                        <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate}}%</td>
+                        <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
                         <th class="head_td">单日最大盈亏率</th>
-                        <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100}}%</td>
+                        <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100 |toFixed2 }}%</td>
                       </tr>
                   </tbody>
                 </table>
@@ -129,8 +129,8 @@
                 <tbody>
                     <tr class="current-holding-thead-tr">
                       <th class="head_td">平均盈亏率</th>
-                      <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate}}%</td>
-                      <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate}}%</td>
+                      <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate |toFixed2  }}%</td>
+                      <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate |toFixed2 }}%</td>
                     </tr>
                     <tr class="current-holding-thead-tr">
                       <th class="head_td">平均持有天数</th>
@@ -146,7 +146,7 @@
                     </tr>
                     <tr class="current-holding-thead-tr">
                       <th class="head_td">单日最小盈亏率</th>
-                      <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100}}%</td>
+                      <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100 |toFixed2 }}%</td>
                     </tr>
                 </tbody>
               </table>
@@ -219,6 +219,7 @@
   import CurrentHolding from './components/CurrentHolding';
   import IndexContrast  from './components/IndexContrast';
   import VirtualAccount from "./components/VirtualAccount";
+  import { setSession,getSession } from './apiConfig/cookie.js';
   import {httpUrl} from './apiConfig/api'
   export default {
     data () {
@@ -253,6 +254,28 @@
       "index-contrast":IndexContrast
     },
     mounted: function () {
+      if(getSession('username')){
+        var tempArr=[
+          {
+            title:'首页',
+            url:'index'
+          }
+          ,
+          {
+            title:'讨论区',
+            url:'Forum'
+          } ,
+          {
+            title:'数据区',
+            url:'DataInquiry'
+          },
+          {
+            title:'退出',
+            url:'SignUp'
+          }
+        ];
+        this.aa.seturl(tempArr);
+      }
         this.getGainInfo();
         /**
        * 获取首页的最新推荐赢亏数据
@@ -268,7 +291,7 @@
           console.log("请求失败")
         });
       /**
-       * 获取上证指数与千古指数的对比
+       * 获取上证指数与必达指数的对比
        */
       this.fetchTrendData();
 
@@ -314,9 +337,7 @@
         this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
 
           if(res.body.code==0){
-            // console.log(res.body.data.entities)
             this.holding=res.body.data.entities;
-            console.log(this.holding)
           }else{
             alert(res.body.message)
           }

@@ -22,9 +22,9 @@
             <th>浮动盈亏(元)</th>
           </tr>
           </thead>
-          <tbody >
+          <tbody v-if="holding.length>0">
          <!-- <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">-->
-          <tr v-if="holding.length>0" v-for="(item,index) in holding" >
+          <tr  v-for="(item,index) in holding" >
             <td>{{item.name}}</td>
             <td>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
@@ -42,13 +42,17 @@
               <span v-else="item.earning<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning  | setNum}}</span>
             </div></td>
           </tr>
-          <tr v-else-if="holding.length==0">
-            <td colspan="12">您暂无持仓</td>
-          </tr>
-         <tr v-else>
-           <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
-         </tr>
           </tbody>
+            <tbody v-else-if="holding.length==0">
+              <tr >
+                <td colspan="12">您暂无持仓</td>
+              </tr>
+            </tbody>
+            <tbody v-else>
+              <tr >
+                <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
+              </tr>
+            </tbody>
         </table>
 
         <table class="table table-striped table-bordered table-advance curHoldingTable app_table" contenteditable="false" >
@@ -62,8 +66,8 @@
             <th>盈亏率/<br>浮动盈亏<br>(元)</th>
           </tr>
           </thead>
-          <tbody>
-          <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
+          <tbody v-if="holding.length>0">
+          <tr v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
             <td>{{item.name}}<br>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
             <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice   | setNum}}</div></td>
@@ -74,7 +78,14 @@
               <span v-else="item.gain<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
             </div></td>
           </tr>
-          <tr v-else>
+          </tbody>
+          <tbody v-else-if="holding.length==0">
+          <tr >
+            <td colspan="12">您暂无持仓</td>
+          </tr>
+          </tbody>
+          <tbody v-else>
+          <tr >
             <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
           </tr>
           </tbody>
@@ -93,7 +104,6 @@
         name: "current-holding",
         props:['holding'],
       mounted: function () {
-          console.log(this.holding.length)
       }
     }
 </script>

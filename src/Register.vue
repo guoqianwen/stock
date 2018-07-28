@@ -25,17 +25,18 @@
                 <label for="input3" class="col-sm-3 control-label">份数</label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="input3" placeholder="请输入份数" min="0"  v-model="newInitNum">
-                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>将总金额按照份数分成等分,每次按照推荐的信息进行最接近该份数的股票交易。</span>
+                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>将总金额按照份数分成等分，按照每一个推荐股票买入一份金额的规则进行交易</span>
                 </div>
               </div>
 
               <div class="form-group clearMargin clearPadding">
-                <label for="input3" class="col-sm-3 control-label"></label>
+                <label for="input3" class="col-sm-3 control-label clearPaddingTop" >允许融资</label>
                 <div class="col-sm-9">
                   <label class="labeAlignText">
-                    <input type="checkbox"  v-model="newFinance">是否融资
+                    <input type="radio" name="newFinance" value="1" v-model="newFinance">是
+                    <input type="radio" name="newFinance" value="0"  v-model="newFinance">否
                   </label>
-                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>资金不足之时，是否采用借贷的形式买入股票。</span>
+                  <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>资金不足之时，是否采用融资的形式买入股票。</span>
                 </div>
               </div>
               <div class="form-group clearMargin clearPadding">
@@ -58,7 +59,7 @@
 </template>
 
 <script>
-  import { setCookie,getCookie } from './apiConfig/cookie.js'
+  import { setCookie,getSession } from './apiConfig/cookie.js'
   import {httpUrl} from './apiConfig/api'
   export default {
     name: "register",
@@ -72,14 +73,13 @@
       }
     },
     mounted(){
-      if(getCookie('username')){
+      if(getSession('username')){
         this.$router.push('/index')
       }
     },
     methods: {
       register(){
         var isLeverage;
-        console.log(this.newFinance)
         if(this.newFinance){
           isLeverage=1;
         }else{
@@ -90,17 +90,12 @@
         }else{
           let data = {'name':this.newUsername,'password':this.newPassword, "initAmount":this.newInitAmount, "initNum":this.newInitNum,"isLeverage":isLeverage}
           this.$http.post(httpUrl.userRegisterApi,data).then((res)=>{
-            console.log(res)
             if(res.body.code == 0){
-              alert("注册成功")
-              // setCookie('username',this.newUsername,1000*60)
-              // this.username = ''
-              // this.password = ''
-              // setTimeout(function(){
-              //   this.showRegister = false
-              //   this.showLogin = true
-              //   this.showTishi = false
-              // }.bind(this),1000)
+              setTimeout(function(){
+                this.$router.push({path:'sign-up'})
+              }.bind(this),1000)
+            }else{
+              alert("注册失败，请重新注册！")
             }
           })
         }
@@ -138,6 +133,9 @@
   .clearPadding{
     padding-left: 0;
     padding-right: 0;
+  }
+  .clearPaddingTop{
+    padding-top: 0;
   }
   button{
     display:block;

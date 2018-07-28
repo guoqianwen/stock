@@ -88,8 +88,8 @@
             },
             color: ['#C23531',"#2F4554"],
             legend: {
-              x: 'left',
-              data: ['千古指数','上证指数']
+              x: 'center',
+              data: ['必达指数','上证指数']
             },
             toolbox: {
               show: false,
@@ -104,6 +104,9 @@
               }
             },
             xAxis: {
+              axisTick: {
+                show: false
+              },
               type: 'category',
               boundaryGap: false,
               data: this.trend.time
@@ -121,7 +124,7 @@
             },
             series: [
               {
-                name: '千古指数',
+                name: '必达指数',
                 type: 'line',
                 data: this.trend.aiMarket
               },
@@ -139,7 +142,8 @@
             trigger: 'axis'
           },
           legend: {
-            data: ['千古指数','上证指数']
+            x: 'center',
+            data: ['必达指数','上证指数']
           },
           toolbox: {
             show: false,
@@ -154,6 +158,9 @@
             }
           },
           xAxis: {
+            axisTick: {
+              show: false
+            },
             type: 'category',
             boundaryGap: false,
             data: this.trend.time
@@ -168,7 +175,7 @@
           series: [
             {
               symbol: "none",
-              name: '千古指数',
+              name: '必达指数',
               type: 'line',
               data: this.trend.aiMarket
             },
