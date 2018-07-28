@@ -104,7 +104,6 @@
         name: "current-holding",
         props:['holding'],
       mounted: function () {
-          console.log(this.holding.length)
       }
     }
 </script>

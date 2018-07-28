@@ -84,7 +84,7 @@
             /*  color: ['blue', 'red','#5AB1EF','black'],*/
               legend: {
                 x: 'center',
-                data: ['千古指数','上证指数','创业板指', '沪深300指']
+                data: ['必达指数','上证指数','创业板指', '沪深300指']
               },
               toolbox: {
                 show: false,
@@ -111,7 +111,7 @@
               series: [
                 {
                   symbol: "none",
-                  name:'千古指数',
+                  name:'必达指数',
                   type:'line',
                   data:this.GainInfo.stockGain,
                 },

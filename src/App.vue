@@ -39,27 +39,14 @@ export default {
   data () {
     return{
       current:0,
-      items:[
-        {
-          title:'首页',
-          url:'index'
-        }
-        ,
-        {
-          title:'讨论区',
-          url:'Forum'
-        } ,
-        {
-          title:'数据区',
-          url:'DataInquiry'
-        },
-        {
-          title:'登录',
-          url:'SignUp'
-        }
-      ]
+      items:this.aa.url
     }
 
+  },
+  provide:function(){
+    return {
+      reload:this.reload
+    }
   },
   mounted: function () {
     if(getSession('username')){
@@ -82,16 +69,24 @@ export default {
           url:'SignUp'
         }
       ];
-      this.items=tempArr;
+      this.aa.seturl(tempArr);
+      this.items=this.aa.url;
     }
   },
   methods:{
     addClass:function(index){
       this.current=index;
     },
+    reload(){
+      this.$nextTick(function () {
+        this.items=this.aa.url;
+      })
+    }
   },
   watch: {
-
+    items:function () {
+      this.items=this.aa.url;
+    }
   }
 
 }

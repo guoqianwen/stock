@@ -20,6 +20,5 @@ export default {
   ],
   seturl (arr) {
     this.url = arr;
-    console.log('姓名已经改变')
   }
 }

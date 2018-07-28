@@ -39,7 +39,7 @@
                   <td>
                     {{item.amount}}
                   </td>
-                  <td>
+                  <td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">
                     {{item.action}}
                   </td>
                   <td class="pc_app_dis_td">

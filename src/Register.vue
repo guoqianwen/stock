@@ -30,10 +30,11 @@
               </div>
 
               <div class="form-group clearMargin clearPadding">
-                <label for="input3" class="col-sm-3 control-label"></label>
+                <label for="input3" class="col-sm-3 control-label clearPaddingTop" >融资</label>
                 <div class="col-sm-9">
                   <label class="labeAlignText">
-                    <input type="checkbox"  v-model="newFinance">是否融资
+                    <input type="radio" name="newFinance" value="1" v-model="newFinance">是
+                    <input type="radio" name="newFinance" value="0"  v-model="newFinance">否
                   </label>
                   <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>资金不足之时，是否采用借贷的形式买入股票。</span>
                 </div>
@@ -79,7 +80,6 @@
     methods: {
       register(){
         var isLeverage;
-        console.log(this.newFinance)
         if(this.newFinance){
           isLeverage=1;
         }else{
@@ -90,12 +90,12 @@
         }else{
           let data = {'name':this.newUsername,'password':this.newPassword, "initAmount":this.newInitAmount, "initNum":this.newInitNum,"isLeverage":isLeverage}
           this.$http.post(httpUrl.userRegisterApi,data).then((res)=>{
-            console.log(res)
             if(res.body.code == 0){
-              alert("注册成功")
               setTimeout(function(){
                 this.$router.push({path:'sign-up'})
               }.bind(this),1000)
+            }else{
+              alert("注册失败，请重新注册！")
             }
           })
         }
@@ -133,6 +133,9 @@
   .clearPadding{
     padding-left: 0;
     padding-right: 0;
+  }
+  .clearPaddingTop{
+    padding-top: 0;
   }
   button{
     display:block;

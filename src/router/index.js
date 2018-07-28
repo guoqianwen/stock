@@ -20,14 +20,9 @@ export default new Router({
   routes: [
    {
       path: '/',
-      name: 'Index',
+      name: 'index',
       component: Index
-    } ,
-    {
-      path: 'app',
-      name: 'app',
-      component: App
-    } ,
+    },
     {
       path: '/index',
       name: 'index',
