@@ -78,7 +78,7 @@
             </div>
           </div>
         </div>
-        <div class="showTransactionRecord">
+        <div class="showTransactionRecord showTransaction_Record">
           <a class="recommend_info">
             <router-link :to="{ path: '/recommend-info' }" >
               查看推荐详情
@@ -615,7 +615,7 @@
     text-decoration:none;
   }
   .paperTrading{
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
   }
   /*
  屏幕兼容(平板)
@@ -700,6 +700,7 @@
       width: 100%;
       margin: auto;
       padding-right: 5%;
+      padding-left: 10%;
       color: #595959;
     }
 
@@ -710,8 +711,9 @@
       margin: 20px 0;
     }
     .head_td{
-      width: 50%;
+      width: 60%;
       text-align: left;
+      border: none;
     }
     .data_box{
       text-align: right;
@@ -728,12 +730,14 @@
       flex-direction: column;
     }
     .col-md-6_about{
-      width: 100%;
+      width: 96%;
+      margin-left: 5%;
     }
     .icon{
       float: left;
-      margin-left: 10%;
+      /*margin-left: 1%;*/
       margin-top: 20px;
+      padding: 0rem 0rem 0rem 11%;
     }
     .title{
       float: left;
@@ -782,10 +786,16 @@
     }
     .recomment_row {
       margin-bottom: 20px;
-      float: left;
+      /*float: left;*/
     }
     .recommend_info{
       font-size: 14px;
+    }
+    .showTransaction_Record{
+      margin-top: 6rem;
+    }
+    .current-holding-thead-tr th{
+      text-align: left;
     }
   }
 </style>

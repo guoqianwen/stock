@@ -58,24 +58,24 @@
         <table class="table table-striped table-bordered table-advance curHoldingTable app_table" contenteditable="false" >
           <thead>
           <tr class="current-holding-thead-tr" >
-            <th>股票代码/公司名称</th>
+            <th>股票代码/<br>公司名称</th>
             <th>买入日期</th>
-            <th>(买入价)<br>当前价<br>(元)</th>
-            <th>(股票份数)<br>买入成本<br>(元)</th>
-            <th>目前价值(元)</th>
-            <th>(盈亏率)<br>浮动盈亏<br>(元)</th>
+            <th>买入价/<br>当前价<br>(元)</th>
+            <th>股票份数</th>
+            <th>买入成本/<br>目前价值<br>(元)</th>
+            <th>盈亏率/<br>浮动盈亏<br>(元)</th>
           </tr>
           </thead>
-          <tbody  v-if="holding.length>0">
+          <tbody v-if="holding.length>0">
           <tr v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
-            <td>{{item.name}} /{{item.stockName}}</td>
+            <td>{{item.name}}<br>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
-            <td><div class="data_box2">({{item.oldPrice | setNum}}) {{item.newPrice   | setNum}}</div></td>
-            <td><div class="data_box2"></div>({{item.amount | setNum}}) {{item.cost  | setNum}}</td>
-            <td><div class="data_box3">{{item.value  | setNum}}</div></td>
+            <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice   | setNum}}</div></td>
+            <td class="data_box2_td"><div class="data_box2"></div>{{item.amount | setNum}}</td>
+            <td><div class="data_box3">{{item.cost  | setNum}}<br>{{item.value  | setNum}}</div></td>
             <td><div class="data_box3">
-              <span v-if="item.gain>0" :class="{Green:item.earning<0,Red:item.earning>=0}">+({{item.gain  | toFixed2 }}%) {{item.earning  | setNum}}</span>
-              <span v-else="item.gain<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">({{item.gain  | toFixed2 }}%) {{item.earning  | setNum}}</span>
+              <span v-if="item.gain>0" :class="{Green:item.earning<0,Red:item.earning>=0}">+{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
+              <span v-else="item.gain<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
             </div></td>
           </tr>
           </tbody>
@@ -197,11 +197,13 @@
     }
     .table th{
       padding: 0px;
+      padding-left: 2px;
+      padding-right: 2px;
       /*vertical-align: middle;*/
     }
     .table td{
       /*padding: 0px;*/
-      padding-top: 0px;
+      padding-top: 3px;
       padding-bottom: 0px;
       padding-left: 1px;
       padding-right: 1px;

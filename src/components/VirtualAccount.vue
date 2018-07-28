@@ -233,19 +233,25 @@
   }
 
   .virtualAccountHeader {
-    /*margin-top: 1.5rem;*/
+    /*margin: 0 2%;*/
+    margin-top: 25px;
     background: #ffffff;
     width: 100%;
     border-bottom: 1px solid #EEF1F5;
     text-align: center;
-    height: 4rem;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 
   .virtualAccountHeader h3 {
-    margin: 0 2%;
-    height: 4rem;
+    /*height: 4rem;*/
     /*  margin-top:10px;*/
-    line-height: 4rem;
+    /*line-height: 4rem;*/
     text-align: center;
   }
 
@@ -297,6 +303,13 @@
 */
   @media screen and (max-width:600px)
   {
+    .virtualAccountHeader {
+      margin-top: 10px;
+    }
+    .virtualAccount{
+      width: 96%;
+      margin: auto;
+    }
     .virtualAccountBox{
       display: flex;
       flex-wrap: wrap;
@@ -319,6 +332,8 @@
     .virtualAccountC8 {
       width: 100%;
       margin-left: 0rem;
+      padding-left: 1%;
+      padding-right: 1%;
     }
     .col-md-12{
       padding: 1px;
@@ -366,7 +381,11 @@
       float: left;
     }
     .table td{
-      padding: 5px;
+      /*padding: 5px;*/
+      border: none;
+    }
+    .table th{
+      text-align: left;
       border: none;
     }
     .col-md-6{
