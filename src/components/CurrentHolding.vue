@@ -185,6 +185,10 @@
       margin-bottom: 20px;
       /*overflow: scroll;*/
     }
+    .currentHoldingRow{
+      width: 100%;
+      margin-left: 0px;
+    }
     .currentHoldingTable{
       /*overflow: scroll;*/
     }

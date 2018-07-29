@@ -210,8 +210,10 @@
   */
   @media screen and (max-width:600px){
     .indexContrastComponents{
-      margin-left: 2%;
-      width: 96%;
+      /*margin-left: 2%;*/
+      /*width: 96%;*/
+      margin-left: 0px;
+      width: 100%;
       /*padding: 20px 0;*/
       padding-bottom: 20px;
     }

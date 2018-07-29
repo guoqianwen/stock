@@ -4,8 +4,8 @@
             <h3>质押率查询</h3>
         </div>
         <div class="DataInquiryBar">
-              <label class="DataInquiry_lab">输入公司名称关键字:</label><input class="DataInquiry_inp" name="companyName" v-model="name"/>
-              <label class="DataInquiry_lab">输入股票代码:</label><input class="DataInquiry_inp" name="code" v-model="code"/>
+              <label class="DataInquiry_lab name_lab">输入公司名称关键字:</label><input class="DataInquiry_inp" name="companyName" v-model="name"/>
+              <label class="DataInquiry_lab code_lab">输入股票代码:</label><input class="DataInquiry_inp" name="code" v-model="code"/>
               <button class="DataInquiry_btn" v-on:click="searchInquriyInfo">查询</button>
         </div>
         <div class="DataInquiryInfo">
@@ -193,6 +193,10 @@
 */
   @media screen and (max-width:600px)
   {
+    .DataInquiry{
+      width: 100%;
+      margin-left: 0px;
+    }
     .DataInquiryBar{
       font-size: 1rem;
       float: left;
@@ -203,6 +207,9 @@
       width: 35%;
       text-align: left;
       margin-left: 4%;
+    }
+    .code_lab{
+      margin-top: 10px;
     }
     .DataInquiry_inp{
       float: left;
@@ -217,7 +224,7 @@
       display: none;
     }
     .DataInquiry-thead-tr-app{
-      display: contents;
+      display: table-row;
     }
     .app_td{
       display: table-cell;
