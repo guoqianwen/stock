@@ -248,12 +248,19 @@
       font-size:0.1rem;
     }
     .recommendRownew{
-      width: 96%;
+      /*width: 96%;*/
+      width: 100%;
       /*height: auto;*/
       background: #ffffff;
       margin-top: 1rem;
       margin:0 2%;
-      font-size:0.1rem;
+      margin-left: 0px;
+      /*font-size:0.1rem;*/
+      font-size: 1.2rem;
+    }
+    .recommdationBasciInfo{
+      width: 100%;
+      margin-left: 0px;
     }
     .recommendHistroyRow{
       width: 96%;

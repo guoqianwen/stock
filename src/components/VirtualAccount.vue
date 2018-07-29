@@ -307,7 +307,8 @@
       margin-top: 10px;
     }
     .virtualAccount{
-      width: 96%;
+      /*width: 96%;*/
+      width: 100%;
       margin: auto;
     }
     .virtualAccountBox{
@@ -346,13 +347,16 @@
     }
     .virtual_sm{
       float: left;
-      margin-left: 2px;
+      /*margin-left: 2px;*/
     }
     .virtual_sm_1{
       border-right: 1px solid #c1c7ba;
     }
     .virtual_sm_2{
       border-right: 1px solid #c1c7ba;
+    }
+    .virtual_sm_3{
+      margin-left: 15px;
     }
     .virtualEmpty{
       font-size: 1.5rem;
@@ -374,7 +378,7 @@
       text-align: left;
     }
     tr {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
     .table{
       width: 50%;

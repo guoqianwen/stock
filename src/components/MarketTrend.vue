@@ -267,7 +267,8 @@
   */
   @media screen and (max-width:600px){
     .marketTrendComponents{
-      margin-left: 0.5%;
+      /*margin-left: 0.5%;*/
+      margin-left: 0px;
       width: 100%;
       padding: 20px 0;
     }
@@ -283,10 +284,11 @@
       margin: 0 10px;
     }
     .marketTrendRow{
-      width: 96%;
+      /*width: 96%;*/
+      width: 100%;
       height: auto;
       background: #ffffff;
-      margin:0 2%;
+      /*margin:0 2%;*/
     }
     .marketTrendHeader{
       width: 80%;

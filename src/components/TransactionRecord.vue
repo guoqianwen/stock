@@ -406,6 +406,10 @@
     text-align: center;
   }
 
+  .data_td{
+    text-align: right;
+  }
+
   .data_box{
     width:60%;
     text-align: right;
@@ -428,6 +432,11 @@
 */
   @media screen and (max-width:600px)
   {
+    .transactionRecord {
+      width: 100%;
+      margin-left: 0px;
+      /*background: #ffffff;*/
+    }
     /*.transactionRecordTable {*/
     .list {
       font-size: 0.5rem;
@@ -454,7 +463,8 @@
       display: none;
     }
     .curHoldingTable{
-      width: 50%;
+      /*width: 50%;*/
+      width: 49%;
       float: left;
       margin-left: 0px;
       font-size: 10px;
@@ -466,6 +476,7 @@
     .data_td{
       width: 45%;
       border:none;
+      text-align: right;
     }
     .head_td{
       width: 55%;

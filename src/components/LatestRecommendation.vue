@@ -148,10 +148,11 @@
   {
     .LatestRecommendation{
       padding: 0px;
+      width: 100%;
     }
     .recommendation-items {
       width: 100%;
-      height:20rem;
+      height:22rem;
       margin: auto;
       color: #5F5F5F;
       /*line-height: 4rem;*/
@@ -188,9 +189,9 @@
     }
     .recommendation_income{
       width: 100%;
-      height:1rem;
+      height:1.2rem;
       color: #5F5F5F;
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
 
     .cover {
@@ -203,7 +204,8 @@
     .recommendation_row{
       display: flex;
       flex-direction: column;
-      font-size: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
     }
     .sysZS{
       /*background: rgba(153, 48, 36, 0.3);*/

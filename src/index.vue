@@ -617,6 +617,9 @@
   .paperTrading{
     /*margin-top: 2rem;*/
   }
+  .data_box{
+    text-align: right;
+  }
   /*
  屏幕兼容(平板)
   */
@@ -658,8 +661,8 @@
     }
     .feature {
       margin: 20px auto;
-      width: 96%;
-
+      /*width: 96%;*/
+      width: 100%;
     }
 
     .latest_recommend_list{
@@ -696,7 +699,8 @@
     .desc {
       /*text-align: center;*/
       line-height: 100%;
-      font-size:0.5rem;
+      /*font-size:0.5rem;*/
+      font-size: 1.2rem;
       width: 100%;
       margin: auto;
       padding-right: 5%;
@@ -719,7 +723,7 @@
       text-align: right;
     }
     tr{
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
     .row_top{
       padding-bottom: 0px;
@@ -753,6 +757,7 @@
       padding: 0px;
     }
     .table{
+      font-size: 1.2rem;
       border: none;
       float: left;
       margin-bottom: 0px;
@@ -796,6 +801,14 @@
     }
     .current-holding-thead-tr th{
       text-align: left;
+    }
+    .recommendRownew{
+      width: 100%;
+      margin-left: 0px;
+    }
+    .operationAccount{
+      width: 100%;
+      margin-left: 0px;
     }
   }
 </style>
