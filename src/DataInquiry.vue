@@ -6,7 +6,7 @@
         <div class="DataInquiryBar">
               <label class="DataInquiry_lab">输入公司名称关键字:</label><input class="DataInquiry_inp" name="companyName" v-model="name"/>
               <label class="DataInquiry_lab">输入股票代码:</label><input class="DataInquiry_inp" name="code" v-model="code"/>
-              <button class="DataInquiry_btn" v-on:click="searchInquriyInfo">查询</button>
+              <button  type="button" class="btn btn-default DataInquiry_btn"  v-on:click="searchInquriyInfo">查询</button>
         </div>
         <div class="DataInquiryInfo">
           <div class="row-fluid">
@@ -52,20 +52,29 @@
                           {{item.name}}
                         </td>
                         <td>
+                          <div class="data_box3">
                           {{item.pledgeNumber}}
+                          </div>
                         </td>
                         <td>
-                          {{item.unlimitedPledge}}
+                          <div class="data_box3">
+                            {{item.unlimitedPledge}}
+                          </div>
                         </td>
                         <td >
-                          {{item.limitedPledge}}
-
+                          <div class="data_box3">
+                            {{item.limitedPledge}}
+                          </div>
                         </td>
                         <td>
+                          <div class="data_box3">
                           {{item.total}}
+                          </div>
                         </td>
                         <td >
-                          {{item.rate}}
+                          <div class="data_box3">
+                          {{item.rate}}%
+                          </div>
                         </td>
                       </tr>
                       </tbody>
@@ -188,6 +197,13 @@
     margin: 0 2%;
     padding-bottom: 5px;
   }
+  .DataInquiry_btn{
+    border-radius: 0px;
+  }
+  .data_box3{
+    width:68%;
+    text-align: right;
+  }
   /*
 屏幕兼容(手机)
 */
@@ -212,6 +228,7 @@
     .DataInquiry_btn{
       float: left;
       margin-left: 10%;
+      border-radius: 0px;
     }
     .DataInquiry-thead-tr{
       display: none;
@@ -241,5 +258,10 @@
       vertical-align: middle;
       text-align: center;
     }
+    .data_box3{
+      width:68%;
+      text-align: right;
+    }
   }
+
 </style>

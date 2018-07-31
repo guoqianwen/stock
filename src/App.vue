@@ -197,4 +197,30 @@ a:hover{
   .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: #fbfcfd;
   }
+  .activeBtn{
+    background-color: #0275d8;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    border-color: #0275d8;
+  }
+  .btn-default:hover {
+    background-color: #0275d8;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    border-color: #0275d8;
+  }
+  .btn-default:focus {
+    background-color: #0275d8;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    border-color: #0275d8;
+  }
+  .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+  }
 </style>

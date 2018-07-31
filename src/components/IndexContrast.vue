@@ -202,7 +202,11 @@
     background-color: #ffffff;
   }
   .activeBtn{
-    background-color: #D4D4D4;
+    background-color: #0275d8;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    border-color: #0275d8;
   }
 
   /*
@@ -250,7 +254,11 @@
       background-color: #ffffff;
     }
     .activeBtn{
-      background-color: #D4D4D4;
+      background-color: #0275d8;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+      border-color: #0275d8;
     }
 
   }

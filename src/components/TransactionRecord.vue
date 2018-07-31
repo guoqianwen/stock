@@ -14,8 +14,7 @@
                 <thead>
                 <tr class="recommend-thead-tr">
                   <th>交易日期</th>
-                  <th>股票代码</th>
-                  <th>公司名称</th>
+                  <th>股票代码<br/>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
                   <th class="pc_app_dis_th">买入日期</th>
@@ -31,13 +30,12 @@
                     {{item.tradeDate}}
                   </td>
                   <td>
-                    {{item.name}}
+                    {{item.name}}<br/>{{item.companyName}}
                   </td>
                   <td>
-                    {{item.companyName}}
-                  </td>
-                  <td>
-                    {{item.amount}}
+                      <div class="data_box3">
+                          {{item.amount}}
+                      </div>
                   </td>
                   <td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">
                     {{item.action}}
@@ -47,13 +45,17 @@
 
                   </td>
                   <td>
-                    {{item.oldPrice}}
+                    <div class="data_box3">
+                        {{item.oldPrice}}
+                    </div>
                   </td>
                   <td class="pc_app_dis_td">
-                    {{item.newDate}}
+                        {{item.newDate}}
                   </td>
                   <td>
+                    <div class="data_box3">
                     {{item.newPrice}}
+                    </div>
                   </td>
                   <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
                     +{{item.gainRate}}%
@@ -421,6 +423,10 @@
     margin-right: 0px;
     margin-left: 0px;
     background: #ffffff;
+  }
+  .data_box3{
+    width:68%;
+    text-align: right;
   }
 
   /*

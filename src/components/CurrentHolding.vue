@@ -10,37 +10,30 @@
           <table class="table table-striped table-bordered table-advance curHoldingTable pc_table" contenteditable="false" >
           <thead>
           <tr class="current-holding-thead-tr" >
-            <th>股票代码</th>
-            <th>公司名称</th>
+            <th>股票代码<br>公司名称</th>
             <th>买入日期</th>
-            <th>买入</th>
-            <th>当前价格(元)</th>
+            <th>买入价格(元)<br>当前价格(元)</th>
             <th>股票份数</th>
-            <th>成本(元)</th>
-            <th>目前价值(元)</th>
-            <th>盈亏率</th>
-            <th>浮动盈亏(元)</th>
+            <th>买入成本<br>目前价值(元)</th>
+            <th>盈亏率<br>浮动盈亏(元)</th>
           </tr>
           </thead>
           <tbody v-if="holding.length>0">
          <!-- <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">-->
           <tr  v-for="(item,index) in holding" >
-            <td>{{item.name}}</td>
-            <td>{{item.stockName}}</td>
+            <td>{{item.name}}<br>{{item.stockName}}</td>
             <td>{{item.oldDate}}</td>
-            <td><div class="data_box2">{{item.oldPrice | setNum}}</div></td>
-            <td><div class="data_box2">{{item.newPrice   | setNum}}</div></td>
+            <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice   | setNum}}</div></td>
             <td><div class="data_box2"></div>{{item.amount | setNum}}</td>
-            <td><div class="data_box3">{{item.cost  | setNum}}</div></td>
-            <td><div class="data_box3">{{item.value  | setNum}}</div></td>
+            <td><div class="data_box3">{{item.cost  | setNum}}<br>{{item.value  | setNum}}</div></td>
             <td><div class="data_box3">
-              <span v-if="item.gain>0" :class="{Green:item.gain<0,Red:item.gain>=0}">+{{item.gain  | toFixed2 }}%</span>
-              <span v-else="item.gain<=0" :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain  | toFixed2 }}%</span>
+              <span v-if="item.gain>0" :class="{Green:item.gain<0,Red:item.gain>=0}">+{{item.gain  | toFixed2 }}%<br>+{{item.earning  | setNum}}</span>
+              <span v-else="item.gain<=0" :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
             </div></td>
-            <td><div class="data_box3">
-              <span v-if="item.earning>0"  :class="{Green:item.earning<0,Red:item.earning>=0}">+{{item.earning  | setNum}}</span>
-              <span v-else="item.earning<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning  | setNum}}</span>
-            </div></td>
+            <!--<td><div class="data_box3">-->
+              <!--<span v-if="item.earning>0"  :class="{Green:item.earning<0,Red:item.earning>=0}">+{{item.earning  | setNum}}</span>-->
+              <!--<span v-else="item.earning<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.earning  | setNum}}</span>-->
+            <!--</div></td>-->
           </tr>
           </tbody>
             <tbody v-else-if="holding.length==0">
@@ -165,7 +158,7 @@
     text-align: right;
   }
   .data_box3{
-    width:68%;
+    width:58%;
     text-align: right;
   }
   .row-fluid {

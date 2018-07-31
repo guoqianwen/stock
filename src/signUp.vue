@@ -80,7 +80,6 @@
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
             if(res.body.code == 0){
-              alert("dsflsdfjkasd")
               setSession('username',this.username);
               var tempArr=[
                 {

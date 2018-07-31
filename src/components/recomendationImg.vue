@@ -70,7 +70,11 @@ button{
 background-color: #ffffff;
 }
 .activeBtn{
-background-color: #D4D4D4;
+  background-color: #0275d8;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  border-color: #0275d8;
 }
 .img_box img{
   width: 90%;
@@ -102,7 +106,11 @@ button{
 background-color: #ffffff;
 }
 .activeBtn{
-background-color: #D4D4D4;
+  background-color: #0275d8;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  border-color: #0275d8;
 }
 
 .img_box{

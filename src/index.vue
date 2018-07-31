@@ -51,8 +51,7 @@
               <table class="table table-striped table-bordered table-advance recomment_tb" >
                 <thead>
                 <tr class="recommend-thead-tr">
-                  <th>股票代码</th>
-                  <th>公司名称</th>
+                  <th>股票代码<br/>公司名称</th>
                   <th>推荐操作</th>
                   <th>股票类型</th>
                   <th>备注</th>
@@ -60,8 +59,8 @@
                 </thead>
                 <tbody v-if="recommends.length>0">
                 <tr v-for="(item,index) in recommends">
-                  <td >{{item.name}}</td>
-                  <td>{{item.stockName}}</td>
+                  <td >{{item.name}}<br/>{{item.stockName}}</td>
+                  <td></td>
                   <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
                    <td>{{item.type}}</td>
                   <td>{{item.note}}</td>
