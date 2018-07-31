@@ -14,14 +14,16 @@
                 <thead>
                 <tr class="recommend-thead-tr">
                   <th>交易日期</th>
-                  <th>股票代码</th>
-                  <th>公司名称</th>
+                  <th class="pc_th">股票代码</th>
+                  <th class="pc_th">公司名称</th>
+                  <th class="app_th">股票代码/<br>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
                   <th class="pc_app_dis_th">买入日期</th>
-                  <th>买入价(元)</th>
+                  <th class="pc_th">买入价(元)</th>
                   <th class="pc_app_dis_th">卖出日期</th>
-                  <th>卖出价(元)</th>
+                  <th class="pc_th">卖出价(元)</th>
+                  <th class="app_th">买入价/<br>卖出价<br>(元)</th>
                   <th>盈亏率</th>
                 </tr>
                 </thead>
@@ -30,13 +32,14 @@
                   <td>
                     {{item.tradeDate}}
                   </td>
-                  <td>
+                  <td class="pc_td">
                     {{item.name}}
                   </td>
-                  <td>
+                  <td class="pc_td">
                     {{item.companyName}}
                   </td>
-                  <td>
+                  <td class="app_td">{{item.name}}<br>{{item.companyName}}</td>
+                  <td class="thisNumber">
                     {{item.amount}}
                   </td>
                   <td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">
@@ -44,21 +47,21 @@
                   </td>
                   <td class="pc_app_dis_td">
                     {{item.oldDate}}
-
                   </td>
-                  <td>
+                  <td class="pc_td thisNumber">
                     {{item.oldPrice}}
                   </td>
                   <td class="pc_app_dis_td">
                     {{item.newDate}}
                   </td>
-                  <td>
+                  <td class="pc_td thisNumber">
                     {{item.newPrice}}
                   </td>
-                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
+                  <td class="app_td thisNumber">{{item.oldPrice}}<br>{{item.newPrice}}</td>
+                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
                     +{{item.gainRate}}%
                   </td>
-                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
+                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
                     {{item.gainRate}}%
                   </td>
                   <td v-else="item.gainRate==undefined">
@@ -426,6 +429,15 @@
     margin-left: 0px;
     background: #ffffff;
   }
+  .app_th{
+    display: none;
+  }
+  .app_td{
+    display: none;
+  }
+  .thisNumber{
+    text-align: right;
+  }
 
   /*
 屏幕兼容(手机)
@@ -439,7 +451,8 @@
     }
     /*.transactionRecordTable {*/
     .list {
-      font-size: 0.5rem;
+      /*font-size: 0.5rem;*/
+      font-size: 1.2rem;
       word-break: keep-all;
       padding: 0px;
       overflow: scroll;
@@ -449,6 +462,7 @@
     }
     .transactionRecordTable td{
       padding: 0px;
+      vertical-align: middle;
     }
     .transactionRecordText{
       width: 100%;
@@ -492,6 +506,18 @@
       /*padding-top: -2px;*/
       float: left;
       margin-left: 1px;
+    }
+    .pc_th{
+      display: none;
+    }
+    .pc_td{
+      display: none;
+    }
+    .app_td{
+      display: table-cell;
+    }
+    .app_th{
+      display: table-cell;
     }
   }
 </style>

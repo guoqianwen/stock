@@ -721,6 +721,7 @@
     }
     .data_box{
       text-align: right;
+      vertical-align: middle;
     }
     tr{
       font-size: 1.2rem;

@@ -254,6 +254,9 @@
     .activeBtn{
       background-color: #D4D4D4;
     }
+    .btn-default{
+      color: #0c91e5;
+    }
 
   }
 </style>
