@@ -160,7 +160,6 @@ a:hover{
 }
 .logoimg{
   height: 70px;
-  margin-left: 10rem;
 }
 .footer{
   width: 100%;
@@ -222,5 +221,23 @@ a:hover{
     color: #fff;
     background-color: #0275d8;
     border-color: #0275d8;
+  }
+  .clearPadLeft{
+    padding-left: 0px;
+  }
+  .clearPadRig{
+    padding-right: 0px;
+  }
+  th,td{
+    vertical-align: middle!important;
+  }
+  /*
+屏幕兼容(手机)
+*/
+  @media screen and (max-width:600px)
+  {
+    .logoimg{
+      margin-left: -10rem
+    }
   }
 </style>

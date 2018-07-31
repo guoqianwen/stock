@@ -1,7 +1,7 @@
 <template>
   <div class="signUpContainer">
     <div class="signUpBox">
-      <h3>登陆</h3>
+      <h3 >登陆</h3>
       <form class="form-horizontal signUpForm">
         <div class="form-group clearMargin">
           <div class="col-sm-offset-1 col-sm-10">
@@ -182,6 +182,10 @@
   }
   .signUpBtnFix{
     margin-top: 4rem;
+  }
+  .signUpBox>h3{
+    width: 100%;
+    text-align: center;
   }
 
 </style>

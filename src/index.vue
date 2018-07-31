@@ -97,7 +97,7 @@
           <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
         </div>
         <div class="row operationAccountRow">
-            <div class="col-md-6 now_tb">
+            <div class="col-md-6 clearPadLeft now_tb">
                 <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
                   <tbody>
                       <tr class="current-holding-thead-tr">
@@ -123,7 +123,7 @@
                   </tbody>
                 </table>
             </div>
-            <div class="col-md-6 avg_tb">
+            <div class="col-md-6 clearPadRig avg_tb">
               <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
                 <tbody>
                     <tr class="current-holding-thead-tr">
@@ -538,10 +538,9 @@
     margin: 0 2%;
   }
   .operationAccountRow{
-    margin-top: 2rem;
-     margin-right: 0px;
-     margin-left: 0px;
-    background: #ffffff;
+    width: 96%;
+    padding-top: 20px;
+    margin: 0 2%;
   }
   .showTransactionRecord{
     padding-bottom: 2rem;
@@ -616,6 +615,7 @@
   .paperTrading{
     /*margin-top: 2rem;*/
   }
+
   /*
  屏幕兼容(平板)
   */

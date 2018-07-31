@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-8 virtualAccountC8">
           <div class="row">
-            <div class="col-md-6 accountOverview">
+            <div class="col-md-6 clearPadRig accountOverview">
               <table cellspacing="0" cellpadding="0" border="0"
                      class="virtable table table-striped table-bordered table-advance start_tb">
                 <tbody>
@@ -79,7 +79,7 @@
               </table>
             </div>
             <div></div>
-            <div class="col-md-6 accountOverview">
+            <div class="col-md-6 clearPadRig accountOverview">
               <table cellspacing="0" cellpadding="0" border="0"
                      class="virtable table table-striped table-bordered table-advance end_tb">
                 <tbody>
@@ -226,6 +226,9 @@
     width: 96%;
     height: auto;
     margin: 0 2%;
+    margin-top: 2rem;
+    background: #fff;
+    padding: 0 2%
   }
 
   .virtable {
@@ -234,7 +237,6 @@
 
   .virtualAccountHeader {
     /*margin: 0 2%;*/
-    margin-top: 25px;
     background: #ffffff;
     width: 100%;
     border-bottom: 1px solid #EEF1F5;

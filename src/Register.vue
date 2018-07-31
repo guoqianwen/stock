@@ -172,5 +172,8 @@
   .registerForm{
     margin-top: 2rem;
   }
-
+  .registerBox>h3{
+    width: 100%;
+    text-align: center;
+  }
 </style>

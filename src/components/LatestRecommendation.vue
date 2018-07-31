@@ -62,10 +62,11 @@
     width: 96%;
     margin: auto;
     height: auto;
-    padding: 0% 1%;
+    padding: 0% 2%;
     /*background: #ECECEC;*/
     background: #ffffff;
     font-size: 20px;
+    padding-bottom: 2rem;
   }
   .recommendation:hover {
     transition: all 0.3s ease-out;

@@ -18,8 +18,7 @@
                       <thead>
                       <tr class="DataInquiry-thead-tr">
                         <th>日期</th>
-                        <th>证券代码</th>
-                        <th>证券简称</th>
+                        <th>证券代码<br/>证券简称</th>
                         <th>质押笔数</th>
                         <th>无限售股份质押数量(万)</th>
                         <th>有限售股份质押数量(万)</th>
@@ -46,10 +45,7 @@
                           {{item.code}}<br>{{item.name}}
                         </td>
                         <td class="pc_td">
-                          {{item.code}}
-                        </td>
-                        <td class="pc_td">
-                          {{item.name}}
+                          {{item.code}}<br>{{item.name}}
                         </td>
                         <td>
                           <div class="data_box3">
@@ -204,6 +200,7 @@
     width:68%;
     text-align: right;
   }
+
   /*
 屏幕兼容(手机)
 */
