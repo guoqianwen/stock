@@ -412,6 +412,9 @@
   .data_td{
     text-align: right;
   }
+  .head_td{
+    font-weight: bold;
+  }
 
   .data_box{
     width:60%;
@@ -481,19 +484,20 @@
       width: 49%;
       float: left;
       margin-left: 0px;
-      font-size: 10px;
+      /*font-size: 10px;*/
+      font-size: 1.2rem;
       border: none;
     }
     .table_now{
       border-right: 2px solid #b20030;
     }
     .data_td{
-      width: 45%;
+      width: 42%;
       border:none;
       text-align: right;
     }
     .head_td{
-      width: 55%;
+      width: 58%;
       text-align: left;
       border:none;
     }
