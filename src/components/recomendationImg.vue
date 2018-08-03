@@ -4,7 +4,7 @@
       <img :src="imgSrc">
     </div>
     <div class="btn-group" role="group" style="margin-bottom: 20px;display: flex;padding-bottom: 2rem;">
-      <button   v-for="btn in imgArray" @click="changeCurImg(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>
+      <button style="color: #fff;background-color: #0275d8;"  v-for="btn in imgArray" @click="changeCurImg(btn.id)"  type="button" class="btn btn-default" :class="btn.id==select ? 'activeBtn':''">{{btn.time}}</button>
     </div>
   </div>
 </template>

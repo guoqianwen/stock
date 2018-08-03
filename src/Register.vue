@@ -1,27 +1,27 @@
 <template>
     <div class="registerContainer">
       <div class="registerBox">
-          <h3>注册</h3>
+          <h3 class="head_title">注册</h3>
             <form class="form-horizontal registerForm">
-              <div class="form-group clearMargin">
+              <div class="form-group clearMargin title_label">
                 <label for="inputEmail3" class="col-sm-3 control-label">用户名</label>
                 <div class="col-sm-9">
                   <input type="username" class="form-control" id="inputEmail3" placeholder="请输入用户名" v-model="newUsername">
                 </div>
               </div>
-              <div class="form-group clearMargin">
+              <div class="form-group clearMargin title_label">
                 <label for="inputPassword3" class="col-sm-3 control-label">密码</label>
                 <div class="col-sm-9">
                   <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码"  v-model="newPassword">
                 </div>
               </div>
-              <div class="form-group clearMargin">
+              <div class="form-group clearMargin title_label">
                 <label for="input4" class="col-sm-3 control-label">总金额</label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="input4" placeholder="请输入总金额" min="0"  v-model="newInitAmount">
                 </div>
               </div>
-              <div class="form-group clearMargin">
+              <div class="form-group clearMargin title_label">
                 <label for="input3" class="col-sm-3 control-label">份数</label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="input3" placeholder="请输入份数" min="0"  v-model="newInitNum">
@@ -29,7 +29,7 @@
                 </div>
               </div>
 
-              <div class="form-group clearMargin clearPadding">
+              <div class="form-group clearMargin clearPadding title_label">
                 <label for="input3" class="col-sm-3 control-label clearPaddingTop" >允许融资</label>
                 <div class="col-sm-9">
                   <label class="labeAlignText">
@@ -105,6 +105,7 @@
 </script>
 
 <style scoped>
+  *
   .registerContainer{
    margin: 0rem  auto ;
     max-width: 1030px;
@@ -171,6 +172,27 @@
   }
   .registerForm{
     margin-top: 2rem;
+  }
+  .head_title{
+    text-align: center;
+    margin: 0px;
+  }
+
+  /*
+  屏幕兼容(手机)
+   */
+  @media screen and (max-width:600px)
+  {
+    .head_title{
+      text-align: center;
+      margin: 0px;
+    }
+    .registerBox{
+      width: 100%;
+    }
+    .title_label{
+      text-align: left;
+    }
   }
 
 </style>

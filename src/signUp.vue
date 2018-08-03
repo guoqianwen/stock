@@ -1,7 +1,7 @@
 <template>
   <div class="signUpContainer">
     <div class="signUpBox">
-      <h3>登陆</h3>
+      <h3 class="head_title">登录</h3>
       <form class="form-horizontal signUpForm">
         <div class="form-group clearMargin">
           <div class="col-sm-offset-1 col-sm-10">
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group clearMargin clearPadding signUpBtnFix">
           <div class="col-sm-12">
-            <button type="submit" class="pure-button puree-button-primary puree-spinner-button clearMargin clearPadding" v-on:click="login">登陆</button>
+            <button type="submit" class="pure-button puree-button-primary puree-spinner-button clearMargin clearPadding" v-on:click="login">登录</button>
             <!--<span >没有帐号？马上注册</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>忘记密码？</span>-->
             <span >
                 <router-link :to="{ path: '/Register' }" >
@@ -63,7 +63,7 @@
             url:'DataInquiry'
           },
           {
-            title:'登陆',
+            title:'登录',
             url:'SignUp'
           }
         ];
@@ -117,6 +117,7 @@
 </script>
 
 <style scoped>
+  *
   .signUpContainer{
     margin: 0rem  auto ;
     max-width: 1030px;
@@ -184,5 +185,22 @@
   .signUpBtnFix{
     margin-top: 4rem;
   }
+  .head_title{
+    text-align: center;
+    margin: 0px;
+  }
 
+  /*
+  屏幕兼容(手机)
+   */
+  @media screen and (max-width:600px)
+  {
+    .head_title{
+      text-align: center;
+      margin: 0px;
+    }
+    .signUpBox{
+      width: 100%;
+    }
+  }
 </style>

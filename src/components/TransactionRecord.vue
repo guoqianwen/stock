@@ -492,12 +492,12 @@
       border-right: 2px solid #b20030;
     }
     .data_td{
-      width: 42%;
+      width: 40%;
       border:none;
       text-align: right;
     }
     .head_td{
-      width: 58%;
+      width: 60%;
       text-align: left;
       border:none;
     }

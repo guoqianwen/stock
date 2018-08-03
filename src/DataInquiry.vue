@@ -190,6 +190,10 @@
   .number_td{
     text-align: right;
   }
+  .DataInquiry_btn{
+    color: #fff;
+    background-color: #0275d8;
+  }
   /*
 屏幕兼容(手机)
 */
@@ -254,6 +258,7 @@
     }
     .list td{
       padding: 0px;
+      padding-right: 2px;
       vertical-align: middle;
     }
   }
