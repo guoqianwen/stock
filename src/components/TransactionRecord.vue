@@ -49,20 +49,20 @@
                     {{item.oldDate}}
                   </td>
                   <td class="pc_td thisNumber">
-                    {{item.oldPrice}}
+                    {{item.oldPrice | setNum}}
                   </td>
                   <td class="pc_app_dis_td">
                     {{item.newDate}}
                   </td>
                   <td class="pc_td thisNumber">
-                    {{item.newPrice}}
+                    {{item.newPrice | setNum}}
                   </td>
-                  <td class="app_td thisNumber">{{item.oldPrice}}<br>{{item.newPrice}}</td>
+                  <td class="app_td thisNumber">{{item.oldPrice | setNum}}<br>{{item.newPrice | setNum}}</td>
                   <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
-                    +{{item.gainRate}}%
+                    +{{item.gainRate | setNum}}%
                   </td>
                   <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
-                    {{item.gainRate}}%
+                    {{item.gainRate | setNum}}%
                   </td>
                   <td v-else="item.gainRate==undefined">
 
