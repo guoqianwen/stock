@@ -9,7 +9,7 @@
               <div class="recommendRow">
                 <div class="recommendHeader">
                   <h3></h3>
-                  <h4 class="recommentTime">必达讨论区</h4>
+                  <h3 class="recommentTime">必达讨论区</h3>
                 </div>
               </div>
               <div class="forumBox" >
@@ -468,7 +468,7 @@
     margin: 0 2%;
     display: flex;
     flex-direction: row;
-    justify-content:left;
+    /*justify-content:left;*/
   }
   .row-fluid{
     padding-top:20px;
@@ -705,6 +705,14 @@
       color: #A376B8;
       margin-left: 12px;
       cursor: pointer;
+    }
+    .forum-header{
+      padding: 0px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    .forum-list{
+      margin: 0px;
     }
   }
 </style>

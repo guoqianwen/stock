@@ -14,14 +14,16 @@
                 <thead>
                 <tr class="recommend-thead-tr">
                   <th>交易日期</th>
-                  <th>股票代码</th>
-                  <th>公司名称</th>
+                  <th class="pc_th">股票代码</th>
+                  <th class="pc_th">公司名称</th>
+                  <th class="app_th">股票代码/<br>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
                   <th class="pc_app_dis_th">买入日期</th>
-                  <th>买入价(元)</th>
+                  <th class="pc_th">买入价(元)</th>
                   <th class="pc_app_dis_th">卖出日期</th>
-                  <th>卖出价(元)</th>
+                  <th class="pc_th">卖出价(元)</th>
+                  <th class="app_th">买入价/<br>卖出价<br>(元)</th>
                   <th>盈亏率</th>
                 </tr>
                 </thead>
@@ -30,13 +32,14 @@
                   <td>
                     {{item.tradeDate}}
                   </td>
-                  <td>
+                  <td class="pc_td">
                     {{item.name}}
                   </td>
-                  <td>
+                  <td class="pc_td">
                     {{item.companyName}}
                   </td>
-                  <td>
+                  <td class="app_td">{{item.name}}<br>{{item.companyName}}</td>
+                  <td class="thisNumber">
                     {{item.amount}}
                   </td>
                   <td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">
@@ -44,22 +47,22 @@
                   </td>
                   <td class="pc_app_dis_td">
                     {{item.oldDate}}
-
                   </td>
-                  <td>
-                    {{item.oldPrice}}
+                  <td class="pc_td thisNumber">
+                    {{item.oldPrice | setNum}}
                   </td>
                   <td class="pc_app_dis_td">
                     {{item.newDate}}
                   </td>
-                  <td>
-                    {{item.newPrice}}
+                  <td class="pc_td thisNumber">
+                    {{item.newPrice | setNum}}
                   </td>
-                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
-                    +{{item.gainRate}}%
+                  <td class="app_td thisNumber">{{item.oldPrice | setNum}}<br>{{item.newPrice | setNum}}</td>
+                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
+                    +{{item.gainRate | setNum}}%
                   </td>
-                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
-                    {{item.gainRate}}%
+                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
+                    {{item.gainRate | setNum}}%
                   </td>
                   <td v-else="item.gainRate==undefined">
 
@@ -409,6 +412,9 @@
   .data_td{
     text-align: right;
   }
+  .head_td{
+    font-weight: bold;
+  }
 
   .data_box{
     width:60%;
@@ -426,6 +432,15 @@
     margin-left: 0px;
     background: #ffffff;
   }
+  .app_th{
+    display: none;
+  }
+  .app_td{
+    display: none;
+  }
+  .thisNumber{
+    text-align: right;
+  }
 
   /*
 屏幕兼容(手机)
@@ -439,7 +454,8 @@
     }
     /*.transactionRecordTable {*/
     .list {
-      font-size: 0.5rem;
+      /*font-size: 0.5rem;*/
+      font-size: 1.2rem;
       word-break: keep-all;
       padding: 0px;
       overflow: scroll;
@@ -449,6 +465,7 @@
     }
     .transactionRecordTable td{
       padding: 0px;
+      vertical-align: middle;
     }
     .transactionRecordText{
       width: 100%;
@@ -467,19 +484,20 @@
       width: 49%;
       float: left;
       margin-left: 0px;
-      font-size: 10px;
+      /*font-size: 10px;*/
+      font-size: 1.2rem;
       border: none;
     }
     .table_now{
       border-right: 2px solid #b20030;
     }
     .data_td{
-      width: 45%;
+      width: 40%;
       border:none;
       text-align: right;
     }
     .head_td{
-      width: 55%;
+      width: 60%;
       text-align: left;
       border:none;
     }
@@ -492,6 +510,18 @@
       /*padding-top: -2px;*/
       float: left;
       margin-left: 1px;
+    }
+    .pc_th{
+      display: none;
+    }
+    .pc_td{
+      display: none;
+    }
+    .app_td{
+      display: table-cell;
+    }
+    .app_th{
+      display: table-cell;
     }
   }
 </style>

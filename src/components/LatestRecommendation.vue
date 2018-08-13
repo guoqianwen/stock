@@ -14,22 +14,22 @@
           <div class="recommendation_rowItem">
             <div class="recommendation_row">
               <div class="sysZS">{{item.gain[0].indexName}}: <br>
-                <span  v-if="item.gain[0].profit>0" :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">+{{item.gain[0].profit}}%</span>
-                <span  v-else="item.gain[0].profit<=0" :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">{{item.gain[0].profit}}%</span>
+                <span  v-if="item.gain[0].profit>0" :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">+{{item.gain[0].profit | setNum}}%</span>
+                <span  v-else="item.gain[0].profit<=0" :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">{{item.gain[0].profit | setNum}}%</span>
               </div>
               <div class="shZS">{{item.gain[1].indexName}}: <br>
-                <span v-if="item.gain[1].profit>0"  :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">+{{item.gain[1].profit}}%</span>
-                <span v-else="item.gain[1].profit<=0"  :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">{{item.gain[1].profit}}%</span>
+                <span v-if="item.gain[1].profit>0"  :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">+{{item.gain[1].profit | setNum}}%</span>
+                <span v-else="item.gain[1].profit<=0"  :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">{{item.gain[1].profit | setNum}}%</span>
               </div>
             </div>
             <div class="recommendation_row">
               <div class="h3ZS"> {{item.gain[2].indexName}}: <br>
-                <span v-if="item.gain[2].profit>0" :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">+{{item.gain[2].profit}}%</span>
-                <span v-else="item.gain[2].profit<=0" :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">{{item.gain[2].profit}}%</span>
+                <span v-if="item.gain[2].profit>0" :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">+{{item.gain[2].profit | setNum}}%</span>
+                <span v-else="item.gain[2].profit<=0" :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">{{item.gain[2].profit | setNum}}%</span>
               </div>
               <div class="cyZS"> {{item.gain[3].indexName}}: <br>
-                <span v-if="item.gain[3].profit>0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">+{{item.gain[3].profit}}%</span>
-                <span v-else="item.gain[3].profit<=0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">{{item.gain[3].profit}}%</span>
+                <span v-if="item.gain[3].profit>0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">+{{item.gain[3].profit | setNum}}%</span>
+                <span v-else="item.gain[3].profit<=0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">{{item.gain[3].profit | setNum}}%</span>
               </div>
             </div>
           </div>

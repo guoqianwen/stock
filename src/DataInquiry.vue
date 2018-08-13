@@ -17,7 +17,7 @@
                     <table class=" table table-striped table-bordered table-advance">
                       <thead>
                       <tr class="DataInquiry-thead-tr">
-                        <th>日期</th>
+                        <th>记录日期</th>
                         <th>证券代码</th>
                         <th>证券简称</th>
                         <th>质押笔数</th>
@@ -27,7 +27,7 @@
                         <th>质押比例(%)</th>
                       </tr>
                       <tr class="DataInquiry-thead-tr-app">
-                        <th>日期</th>
+                        <th>记录日期</th>
                         <th>证券代码/<br>证券简称</th>
                         <!--<th>证券简称</th>-->
                         <th>质押笔数</th>
@@ -51,20 +51,19 @@
                         <td class="pc_td">
                           {{item.name}}
                         </td>
-                        <td>
+                        <td class="number_td">
                           {{item.pledgeNumber}}
                         </td>
-                        <td>
+                        <td class="number_td">
                           {{item.unlimitedPledge}}
                         </td>
-                        <td >
+                        <td class="number_td">
                           {{item.limitedPledge}}
-
                         </td>
-                        <td>
+                        <td class="number_td">
                           {{item.total}}
                         </td>
-                        <td >
+                        <td class="number_td">
                           {{item.rate}}
                         </td>
                       </tr>
@@ -188,6 +187,13 @@
     margin: 0 2%;
     padding-bottom: 5px;
   }
+  .number_td{
+    text-align: right;
+  }
+  .DataInquiry_btn{
+    color: #fff;
+    background-color: #0275d8;
+  }
   /*
 屏幕兼容(手机)
 */
@@ -206,7 +212,7 @@
       float: left;
       width: 35%;
       text-align: left;
-      margin-left: 4%;
+      margin-left: 2%;
     }
     .code_lab{
       margin-top: 10px;
@@ -214,7 +220,7 @@
     .DataInquiry_inp{
       float: left;
       width: 70%;
-      margin-left: 4%;
+      margin-left: 2%;
     }
     .DataInquiry_btn{
       float: left;
@@ -233,13 +239,15 @@
       display: none;
     }
     .list{
-      font-size: 0.5rem;
+      /*font-size: 0.5rem;*/
+      font-size: 1rem;
       word-break: keep-all;
     }
     .list_tab{
       float: left;
       width: 100%;
       overflow-x: scroll;
+      margin-left: -2%;
     }
     .list th{
       padding: 0px;
@@ -247,6 +255,11 @@
       padding-right: 2px;
       vertical-align: middle;
       text-align: center;
+    }
+    .list td{
+      padding: 0px;
+      padding-right: 2px;
+      vertical-align: middle;
     }
   }
 </style>
