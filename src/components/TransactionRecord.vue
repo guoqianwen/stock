@@ -18,10 +18,9 @@
                   <th>股票份数</th>
                   <th>操作</th>
                   <th class="pc_app_dis_th">买入日期</th>
-                  <th>买入价(元)</th>
+                  <th>买入价(元)<br/>卖出价(元)</th>
                   <th class="pc_app_dis_th">卖出日期</th>
-                  <th>卖出价(元)</th>
-                  <th>盈亏率</th>
+                  <th>盈亏率<br/>收益绝对值</th>
                 </tr>
                 </thead>
                 <tbody v-if="items.length>0">
@@ -46,22 +45,21 @@
                   </td>
                   <td>
                     <div class="data_box3">
-                        {{item.oldPrice}}
+                        {{item.oldPrice  | setNum2}}<br/>
+                        {{item.newPrice  | setNum2}}
                     </div>
                   </td>
                   <td class="pc_app_dis_td">
                         {{item.newDate}}
                   </td>
-                  <td>
-                    <div class="data_box3">
-                    {{item.newPrice}}
-                    </div>
-                  </td>
                   <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
                     +{{item.gainRate}}%
+                    <br/>
+                    {{item.gain | setNum}}
                   </td>
                   <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
-                    {{item.gainRate}}%
+                    {{item.gainRate}}%<br/>
+                    {{item.gain  | setNum}}
                   </td>
                   <td v-else="item.gainRate==undefined">
 
@@ -144,7 +142,7 @@
               <td class="data_td">{{userAccount.sellNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td class="head_td">当日最小盈亏率</td>
+              <td class="head_td">单月最差盈亏率</td>
               <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}" class="data_td">{{userAccount.minGain *100}}%</td>
             </tr>
             </tbody>

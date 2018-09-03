@@ -2,7 +2,6 @@
   <div id="indexContrastContent" class="indexContrastComponents">
         <div class="indexContrastRow">
             <div class="indexContrastHeader">
-
               <h3>{{heading}}</h3>
             </div>
             <div class="row-fluid">
@@ -84,7 +83,7 @@
             /*  color: ['blue', 'red','#5AB1EF','black'],*/
               legend: {
                 x: 'center',
-                data: ['必达指数','上证指数','创业板指', '沪深300指']
+                data: ['毕达指数','上证指数','创业板指', '沪深300指']
               },
               toolbox: {
                 show: false,
@@ -111,7 +110,7 @@
               series: [
                 {
                   symbol: "none",
-                  name:'必达指数',
+                  name:'毕达指数',
                   type:'line',
                   data:this.GainInfo.stockGain,
                 },

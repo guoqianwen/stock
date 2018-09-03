@@ -89,7 +89,7 @@
             color: ['#C23531',"#2F4554"],
             legend: {
               x: 'center',
-              data: ['必达指数','上证指数']
+              data: ['毕达指数','上证指数']
             },
             toolbox: {
               show: false,
@@ -124,7 +124,7 @@
             },
             series: [
               {
-                name: '必达指数',
+                name: '毕达指数',
                 type: 'line',
                 data: this.trend.aiMarket
               },
@@ -143,7 +143,7 @@
           },
           legend: {
             x: 'center',
-            data: ['必达指数','上证指数']
+            data: ['毕达指数','上证指数']
           },
           toolbox: {
             show: false,
@@ -175,7 +175,7 @@
           series: [
             {
               symbol: "none",
-              name: '必达指数',
+              name: '毕达指数',
               type: 'line',
               data: this.trend.aiMarket
             },
