@@ -32,6 +32,16 @@
                 <span v-else="item.gain[3].profit<=0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">{{item.gain[3].profit | setNum}}%</span>
               </div>
             </div>
+            <div class="recommendation_row pysz-box">
+              <div class="pysz"> {{item.gain[4].indexName}}: <br>
+                <span v-if="item.gain[4].profit>0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">+{{item.gain[4].profit}}%</span>
+                <span v-else="item.gain[4].profit<=0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">{{item.gain[4].profit}}%</span>
+              </div>
+              <div class="pysz" style="visibility: hidden"> {{item.gain[4].indexName}}: <br>
+                <span v-if="item.gain[4].profit>0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">+{{item.gain[4].profit}}%</span>
+                <span v-else="item.gain[4].profit<=0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">{{item.gain[4].profit}}%</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -62,10 +72,11 @@
     width: 96%;
     margin: auto;
     height: auto;
-    padding: 0% 1%;
+    padding: 0% 2%;
     /*background: #ECECEC;*/
     background: #ffffff;
     font-size: 20px;
+    padding-bottom: 2rem;
   }
   .recommendation:hover {
     transition: all 0.3s ease-out;
@@ -88,7 +99,7 @@
   .recommendation-items{
     margin-left: 10%;
     width: 80%;
-    height: 25rem;
+    height: 30rem;
     display: flex;
     margin-top: 1rem;
   }
@@ -140,6 +151,9 @@
   .recommendation_row>div{
     margin:0.5rem  1rem;
   }
+  /*.pysz-box{*/
+    /*justify-content: space-around;*/
+  /*}*/
 
   /*
 屏幕兼容(手机)

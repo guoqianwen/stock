@@ -80,7 +80,6 @@
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
             if(res.body.code == 0){
-              //alert("dsflsdfjkasd")
               setSession('username',this.username);
               var tempArr=[
                 {
@@ -185,9 +184,14 @@
   .signUpBtnFix{
     margin-top: 4rem;
   }
-  .head_title{
+
+  .head_title {
     text-align: center;
     margin: 0px;
+  }
+  .signUpBox>h3{
+    width: 100%;
+    text-align: center;
   }
 
   /*
