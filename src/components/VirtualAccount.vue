@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-8 virtualAccountC8">
           <div class="row">
-            <div class="col-md-6 accountOverview">
+            <div class="col-md-6 clearPadRig accountOverview">
               <table cellspacing="0" cellpadding="0" border="0"
                      class="virtable table table-striped table-bordered table-advance start_tb">
                 <tbody>
@@ -40,21 +40,21 @@
                   <td><div class="data_box">{{virtCountStart.date}}</div></td>
                 </tr>
                 <tr>
-                  <th class="head_td">总资产(元)</th>
+                  <th class="head_td">初始投资(元)</th>
                   <td>
                     <div class="data_box">{{virtCountStart.totalAsset|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <th class="head_td">持股价值(元)</th>
+                  <th class="head_td">每份股票购买金额(元)</th>
                   <td>
-                    <div class="data_box">{{virtCountStart.stockAmount|setNum}}</div>
+                    <div class="data_box">{{virtCountStart.amountNumber|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
-                  <th class="head_td">账户余额(元)</th>
+                  <th class="head_td">累计盈亏(元)</th>
                   <td>
-                    <div class="data_box">{{virtCountStart.balanceAmount|setNum}}</div>
+                    <div class="data_box">{{virtCountStart.totalProfit|setNum}}</div>
                   </td>
                 </tr>
                 <tr>
@@ -79,7 +79,7 @@
               </table>
             </div>
             <div></div>
-            <div class="col-md-6 accountOverview">
+            <div class="col-md-6 clearPadRig accountOverview">
               <table cellspacing="0" cellpadding="0" border="0"
                      class="virtable table table-striped table-bordered table-advance end_tb">
                 <tbody>
@@ -226,6 +226,9 @@
     width: 96%;
     height: auto;
     margin: 0 2%;
+    margin-top: 2rem;
+    background: #fff;
+    padding: 0 2%
   }
 
   .virtable {
@@ -234,7 +237,6 @@
 
   .virtualAccountHeader {
     /*margin: 0 2%;*/
-    margin-top: 25px;
     background: #ffffff;
     width: 100%;
     border-bottom: 1px solid #EEF1F5;

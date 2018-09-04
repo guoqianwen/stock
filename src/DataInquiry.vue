@@ -4,9 +4,9 @@
             <h3>质押率查询</h3>
         </div>
         <div class="DataInquiryBar">
-              <label class="DataInquiry_lab name_lab">输入公司名称关键字:</label><input class="DataInquiry_inp" name="companyName" v-model="name"/>
-              <label class="DataInquiry_lab code_lab">输入股票代码:</label><input class="DataInquiry_inp" name="code" v-model="code"/>
-              <button class="DataInquiry_btn" v-on:click="searchInquriyInfo">查询</button>
+              <label class="DataInquiry_lab">输入公司名称关键字:</label><input class="DataInquiry_inp" name="companyName" v-model="name"/>
+              <label class="DataInquiry_lab">输入股票代码:</label><input class="DataInquiry_inp" name="code" v-model="code"/>
+              <button  type="button" class="btn btn-default DataInquiry_btn"  v-on:click="searchInquriyInfo">查询</button>
         </div>
         <div class="DataInquiryInfo">
           <div class="row-fluid">
@@ -17,9 +17,8 @@
                     <table class=" table table-striped table-bordered table-advance">
                       <thead>
                       <tr class="DataInquiry-thead-tr">
-                        <th>记录日期</th>
-                        <th>证券代码</th>
-                        <th>证券简称</th>
+                        <th>日期</th>
+                        <th>证券代码<br/>证券简称</th>
                         <th>质押笔数</th>
                         <th>无限售股份质押数量(万)</th>
                         <th>有限售股份质押数量(万)</th>
@@ -46,25 +45,32 @@
                           {{item.code}}<br>{{item.name}}
                         </td>
                         <td class="pc_td">
-                          {{item.code}}
+                          {{item.code}}<br>{{item.name}}
                         </td>
-                        <td class="pc_td">
-                          {{item.name}}
-                        </td>
-                        <td class="number_td">
+                        <td>
+                          <div class="data_box3">
                           {{item.pledgeNumber}}
+                          </div>
                         </td>
-                        <td class="number_td">
-                          {{item.unlimitedPledge}}
+                        <td>
+                          <div class="data_box3">
+                            {{item.unlimitedPledge}}
+                          </div>
                         </td>
-                        <td class="number_td">
-                          {{item.limitedPledge}}
+                        <td >
+                          <div class="data_box3">
+                            {{item.limitedPledge}}
+                          </div>
                         </td>
-                        <td class="number_td">
+                        <td>
+                          <div class="data_box3">
                           {{item.total}}
+                          </div>
                         </td>
-                        <td class="number_td">
-                          {{item.rate}}
+                        <td >
+                          <div class="data_box3">
+                          {{item.rate}}%
+                          </div>
                         </td>
                       </tr>
                       </tbody>
@@ -187,13 +193,14 @@
     margin: 0 2%;
     padding-bottom: 5px;
   }
-  .number_td{
+  .DataInquiry_btn{
+    border-radius: 0px;
+  }
+  .data_box3{
+    width:68%;
     text-align: right;
   }
-  .DataInquiry_btn{
-    color: #fff;
-    background-color: #0275d8;
-  }
+
   /*
 屏幕兼容(手机)
 */
@@ -225,6 +232,7 @@
     .DataInquiry_btn{
       float: left;
       margin-left: 10%;
+      border-radius: 0px;
     }
     .DataInquiry-thead-tr{
       display: none;
@@ -256,10 +264,10 @@
       vertical-align: middle;
       text-align: center;
     }
-    .list td{
-      padding: 0px;
-      padding-right: 2px;
-      vertical-align: middle;
+    .data_box3{
+      width:68%;
+      text-align: right;
     }
   }
+
 </style>

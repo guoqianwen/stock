@@ -14,17 +14,13 @@
                 <thead>
                 <tr class="recommend-thead-tr">
                   <th>交易日期</th>
-                  <th class="pc_th">股票代码</th>
-                  <th class="pc_th">公司名称</th>
-                  <th class="app_th">股票代码/<br>公司名称</th>
+                  <th>股票代码<br/>公司名称</th>
                   <th>股票份数</th>
                   <th>操作</th>
                   <th class="pc_app_dis_th">买入日期</th>
-                  <th class="pc_th">买入价(元)</th>
+                  <th>买入价(元)<br/>卖出价(元)</th>
                   <th class="pc_app_dis_th">卖出日期</th>
-                  <th class="pc_th">卖出价(元)</th>
-                  <th class="app_th">买入价/<br>卖出价<br>(元)</th>
-                  <th>盈亏率</th>
+                  <th>盈亏率<br/>收益绝对值</th>
                 </tr>
                 </thead>
                 <tbody v-if="items.length>0">
@@ -32,15 +28,13 @@
                   <td>
                     {{item.tradeDate}}
                   </td>
-                  <td class="pc_td">
-                    {{item.name}}
+                  <td>
+                    {{item.name}}<br/>{{item.companyName}}
                   </td>
-                  <td class="pc_td">
-                    {{item.companyName}}
-                  </td>
-                  <td class="app_td">{{item.name}}<br>{{item.companyName}}</td>
-                  <td class="thisNumber">
-                    {{item.amount}}
+                  <td>
+                      <div class="data_box3">
+                          {{item.amount}}
+                      </div>
                   </td>
                   <td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">
                     {{item.action}}
@@ -48,21 +42,23 @@
                   <td class="pc_app_dis_td">
                     {{item.oldDate}}
                   </td>
-                  <td class="pc_td thisNumber">
-                    {{item.oldPrice | setNum}}
+                  <td>
+                    <div class="data_box3">
+                        {{item.oldPrice  | setNum2}}<br/>
+                        {{item.newPrice  | setNum2}}
+                    </div>
                   </td>
                   <td class="pc_app_dis_td">
-                    {{item.newDate}}
+                        {{item.newDate}}
                   </td>
-                  <td class="pc_td thisNumber">
-                    {{item.newPrice | setNum}}
+                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
+                    +{{item.gainRate}}%
+                    <br/>
+                    {{item.gain | setNum}}
                   </td>
-                  <td class="app_td thisNumber">{{item.oldPrice | setNum}}<br>{{item.newPrice | setNum}}</td>
-                  <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
-                    +{{item.gainRate | setNum}}%
-                  </td>
-                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}" class="thisNumber">
-                    {{item.gainRate | setNum}}%
+                  <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
+                    {{item.gainRate}}%<br/>
+                    {{item.gain  | setNum}}
                   </td>
                   <td v-else="item.gainRate==undefined">
 
@@ -145,7 +141,7 @@
               <td class="data_td">{{userAccount.sellNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td class="head_td">当日最小盈亏率</td>
+              <td class="head_td">单月最差盈亏率</td>
               <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}" class="data_td">{{userAccount.minGain *100}}%</td>
             </tr>
             </tbody>
@@ -432,13 +428,8 @@
     margin-left: 0px;
     background: #ffffff;
   }
-  .app_th{
-    display: none;
-  }
-  .app_td{
-    display: none;
-  }
-  .thisNumber{
+  .data_box3{
+    width:68%;
     text-align: right;
   }
 
