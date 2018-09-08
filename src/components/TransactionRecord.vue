@@ -480,7 +480,7 @@
       border: none;
     }
     .table_now{
-      border-right: 2px solid #b20030;
+      border-right: 2px solid #ddd;
     }
     .data_td{
       width: 40%;

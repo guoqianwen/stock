@@ -46,7 +46,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th class="head_td">每份股票购买金额(元)</th>
+                  <th class="head_td">单股投入(元)</th>
                   <td>
                     <div class="data_box">{{virtCountStart.amountNumber|setNum}}</div>
                   </td>
@@ -330,7 +330,7 @@
     .row{
       width: 100%;
       margin: 0px;
-
+      margin-top: 20px;
     }
     .virtualAccountC8 {
       width: 100%;
@@ -358,7 +358,7 @@
       border-right: 1px solid #c1c7ba;
     }
     .virtual_sm_3{
-      margin-left: 15px;
+      /*margin-left: 15px;*/
     }
     .virtualEmpty{
       font-size: 1.5rem;
@@ -376,7 +376,7 @@
       text-align: right;
     }
     .head_td {
-      width: 52%;
+      width: 60%;
       text-align: left;
     }
     tr {
@@ -403,7 +403,11 @@
     }
     .start_tb{
       border: none;
-      border-right: 2px solid #b20030;
+      border-right: 2px solid #ddd;
+    }
+    .col-sm-4{
+      padding-left: 3px;
+      padding-right: 5px;
     }
   }
 </style>

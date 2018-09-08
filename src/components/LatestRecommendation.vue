@@ -4,6 +4,30 @@
         <div class="heading"><h3>{{ heading }}</h3></div>
         <div class="virtualEmpty">&nbsp;&nbsp;</div>
       </div>
+      <div class="pysz_data">
+        <div class="today_data">
+          <div class="title_name_d">当天对比上证</div>
+          <span v-if="recommendations[0].gain[4].profit>0" :class="{Green:recommendations[0].gain[4].profit<0,Red:recommendations[0].gain[4].profit>=0 }">+{{recommendations[0].gain[4].profit}}%</span>
+          <span v-else="recommendations[0].gain[4].profit<=0" :class="{Green:recommendations[0].gain[4].profit<0,Red:recommendations[0].gain[4].profit>=0 }">{{recommendations[0].gain[4].profit}}%</span>
+        </div>
+        <div class="other_data">
+          <div class="one_month other_one">
+            <div class="title_name_1m">近一月对比</div>
+            <span v-if="recommendations[1].gain[4].profit>0" :class="{Green:recommendations[1].gain[4].profit<0,Red:recommendations[1].gain[4].profit>=0 }">+{{recommendations[1].gain[4].profit}}%</span>
+            <span v-else="recommendations[1].gain[4].profit<=0" :class="{Green:recommendations[1].gain[4].profit<0,Red:recommendations[1].gain[4].profit>=0 }">{{recommendations[1].gain[4].profit}}%</span>
+          </div>
+          <div class="three_month other_one">
+            <div class="title_name_3m">近三月对比</div>
+            <span v-if="recommendations[2].gain[4].profit>0" :class="{Green:recommendations[2].gain[4].profit<0,Red:recommendations[2].gain[4].profit>=0 }">+{{recommendations[2].gain[4].profit}}%</span>
+            <span v-else="recommendations[2].gain[4].profit<=0" :class="{Green:recommendations[2].gain[4].profit<0,Red:recommendations[2].gain[4].profit>=0 }">{{recommendations[2].gain[4].profit}}%</span>
+          </div>
+          <div class="the_year other_one">
+            <div class="title_name_y">近一年对比</div>
+            <span v-if="recommendations[3].gain[4].profit>0" :class="{Green:recommendations[3].gain[4].profit<0,Red:recommendations[3].gain[4].profit>=0 }">+{{recommendations[3].gain[4].profit}}%</span>
+            <span v-else="recommendations[3].gain[4].profit<=0" :class="{Green:recommendations[3].gain[4].profit<0,Red:recommendations[3].gain[4].profit>=0 }">{{recommendations[3].gain[4].profit}}%</span>
+          </div>
+        </div>
+      </div>
       <div class="recommendation-items">
         <div v-for="(item,index) in recommendations" class="recommendation" >
           <div class="cover">
@@ -154,6 +178,9 @@
   /*.pysz-box{*/
     /*justify-content: space-around;*/
   /*}*/
+  .pysz_data{
+    display: none;
+  }
 
   /*
 屏幕兼容(手机)
@@ -237,6 +264,69 @@
       /*margin:0.5rem  1rem;*/
       float: left;
       border-radius: 10%;
+    }
+    .pysz_data{
+      display: inline-block;
+    }
+    .pysz-box{
+      display: none;
+    }
+    .today_data{
+      height: 3rem;
+      line-height: 3rem;
+      color: #E9531E;
+      font-size: 3rem
+    }
+    .other_data{
+      margin-top: 50px;
+      margin-bottom: 150px;
+    }
+    .other_one{
+      float: left;
+      padding-right: 13px;
+      padding-left: 10px;
+    }
+    .one_month{
+      font-size: 2.5rem;
+      border-right: 1px solid #c1c7ba;
+      margin-left: 15px;
+    }
+    .three_month{
+      font-size: 2.5rem;
+      border-right: 1px solid #c1c7ba;
+    }
+    .the_year{
+      font-size: 2.5rem;
+    }
+    .title_name_d{
+      height: 2rem;
+      line-height: 2rem;
+      color: #7E7E7E;
+      font-size: 1.8rem
+    }
+    .title_name_1m{
+      height: 2rem;
+      line-height: 2rem;
+      color: #7E7E7E;
+      font-size: 1.5rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .title_name_3m{
+      height: 2rem;
+      line-height: 2rem;
+      color: #7E7E7E;
+      font-size: 1.5rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .title_name_y{
+      height: 2rem;
+      line-height: 2rem;
+      color: #7E7E7E;
+      font-size: 1.5rem;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 </style>
