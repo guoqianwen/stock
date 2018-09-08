@@ -713,7 +713,7 @@
       margin: 20px 0;
     }
     .head_td{
-      width: 60%;
+      width: 70%;
       text-align: left;
       border: none;
     }
@@ -762,7 +762,7 @@
       margin-bottom: 0px;
     }
     .table_now{
-      border-right: 2px solid #b20030;
+      border-right: 2px solid #ddd;
     }
     .table td{
       border: none;
