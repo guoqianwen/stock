@@ -20,7 +20,7 @@
                   <th class="pc_app_dis_th">买入日期</th>
                   <th>买入价(元)<br/>卖出价(元)</th>
                   <th class="pc_app_dis_th">卖出日期</th>
-                  <th>盈亏率<br/>收益绝对值</th>
+                  <th>盈亏率<br/>收益绝对值(元)</th>
                 </tr>
                 </thead>
                 <tbody v-if="items.length>0">
@@ -114,7 +114,7 @@
               <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}" class="data_td">{{userAccount.winRate}}%</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td class="head_td">当日最大盈亏率</td>
+              <td class="head_td">单月最大盈亏率</td>
               <td  :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}" class="data_td">+{{userAccount.maxGain *100}}%</td>
             </tr>
             </tbody>
