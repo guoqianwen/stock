@@ -117,7 +117,7 @@
                         <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
                       </tr>
                       <tr class="current-holding-thead-tr">
-                        <th class="head_td">单日最大盈亏率</th>
+                        <th class="head_td">单月最大盈亏率</th>
                         <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100 |toFixed2 }}%</td>
                       </tr>
                   </tbody>
