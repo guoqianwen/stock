@@ -60,7 +60,6 @@
                 <tbody v-if="recommends.length>0">
                 <tr v-for="(item,index) in recommends">
                   <td >{{item.name}}<br/>{{item.stockName}}</td>
-                  <td></td>
                   <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
                    <td>{{item.type}}</td>
                   <td>{{item.note}}</td>

@@ -15,7 +15,6 @@
                   <div class="virtualTotalMoneyTitleName" >最新盈亏(元)</div>
                   <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
                   <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
-
               </div>
                 <div class="col-sm-4 virtual_sm virtual_sm_2" >
                 <div class="virtualTotalMoneyTitleName">持有盈亏(元)</div>
@@ -299,9 +298,6 @@
   .fontColor{
     color: rgb(51, 51, 51);
   }
-  .col-sm-4{
-    width: auto;
-  }
 
   /*
 屏幕兼容(手机)
@@ -349,6 +345,7 @@
     }
     .virtual_item{
       float: left;
+      margin-left: 2rem;
     }
     .virtual_sm{
       float: left;
@@ -408,7 +405,9 @@
       border: none;
       border-right: 2px solid #ddd;
     }
+
     .col-sm-4{
+      width: auto;
       padding-left: 3px;
       padding-right: 2px;
     }
