@@ -345,7 +345,10 @@
     }
     .virtual_item{
       float: left;
-      margin-left: 2rem;
+      /*margin-left: 2rem;*/
+    }
+    .virtualTotalMoneyTitleValue{
+      font-size: 2rem
     }
     .virtual_sm{
       float: left;
@@ -358,7 +361,7 @@
       border-right: 1px solid #c1c7ba;
     }
     .virtual_sm_3{
-      /*margin-left: 15px;*/
+      /*margin-left: 10px;*/
     }
     .virtualEmpty{
       font-size: 1.5rem;
@@ -408,8 +411,8 @@
 
     .col-sm-4{
       width: auto;
-      padding-left: 3px;
-      padding-right: 2px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 </style>
