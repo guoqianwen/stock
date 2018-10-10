@@ -15,12 +15,18 @@ Vue.config.productionTip = false;
 Vue.http.interceptors.push((request,next)=>{
   //request.credentials = true; // 接口每次请求会跨域携带cookie
   //request.method= 'POST'; // 请求方式（get,post）
+  request.headers.set('Access-Control-Allow-Origin',"*") // 请求headers携带参数
   if(getSession("username")!=""){
-    request.headers.set('Account-Code',getSession("username")) // 请求headers携带参数
+    console.log("传递给后台的code："+encodeURI(getSession("username")))
+    request.headers.set('Account-Code',encodeURI(getSession("username"))) // 请求headers携带参数
   }else {
     request.headers.set('Account-Code',"echo_gou") // 请求headers携带参数
   }
-
+  if(getSession("Amount-Share")!=""){
+    request.headers.set('Amount-Share',getSession("Amount-Share")) // 请求headers携带参数
+  }else{
+    request.headers.set('Amount-Share',"10000000_10") // 请求headers携带参数
+  }
   next(function(response){
     return response;
 

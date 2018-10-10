@@ -2,10 +2,10 @@
   <div class="signUpContainer">
     <div class="signUpBox">
       <h3 class="head_title">登录</h3>
-      <form class="form-horizontal signUpForm">
+      <div class="form-horizontal signUpForm">
         <div class="form-group clearMargin">
           <div class="col-sm-offset-1 col-sm-10">
-            <input type="username" class="form-control" id="inputEmail3" placeholder="请输入用户名" v-model="username">
+            <input type="username" class="form-control" id="inputEmail3" placeholder="请输入手机号" v-model="username">
           </div>
         </div>
         <div class="form-group clearMargin">
@@ -24,7 +24,7 @@
             </span>
           </div>
         </div>
-      </form>
+      </div>
 
     </div>
 
@@ -79,8 +79,9 @@
         }else{
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
-            if(res.body.code == 0){
-              setSession('username',this.username);
+            if(res.body.code == 0 ){
+              // console.log(res.body.data.entity.name)
+              setSession('username',res.body.data.entity.name);
               var tempArr=[
                 {
                   title:'首页',
@@ -98,7 +99,8 @@
                 {
                   title:'退出',
                   url:'SignUp'
-                }
+                },
+
               ];
               this.aa.seturl(tempArr);
               setTimeout(function(){
