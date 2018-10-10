@@ -24,12 +24,14 @@ export function setSession(c_name,value) {
 
 
 export  function getSession(c_name) {
-  if(window.sessionStorage.getItem("username")!=null) {
+  if(window.sessionStorage.getItem(c_name)!=null) {
         return window.sessionStorage.getItem(c_name)
   }else {
          return ""
   }
 }
+
+
 
 
 export function delCookie(c_name){
