@@ -48,7 +48,8 @@ export default new Router({
       path: '/Login',
       name: 'Login',
       component: Login
-    },{
+    },
+    {
       path: '/components/transaction-record',
       name: 'TransactionRecord',
       component: TransactionRecord

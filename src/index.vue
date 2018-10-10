@@ -65,6 +65,12 @@
                   <td>{{item.note}}</td>
                 </tr>
                 </tbody>
+                <tbody v-else-if="isLogin">
+                <tr >
+                  <td colspan="7">您注册登录之后可见，无任何费用
+                  </td>
+                </tr>
+                </tbody>
                 <tbody v-else>
                 <tr >
                   <td colspan="7">当前股市风险较高，暂不推荐操作
@@ -159,6 +165,42 @@
         </div>
     </div>
 
+    <div class="SettingUpAssets">
+      <div class="SettingUpAssetsHead">
+        <h3>资产设置</h3>
+      </div>
+      <div class="SettingUpAssetsInfo">
+        <div class="row-fluid">
+          <div class="span12">
+            <table class="table table-striped table-bordered table-advance recomment_tb" >
+              <tbody >
+              <tr >
+                <td  class="SettingUpAssetsItemName">总金额</td>
+                <td >
+                  <select id="stockMoney"   v-model="initAmount">
+                    <option  v-for="send  in stockMoney" name="sendSymbolId" :value="send.value" >{{send.value}}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr >
+                <td  class="SettingUpAssetsItemName"> 最高持股数量</td>
+                <td >
+                  <select id="stockNum"   v-model="initNum">
+                    <option  v-for="num  in stockNum" name="sendSymbolId" :value="num" >{{num}}</option>
+                  </select>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="clear"></div>
+            <div>
+              <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>将总金额按照份数分成等分，按照每一个推荐股票买入一份金额的规则进行交易</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="feature">
       <div class="row_top">
         <div class="row row_about">
@@ -201,7 +243,7 @@
           </div>-->
           <div class="col-md-12">
             <span>Copyright</span>
-            <span>©2018 1000Stock All Rights Reserved</span>
+            <span>©2018 pyttatec All Rights Reserved</span>
             <a  href="http://www.miitbeian.gov.cn/">赣ICP备18004847号</a>
           </div>
         </div>
@@ -239,7 +281,41 @@
         currentPage:1,
         indexContract:{},
         GainInfo:{},
-        userAccount:{}
+        userAccount:{},
+        stockMoney:[
+          {
+            "id":1,
+            "value":"10万"
+          },
+          {
+            "id":2,
+            "value":"20万"
+          },
+          {
+            "id":3,
+            "value":"50万"
+          },
+          {
+            "id":4,
+            "value":"100万"
+          },
+          {
+            "id":5,
+            "value":"200万"
+          },
+          {
+            "id":6,
+            "value":"500万"
+          },
+          {
+            "id":7,
+            "value":"1000万"
+          }
+        ],
+        stockNum:[5,10],
+        initAmount:"1000万",
+        initNum:10,
+        isLogin:true
       }
     },
     components: {
@@ -252,7 +328,14 @@
       "index-contrast":IndexContrast
     },
     mounted: function () {
+      if(getSession('Amount-Share')){
+          var AmountShareArr=getSession('Amount-Share').split("0000_");
+          this.initAmount=AmountShareArr[0]+"万",
+          this.initNum=AmountShareArr[1]
+      }
+      console.log( getSession('username'))
       if(getSession('username')){
+        this.isLogin=false;
         var tempArr=[
           {
             title:'首页',
@@ -432,6 +515,18 @@
         });
       }
 
+    },
+    watch:{
+      initAmount:function(val, oldVal){
+        var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
+        setSession('Amount-Share',AmountShare);
+        this.getVirtualAccount();
+      },
+      initNum:function(val, oldVal){
+        var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
+        setSession('Amount-Share',AmountShare);
+        this.getVirtualAccount();
+      },
     }
 
   }
@@ -617,6 +712,42 @@
   .paperTrading{
     /*margin-top: 2rem;*/
   }
+
+  .SettingUpAssets{
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin: 2rem 2% 3rem 2%;
+    border: 1px solid transparent;
+  }
+  .SettingUpAssetsHead{
+    width: 96%;
+    border-bottom: 1px solid #EEF1F5;
+    margin: 0 2%;
+  }
+  .SettingUpAssetsInfo{
+    width: 100%;
+  }
+  .SettingUpAssetsInfoItem{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 30%;
+    height: 5rem;
+  }
+  .SettingUpAssetsItemName{
+    height: 3rem;
+    line-height: 3rem;
+    width: 50%;
+    text-align: center;
+  }
+  .SettingUpAssetsItemValue{
+    text-align: center;
+  }
+  td>select,td>input{
+    height: 3rem;
+    width: 15rem;
+  }
+
   /*
  屏幕兼容(平板)
   */
