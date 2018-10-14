@@ -11,6 +11,7 @@
             <tr class="recommend-thead-tr">
               <th>股票代码<br>公司名称</th>
               <th>推荐操作</th>
+              <th>建议投资比<br>建议投资额(元)</th>
               <th>股票类型</th>
               <th>备注</th>
             </tr>
@@ -20,7 +21,7 @@
                 <td >{{item.name}}<br>{{item.stockName}}</td>
                 <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
                 <!-- <td >{{item.newDate}}</td>-->
-
+                <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount}}</td>
                 <td>{{item.type}}</td>
               <td>{{item.note}}</td>
             </tr>

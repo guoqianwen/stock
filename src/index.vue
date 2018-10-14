@@ -53,6 +53,7 @@
                 <tr class="recommend-thead-tr">
                   <th>股票代码<br/>公司名称</th>
                   <th>推荐操作</th>
+                  <th>建议投资比<br>建议投资额(元)</th>
                   <th>股票类型</th>
                   <th>备注</th>
                 </tr>
@@ -61,12 +62,13 @@
                 <tr v-for="(item,index) in recommends">
                   <td >{{item.name}}<br/>{{item.stockName}}</td>
                   <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
-                   <td>{{item.type}}</td>
+                  <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount}}</td>
+                  <td>{{item.type}}</td>
                   <td>{{item.note}}</td>
                 </tr>
                 </tbody>
                 <tbody v-else-if="isLogin">
-                <tr >
+                <tr>
                   <td colspan="7">您注册登录之后可见，无任何费用
                   </td>
                 </tr>
@@ -172,7 +174,7 @@
       <div class="SettingUpAssetsInfo">
         <div class="row-fluid">
           <div class="span12">
-            <table class="table table-striped table-bordered table-advance recomment_tb" >
+            <table class="table table-striped table-bordered table-advance setting_recomment_tb" >
               <tbody >
               <tr >
                 <td  class="SettingUpAssetsItemName">总金额</td>
@@ -725,6 +727,9 @@
     border-bottom: 1px solid #EEF1F5;
     margin: 0 2%;
   }
+  SettingUpAssetsHead h3{
+    text-align: center;
+  }
   .SettingUpAssetsInfo{
     width: 100%;
   }
@@ -939,5 +944,18 @@
       width: 100%;
       margin-left: 0px;
     }
+    .SettingUpAssets{
+      width: 100%;
+      margin: 2rem 0 0 0;
+    }
+    .SettingUpAssetsItemName{
+      text-align: left;
+      font-weight: bold;
+    }
+    .help-block{
+      text-align: left;
+      font-size: 1.2rem;
+    }
+
   }
 </style>
