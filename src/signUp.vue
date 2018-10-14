@@ -5,7 +5,7 @@
       <div class="form-horizontal signUpForm">
         <div class="form-group clearMargin">
           <div class="col-sm-offset-1 col-sm-10">
-            <input type="username" class="form-control" id="inputEmail3" placeholder="请输入手机号" v-model="username">
+            <input type="username" class="form-control" id="inputEmail3" placeholder="请输入用户名或手机号" v-model="username">
           </div>
         </div>
         <div class="form-group clearMargin">
@@ -75,7 +75,7 @@
     methods: {
       login(){
         if(this.username == "" || this.password == ""){
-          alert("请输入用户名或密码")
+          alert("请输入用户名/手机号或密码")
         }else{
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{

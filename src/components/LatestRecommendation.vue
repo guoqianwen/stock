@@ -193,7 +193,7 @@
     }
     .recommendation-items {
       width: 100%;
-      height:22rem;
+      height:26rem;
       margin: auto;
       color: #5F5F5F;
       /*line-height: 4rem;*/
@@ -266,10 +266,10 @@
       border-radius: 10%;
     }
     .pysz_data{
-      display: inline-block;
+      /*display: inline-block;*/
     }
     .pysz-box{
-      display: none;
+      /*display: none;*/
     }
     .today_data{
       height: 3rem;

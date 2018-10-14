@@ -6,26 +6,60 @@
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-4 virtualAccountC4">
-          <div class="virtualTotalMoney" style="height:7rem;padding-top: 2rem;">
-                <div class="virtualTotalMoneyTitle" style="height: 2rem;line-height: 2rem;color: #7E7E7E;font-size: 1.8rem">总金额(元)</div>
-                <div class="virtualTotalMoneyValue" style="height: 3rem;line-height: 3rem;color: #E9531E;font-size: 3rem">{{parseInt(virtCountSummary.total)|setNum}}</div>
-          </div>
-          <div class="row-fluid virtual_item">
-              <div class="col-sm-4 virtual_sm virtual_sm_1" >
-                  <div class="virtualTotalMoneyTitleName" >最新盈亏(元)</div>
+          <div class="virtualAccountCount_pc">
+            <table cellspacing="0" cellpadding="0" border="0"
+                   class="virtable table table-striped table-bordered table-advance start_tb">
+              <tbody>
+              <tr>
+                <th class="head_td">总金额(元)</th>
+                <td><div class="virtualTotalMoneyValue" style="height: 2.5rem;line-height: 2.5rem;color: #E9531E;font-size: 2.5rem">{{parseInt(virtCountSummary.total)|setNum}}</div></td>
+              </tr>
+              <tr>
+                <th class="head_td">最新盈亏(元)</th>
+                <td>
                   <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
                   <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
-              </div>
-                <div class="col-sm-4 virtual_sm virtual_sm_2" >
-                <div class="virtualTotalMoneyTitleName">持有盈亏(元)</div>
-                <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
-                <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
-              </div>
-              <div class="col-sm-4 virtualTotalMoneyItem virtual_sm virtual_sm_3">
-                <div class="virtualTotalMoneyTitleName">持有盈亏率</div>
-                <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
-                <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
-              </div>
+                </td>
+              </tr>
+              <tr>
+                <th class="head_td">持有盈亏(元)</th>
+                <td>
+                  <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
+                  <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
+                </td>
+              </tr>
+              <tr>
+                <th class="head_td">持有盈亏率</th>
+                <td>
+                  <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
+                  <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="virtualAccountCount_app">
+            <div class="virtualTotalMoney" style="height:7rem;padding-top: 2rem;">
+                  <div class="virtualTotalMoneyTitle" style="height: 2rem;line-height: 2rem;color: #7E7E7E;font-size: 1.8rem">总金额(元)</div>
+                  <div class="virtualTotalMoneyValue" style="height: 3rem;line-height: 3rem;color: #E9531E;font-size: 3rem">{{parseInt(virtCountSummary.total)|setNum}}</div>
+            </div>
+            <div class="row-fluid virtual_item">
+                <div class="col-sm-4 virtual_sm virtual_sm_1" >
+                    <div class="virtualTotalMoneyTitleName" >最新盈亏(元)</div>
+                    <div v-if="virtCountSummary.todayGain>0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">+{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
+                    <div v-else="virtCountSummary.todayGain<=0" class="virtualTotalMoneyTitleValue"  :class="{Green:virtCountSummary.todayGain<0,Red:virtCountSummary.todayGain>=0}">{{parseInt(virtCountSummary.todayGain)|setNum}}</div>
+                </div>
+                  <div class="col-sm-4 virtual_sm virtual_sm_2" >
+                  <div class="virtualTotalMoneyTitleName">持有盈亏(元)</div>
+                  <div  v-if="virtCountSummary.totalGain>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">+{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
+                  <div  v-else="virtCountSummary.totalGain<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGain<0,Red:virtCountSummary.totalGain>=0}">{{parseInt(virtCountSummary.totalGain)|setNum}}</div>
+                </div>
+                <div class="col-sm-4 virtualTotalMoneyItem virtual_sm virtual_sm_3">
+                  <div class="virtualTotalMoneyTitleName">持有盈亏率</div>
+                  <div v-if="virtCountSummary.totalGainRate>0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">+{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
+                  <div v-else="virtCountSummary.totalGainRate<=0" class="virtualTotalMoneyTitleValue" :class="{Green:virtCountSummary.totalGainRate<0,Red:virtCountSummary.totalGainRate>=0}">{{virtCountSummary.totalGainRate*100 |toFixed2 }}%</div>
+                </div>
+            </div>
           </div>
         </div>
         <div class="col-md-8 virtualAccountC8">
@@ -298,12 +332,37 @@
   .fontColor{
     color: rgb(51, 51, 51);
   }
+  /*
+  pc端显示
+  */
+  @media screen and (min-width: 601px)
+  {
+    .virtualAccountCount_app{
+      display: none;
+    }
+    .virtualAccountCount_pc{
+      margin-top: 30px;
+    }
+    .virtualAccountCount_pc table{
+      border: none;
+    }
+    .virtualAccountCount_pc th{
+      border: none;
+    }
+    .virtualAccountCount_pc td{
+      border: none;
+    }
+  }
 
   /*
 屏幕兼容(手机)
 */
   @media screen and (max-width:600px)
   {
+    .virtualAccountCount_pc{
+      display: none;
+    }
+
     .virtualAccountHeader {
       margin-top: 10px;
     }
@@ -345,7 +404,10 @@
     }
     .virtual_item{
       float: left;
-      margin-left: 2rem;
+      /*margin-left: 2rem;*/
+    }
+    .virtualTotalMoneyTitleValue{
+      font-size: 2rem
     }
     .virtual_sm{
       float: left;
@@ -358,7 +420,7 @@
       border-right: 1px solid #c1c7ba;
     }
     .virtual_sm_3{
-      /*margin-left: 15px;*/
+      /*margin-left: 10px;*/
     }
     .virtualEmpty{
       font-size: 1.5rem;
@@ -408,8 +470,8 @@
 
     .col-sm-4{
       width: auto;
-      padding-left: 3px;
-      padding-right: 2px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 </style>
