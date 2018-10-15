@@ -363,16 +363,7 @@
         /**
        * 获取首页的最新推荐赢亏数据
        */
-        this.$http.get(httpUrl.newSearchLastGainApi
-        ).then(function(res){
-          if(res.body.code==0){
-            this.recommendationsList=res.body.data.entities;
-          }else{
-            alert(res.body.message)
-          }
-        },function(){
-          console.log("请求失败")
-        });
+        this.newSearchLastGainApi();
       /**
        * 获取上证指数与毕达指数的对比
        */
@@ -404,6 +395,20 @@
     },
 
     methods:{
+      newSearchLastGainApi(){
+        this.$http.get(httpUrl.newSearchLastGainApi
+        ).then(function(res){
+          if(res.body.code==0){
+            this.recommendationsList=res.body.data.entities;
+          }else{
+            alert(res.body.message)
+          }
+        },function(){
+          console.log("请求失败")
+        });
+      },
+
+
       filterTrendByTime(time){
         this.curTime = time;
         this.fetchTrendData();
@@ -528,6 +533,7 @@
         this.getOperatorSummary();
         this.fetchTrendData();
         this.getGainInfo();
+        this.newSearchLastGainApi();
       },
       initNum:function(val, oldVal){
         var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
@@ -538,6 +544,7 @@
         this.getOperatorSummary();
         this.fetchTrendData();
         this.getGainInfo();
+        this.newSearchLastGainApi();
       },
     }
 
