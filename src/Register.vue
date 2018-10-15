@@ -82,8 +82,10 @@
         }else{
           isSex=0;
         }
-        if(this.telphone == "" || this.password == ""){
-          alert("请输入用户名或密码")
+        if(this.telphone == ""){
+          alert("手机号不能为空，请输入手机号")
+        }else if(this.password == ""){
+          alert("密码不能为空，请输入密码")
         }else{
           let data = {'familyName':this.familyName,'name':this.username,'phone':this.telphone,'password':this.password, "gender":isSex}
           this.$http.post(httpUrl.userRegisterApi,data).then((res)=>{
@@ -92,7 +94,7 @@
                 this.$router.push({path:'sign-up'})
               }.bind(this),1000)
             }else{
-              alert("注册失败，请重新注册！")
+              alert(res.body.message)
             }
           })
         }

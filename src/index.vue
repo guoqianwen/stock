@@ -523,11 +523,21 @@
         var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
         setSession('Amount-Share',AmountShare);
         this.getVirtualAccount();
+        this.fetchLastRecomData();
+        this.fetchCurStockeData();
+        this.getOperatorSummary();
+        this.fetchTrendData();
+        this.getGainInfo();
       },
       initNum:function(val, oldVal){
         var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
         setSession('Amount-Share',AmountShare);
         this.getVirtualAccount();
+        this.fetchLastRecomData();
+        this.fetchCurStockeData();
+        this.getOperatorSummary();
+        this.fetchTrendData();
+        this.getGainInfo();
       },
     }
 
