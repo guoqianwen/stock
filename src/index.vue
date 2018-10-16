@@ -58,11 +58,11 @@
                   <th>备注</th>
                 </tr>
                 </thead>
-                <tbody v-if="recommends.length>0">
+                <tbody v-if="recommends.length>0 && !isLogin ">
                 <tr v-for="(item,index) in recommends">
                   <td >{{item.name}}<br/>{{item.stockName}}</td>
                   <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
-                  <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount}}</td>
+                  <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount |setNum}}</td>
                   <td>{{item.type}}</td>
                   <td>{{item.note}}</td>
                 </tr>
