@@ -184,14 +184,14 @@
                   </select>
                 </td>
               </tr>
-              <tr >
-                <td  class="SettingUpAssetsItemName"> 最高持股数量</td>
-                <td >
-                  <select id="stockNum"   v-model="initNum">
-                    <option  v-for="num  in stockNum" name="sendSymbolId" :value="num" >{{num}}</option>
-                  </select>
-                </td>
-              </tr>
+              <!--<tr >-->
+                <!--<td  class="SettingUpAssetsItemName"> 最高持股数量</td>-->
+                <!--<td >-->
+                  <!--<select id="stockNum"   v-model="initNum">-->
+                    <!--<option  v-for="num  in stockNum" name="sendSymbolId" :value="num" >{{num}}</option>-->
+                  <!--</select>-->
+                <!--</td>-->
+              <!--</tr>-->
               </tbody>
             </table>
             <div class="clear"></div>
@@ -316,7 +316,7 @@
         ],
         stockNum:[5,10],
         initAmount:"1000万",
-        initNum:10,
+        // initNum:10,
         isLogin:true
       }
     },
@@ -331,9 +331,9 @@
     },
     mounted: function () {
       if(getSession('Amount-Share')){
-          var AmountShareArr=getSession('Amount-Share').split("0000_");
-          this.initAmount=AmountShareArr[0]+"万",
-          this.initNum=AmountShareArr[1]
+        var str=getSession('Amount-Share');
+          var AmountShareArr=str.substring(0,str.length-4);
+          this.initAmount=AmountShareArr[0]+"万"
       }
       console.log( getSession('username'))
       if(getSession('username')){
@@ -525,7 +525,7 @@
     },
     watch:{
       initAmount:function(val, oldVal){
-        var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
+        var AmountShare=this.initAmount.split("万")[0]+"0000";
         setSession('Amount-Share',AmountShare);
         this.getVirtualAccount();
         this.fetchLastRecomData();
@@ -534,18 +534,8 @@
         this.fetchTrendData();
         this.getGainInfo();
         this.newSearchLastGainApi();
-      },
-      initNum:function(val, oldVal){
-        var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
-        setSession('Amount-Share',AmountShare);
-        this.getVirtualAccount();
-        this.fetchLastRecomData();
-        this.fetchCurStockeData();
-        this.getOperatorSummary();
-        this.fetchTrendData();
-        this.getGainInfo();
-        this.newSearchLastGainApi();
-      },
+      }
+
     }
 
   }

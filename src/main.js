@@ -25,7 +25,7 @@ Vue.http.interceptors.push((request,next)=>{
   if(getSession("Amount-Share")!=""){
     request.headers.set('Amount-Share',getSession("Amount-Share")) // 请求headers携带参数
   }else{
-    request.headers.set('Amount-Share',"10000000_10") // 请求headers携带参数
+    request.headers.set('Amount-Share',"10000000") // 请求headers携带参数
   }
   next(function(response){
     return response;
