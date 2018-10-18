@@ -23,7 +23,8 @@ Vue.http.interceptors.push((request,next)=>{
     request.headers.set('Account-Code',"echo_gou") // 请求headers携带参数
   }
   if(getSession("Amount-Share")!=""){
-    request.headers.set('Amount-Share',getSession("Amount-Share")) // 请求headers携带参数
+    var AmountShare=getSession("Amount-Share").split("万")[0]+"0000"
+    request.headers.set('Amount-Share',AmountShare) // 请求headers携带参数
   }else{
     request.headers.set('Amount-Share',"10000000") // 请求headers携带参数
   }

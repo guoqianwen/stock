@@ -332,8 +332,11 @@
     mounted: function () {
       if(getSession('Amount-Share')){
         var str=getSession('Amount-Share');
-          var AmountShareArr=str.substring(0,str.length-4);
-          this.initAmount=AmountShareArr[0]+"万"
+            this.initAmount=str;
+       // var AmountShare=str.split("万")[0]+"0000";
+        //var AmountShareArr=str.substring(0,str.length-4);
+        //this.initAmount=AmountShareArr[0]+"万"
+
       }
       console.log( getSession('username'))
       if(getSession('username')){
@@ -525,8 +528,8 @@
     },
     watch:{
       initAmount:function(val, oldVal){
-        var AmountShare=this.initAmount.split("万")[0]+"0000";
-        setSession('Amount-Share',AmountShare);
+        //var AmountShare=this.initAmount.split("万")[0]+"0000";
+        setSession('Amount-Share',this.initAmount);
         this.getVirtualAccount();
         this.fetchLastRecomData();
         this.fetchCurStockeData();
