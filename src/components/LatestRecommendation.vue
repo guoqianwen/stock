@@ -4,35 +4,35 @@
         <div class="heading"><h3>{{ heading }}</h3></div>
         <div class="virtualEmpty">&nbsp;&nbsp;</div>
       </div>
-        <div v-for="(item,index) in recommendations" class="pysz_data">
-          <div class="today_data">
-            <div class="title_name_d">当天对比上证</div>
-            <span v-if="recommendations[0].gain[4].profit>0" :class="{Green:recommendations[0].gain[4].profit<0,Red:recommendations[0].gain[4].profit>=0 }">+{{recommendations[0].gain[4].profit}}%</span>
-            <span v-else="recommendations[0].gain[4].profit<=0" :class="{Green:recommendations[0].gain[4].profit<0,Red:recommendations[0].gain[4].profit>=0 }">{{recommendations[0].gain[4].profit}}%</span>
-          </div>
-          <div class="other_data">
-            <div class="one_month other_one">
-              <div class="title_name_1m">近一月对比</div>
-              <span v-if="recommendations[1].gain[4].profit>0" :class="{Green:recommendations[1].gain[4].profit<0,Red:recommendations[1].gain[4].profit>=0 }">+{{recommendations[1].gain[4].profit}}%</span>
-              <span v-else="recommendations[1].gain[4].profit<=0" :class="{Green:recommendations[1].gain[4].profit<0,Red:recommendations[1].gain[4].profit>=0 }">{{recommendations[1].gain[4].profit}}%</span>
-            </div>
-            <div class="three_month other_one">
-              <div class="title_name_3m">近三月对比</div>
-              <span v-if="recommendations[2].gain[4].profit>0" :class="{Green:recommendations[2].gain[4].profit<0,Red:recommendations[2].gain[4].profit>=0 }">+{{recommendations[2].gain[4].profit}}%</span>
-              <span v-else="recommendations[2].gain[4].profit<=0" :class="{Green:recommendations[2].gain[4].profit<0,Red:recommendations[2].gain[4].profit>=0 }">{{recommendations[2].gain[4].profit}}%</span>
-            </div>
-            <div class="the_year other_one">
-              <div class="title_name_y">近一年对比</div>
-              <span v-if="recommendations[3].gain[4].profit>0" :class="{Green:recommendations[3].gain[4].profit<0,Red:recommendations[3].gain[4].profit>=0 }">+{{recommendations[3].gain[4].profit}}%</span>
-              <span v-else="recommendations[3].gain[4].profit<=0" :class="{Green:recommendations[3].gain[4].profit<0,Red:recommendations[3].gain[4].profit>=0 }">{{recommendations[3].gain[4].profit}}%</span>
-            </div>
-          </div>
-        </div>
+        <!--<div v-for="(item,index) in recommendations" class="pysz_data">-->
+          <!--<div class="today_data">-->
+            <!--<div class="title_name_d">当天对比上证</div>-->
+            <!--<span v-if="recommendations[0].gain[4].profit>0" :class="{Green:recommendations[0].gain[4].profit<0,Red:recommendations[0].gain[4].profit>=0 }">+{{recommendations[0].gain[4].profit}}%</span>-->
+            <!--<span v-else="recommendations[0].gain[4].profit<=0" :class="{Green:recommendations[0].gain[4].profit<0,Red:recommendations[0].gain[4].profit>=0 }">{{recommendations[0].gain[4].profit}}%</span>-->
+          <!--</div>-->
+          <!--<div class="other_data">-->
+            <!--<div class="one_month other_one">-->
+              <!--<div class="title_name_1m">近一月对比</div>-->
+              <!--<span v-if="recommendations[1].gain[4].profit>0" :class="{Green:recommendations[1].gain[4].profit<0,Red:recommendations[1].gain[4].profit>=0 }">+{{recommendations[1].gain[4].profit}}%</span>-->
+              <!--<span v-else="recommendations[1].gain[4].profit<=0" :class="{Green:recommendations[1].gain[4].profit<0,Red:recommendations[1].gain[4].profit>=0 }">{{recommendations[1].gain[4].profit}}%</span>-->
+            <!--</div>-->
+            <!--<div class="three_month other_one">-->
+              <!--<div class="title_name_3m">近三月对比</div>-->
+              <!--<span v-if="recommendations[2].gain[4].profit>0" :class="{Green:recommendations[2].gain[4].profit<0,Red:recommendations[2].gain[4].profit>=0 }">+{{recommendations[2].gain[4].profit}}%</span>-->
+              <!--<span v-else="recommendations[2].gain[4].profit<=0" :class="{Green:recommendations[2].gain[4].profit<0,Red:recommendations[2].gain[4].profit>=0 }">{{recommendations[2].gain[4].profit}}%</span>-->
+            <!--</div>-->
+            <!--<div class="the_year other_one">-->
+              <!--<div class="title_name_y">近一年对比</div>-->
+              <!--<span v-if="recommendations[3].gain[4].profit>0" :class="{Green:recommendations[3].gain[4].profit<0,Red:recommendations[3].gain[4].profit>=0 }">+{{recommendations[3].gain[4].profit}}%</span>-->
+              <!--<span v-else="recommendations[3].gain[4].profit<=0" :class="{Green:recommendations[3].gain[4].profit<0,Red:recommendations[3].gain[4].profit>=0 }">{{recommendations[3].gain[4].profit}}%</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
         <div class="recommendation-items">
         <div v-for="(item,index) in recommendations" class="recommendation" >
-          <div class="cover">
-            <img :src="'https://aisharev1.oss-cn-beijing.aliyuncs.com/share/home_block_'+(index+1)+'.png'"/>
-          </div>
+          <!--<div class="cover">-->
+            <!--<img :src="'https://aisharev1.oss-cn-beijing.aliyuncs.com/share/home_block_'+(index+1)+'.png'"/>-->
+          <!--</div>-->
           <div class="recommendation_time"></div>
           <div class="recommendation_income">{{item.title}}</div>
           <div class="recommendation_rowItem">
@@ -41,6 +41,8 @@
                 <span  v-if="item.gain[0].profit>0" :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">+{{item.gain[0].profit | setNum}}%</span>
                 <span  v-else="item.gain[0].profit<=0" :class="{Green:item.gain[0].profit<0,Red:item.gain[0].profit>=0 }">{{item.gain[0].profit | setNum}}%</span>
               </div>
+            </div>
+            <div class="recommendation_row">
               <div class="shZS">{{item.gain[1].indexName}}: <br>
                 <span v-if="item.gain[1].profit>0"  :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">+{{item.gain[1].profit | setNum}}%</span>
                 <span v-else="item.gain[1].profit<=0"  :class="{Green:item.gain[1].profit<0,Red:item.gain[1].profit>=0 }">{{item.gain[1].profit | setNum}}%</span>
@@ -51,6 +53,8 @@
                 <span v-if="item.gain[2].profit>0" :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">+{{item.gain[2].profit | setNum}}%</span>
                 <span v-else="item.gain[2].profit<=0" :class="{Green:item.gain[2].profit<0,Red:item.gain[2].profit>=0 }">{{item.gain[2].profit | setNum}}%</span>
               </div>
+            </div>
+            <div class="recommendation_row">
               <div class="cyZS"> {{item.gain[3].indexName}}: <br>
                 <span v-if="item.gain[3].profit>0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">+{{item.gain[3].profit | setNum}}%</span>
                 <span v-else="item.gain[3].profit<=0" :class="{Green:item.gain[3].profit<0,Red:item.gain[3].profit>=0 }">{{item.gain[3].profit | setNum}}%</span>
@@ -61,10 +65,10 @@
                 <span v-if="item.gain[4].profit>0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">+{{item.gain[4].profit}}%</span>
                 <span v-else="item.gain[4].profit<=0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">{{item.gain[4].profit}}%</span>
               </div>
-              <div class="pysz" style="visibility: hidden"> {{item.gain[4].indexName}}: <br>
-                <span v-if="item.gain[4].profit>0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">+{{item.gain[4].profit}}%</span>
-                <span v-else="item.gain[4].profit<=0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">{{item.gain[4].profit}}%</span>
-              </div>
+              <!--<div class="pysz" style="visibility: hidden"> {{item.gain[4].indexName}}: <br>-->
+                <!--<span v-if="item.gain[4].profit>0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">+{{item.gain[4].profit}}%</span>-->
+                <!--<span v-else="item.gain[4].profit<=0" :class="{Green:item.gain[4].profit<0,Red:item.gain[4].profit>=0 }">{{item.gain[4].profit}}%</span>-->
+              <!--</div>-->
             </div>
           </div>
         </div>
@@ -121,8 +125,8 @@
     font-size: 30px;
   }
   .recommendation-items{
-    margin-left: 10%;
-    width: 80%;
+    /*margin-left: 10%;*/
+    /*width: 80%;*/
     height: 30rem;
     display: flex;
     margin-top: 1rem;
@@ -170,7 +174,8 @@
     display: flex;
     flex-direction: row;
     justify-content:center;
-    font-size: 0.5rem;
+    /*font-size: 0.5rem;*/
+    font-size: 1.6rem;
   }
   .recommendation_row>div{
     margin:0.5rem  1rem;

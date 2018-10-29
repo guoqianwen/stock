@@ -1,4 +1,4 @@
-let localhostDev = false;
+let localhostDev = true;
 //如果是本地开发，就把localhostDev 设置成true，连接就是拼成‘http://localhost:8080/api/test’
 //生产环境，就把localhostDev 设置成false，连接就是拼成‘http://xxx.com/api/test’
 //let _host= localhostDev ? 'http://1000stock.com:8082' : 'http://fqm0925.vicp.io';
@@ -37,6 +37,7 @@ let httpUrl = {
   "getOperatorSummaryApi":_host + '/trade/get_operator_summary', // 操作统计
   'getTradeRecordApi':_host + '/trade/search_trade',//查找交易记录
   'getRecomendationApi':_host + '/recommend/get_info',//
-  'getDataInquriyInfoApi':_host + '/data/search'//
+  'getDataInquriyInfoApi':_host + '/data/search',//
+  'search_reverse_repoApi':_host + '/trade/search_reverse_repo'//获取逆回购记录信息
 };
 export {httpUrl}
