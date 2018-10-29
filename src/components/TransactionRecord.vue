@@ -1,5 +1,7 @@
 <template>
   <div class="transactionRecord" >
+
+    <!--交易记录-->
     <div class="recommendRow">
       <div class="recommendHeader">
         <h3></h3>
@@ -13,20 +15,23 @@
               <table class="transactionRecordTable table table-striped table-bordered table-advance">
                 <thead>
                 <tr class="recommend-thead-tr">
-                  <th>交易日期</th>
+                  <!--<th>交易日期</th>-->
+                  <th>买入日期<br/>卖出日期</th>
                   <th>股票代码<br/>公司名称</th>
                   <th>股票份数</th>
-                  <th>操作</th>
-                  <th class="pc_app_dis_th">买入日期</th>
+                  <!--<th>操作</th>-->
                   <th>买入价(元)<br/>卖出价(元)</th>
-                  <th class="pc_app_dis_th">卖出日期</th>
-                  <th>盈亏率<br/>收益绝对值(元)</th>
+                  <!--<th class="pc_app_dis_th">卖出日期</th>-->
+                  <th>盈亏率<br/>浮动盈亏(元)</th>
                 </tr>
                 </thead>
                 <tbody v-if="items.length>0">
                 <tr v-for="(item,index) in items">
+                  <!--<td>-->
+                    <!--{{item.tradeDate}}-->
+                  <!--</td>-->
                   <td>
-                    {{item.tradeDate}}
+                    {{item.oldDate}}<br/>{{item.newDate}}
                   </td>
                   <td>
                     {{item.name}}<br/>{{item.companyName}}
@@ -36,29 +41,27 @@
                           {{item.amount}}
                       </div>
                   </td>
-                  <td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">
-                    {{item.action}}
-                  </td>
-                  <td class="pc_app_dis_td">
-                    {{item.oldDate}}
-                  </td>
+                  <!--<td :class="{Green:item.action=='卖出',Red:item.action=='买入'}">-->
+                    <!--{{item.action}}-->
+                  <!--</td>-->
                   <td>
                     <div class="data_box3">
                         {{item.oldPrice  | setNum2}}<br/>
                         {{item.newPrice  | setNum2}}
                     </div>
                   </td>
-                  <td class="pc_app_dis_td">
-                        {{item.newDate}}
-                  </td>
                   <td v-if="item.gainRate>0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
-                    +{{item.gainRate}}%
-                    <br/>
-                    {{item.gain | setNum}}
+                      <div class="data_box3">
+                        +{{item.gainRate}}%
+                        <br/>
+                        {{item.gain | setNum}}
+                      </div>
                   </td>
                   <td v-else-if="item.gainRate<0" :class="{Green:item.gainRate<0,Red:item.gainRate>=0}">
-                    {{item.gainRate}}%<br/>
-                    {{item.gain  | setNum}}
+                    <div class="data_box3">
+                      {{item.gainRate}}%<br/>
+                      {{item.gain  | setNum}}
+                    </div>
                   </td>
                   <td v-else="item.gainRate==undefined">
 
@@ -88,6 +91,70 @@
         </div>
       </div>
     </div>
+
+    <!--当前持仓-->
+    <div class="paperTrading">
+      <div class="paperTrading_app">
+        <current-holding :holding="holding"></current-holding>
+      </div>
+    </div>
+
+    <!--逆回购记录-->
+    <div class="recommendRow">
+      <div class="recommendHeader">
+        <h3></h3>
+        <h4 class="transactionRecordText" style="width: 100%;text-align: center">国债逆回购记录</h4>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+
+          <div class="list">
+            <template>
+              <table class="transactionRecordTable table table-striped table-bordered table-advance">
+                <thead>
+                <tr class="recommend-thead-tr">
+                  <th>卖出日期</th>
+                  <th>股票代码</th>
+                  <th>卖出金额</th>
+                  <th>到期收益</th>
+                  <th>年化利率</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(reverseRecord,index) in reverseRecords">
+                  <td>
+                    {{reverseRecord.date}}
+                  </td>
+                  <td>
+                    {{reverseRecord.code}}
+                  </td>
+                  <td>
+                    <div class="data_box3">
+                      {{reverseRecord.amount}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="data_box3">
+                      {{reverseRecord.profit | setNum2}}
+                    </div>
+                  </td>
+                  <td>
+                    {{reverseRecord.gain}}%
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <pagination :perPages="perPages2" :page-index="currentPage2" :total="count2" :page-size="pageSize2" @change="pageChange2">
+              </pagination>
+            </template>
+          </div>
+          <div class="clear"></div>
+
+        </div>
+      </div>
+    </div>
+
+    <!--交易统计-->
     <div class="operationAccount1" style="margin-top: 1.5rem">
       <div class="recommendHeader">
         <h4 class="transactionRecordText1" style="width: 100%;text-align: center">交易统计</h4>
@@ -114,7 +181,7 @@
               <td  :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}" class="data_td">{{userAccount.winRate}}%</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <td class="head_td">单月最大盈亏率</td>
+              <td class="head_td">单月最优盈亏率</td>
               <td  :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}" class="data_td">+{{userAccount.maxGain *100}}%</td>
             </tr>
             </tbody>
@@ -153,29 +220,45 @@
 </template>
 
 <script>
-  import Pagination from "./Pagination"
-  import {httpUrl} from '../apiConfig/api'
+  import Pagination from "./Pagination";
+  import {httpUrl} from '../apiConfig/api';
+  import CurrentHolding from "./CurrentHolding";
 
   export default {
     name: "transaction-record",
     data() {
       return {
+        //交易记录
         perPages:1,
         pageSize: 20, //每页显示20条数据
         currentPage: 1, //当前页码
         count: 0, //总记录数
+        //逆回购纪录
+        perPages2:1,
+        pageSize2: 20, //每页显示20条数据
+        currentPage2: 1, //当前页码
+        count2: 0, //总记录数
+        //
         items:[],
         temp:[],
-        userAccount:[]
+        userAccount:[],
+        holding:[],
+        reverseRecords:[]
       }
     },
     components: {
-      "pagination": Pagination
+      "pagination": Pagination,
+      'current-holding':CurrentHolding,
     },
     methods: {
       //获取数据
       getList() {
+        //交易记录
         this.getTransformRecord();
+      },
+      getList2() {
+        //逆回购记录
+        this.searchReverseRepo();
       },
 
       /**
@@ -202,6 +285,32 @@
         this.currentPage = page
         this.getList()
       },
+
+      /**
+       * 获取逆回购记录分页信息
+       * @param pageSize currentPage
+       */
+      searchReverseRepo: function () {
+        this.$http.get(httpUrl.search_reverse_repoApi, {
+          params: {pageSize:this.pageSize2,pageNo:this.currentPage2}
+        }).then(function (res) {
+          if (res.body.code == 0) {
+            this.count2 = res.body.data.total;
+            this.reverseRecords= res.body.data.entities;
+            console.log(this.reverseRecords)
+          } else {
+            alert(res.body.message)
+          }
+        }, function () {
+          console.log("请求失败")
+        });
+      },
+      //从page组件传递过来的当前page
+      pageChange2(page) {
+        this.currentPage2 = page
+        this.getList2()
+      },
+
       /**
        * 获取操作统计数据
        */
@@ -218,16 +327,17 @@
       },
 
       /**
-       * 获取操作统计数据
+       * 获取当前持股信息
        */
-      getOperatorSummary:function () {
-        this.$http.get(httpUrl.getOperatorSummaryApi).then(function (res) {
-          if (res.body.code == 0) {
-            this.userAccount = res.body.data.entity;
-          } else {
+      fetchCurStockeData (){
+        this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
+
+          if(res.body.code==0){
+            this.holding=res.body.data.entities;
+          }else{
             alert(res.body.message)
           }
-        }, function () {
+        },function(){
           console.log("请求失败")
         });
       },
@@ -239,7 +349,9 @@
     mounted() {
       //请求第一页数据
       this.getList();
+      this.getList2();
       this.getOperatorSummary();
+      this.fetchCurStockeData();
     },
     watch: {
       transactionRecord(val) {
@@ -263,9 +375,15 @@
   .recommendRow{
     background: #fff;
   }
-.recommendRow{
-  background: #ffffff;
-}
+  .recommendRow{
+    background: #ffffff;
+  }
+  .paperTrading{
+    /*width: 96%;*/
+    height: auto;
+    margin-left: -2%;
+    margin-right: -2%;
+  }
   .transactionRecordText {
     height: 4rem;
     font-size: 24px;
@@ -433,11 +551,15 @@
     text-align: right;
   }
 
+
   /*
 屏幕兼容(手机)
 */
   @media screen and (max-width:600px)
   {
+    .data_box3{
+      width:90%;
+    }
     .transactionRecord {
       width: 100%;
       margin-left: 0px;
@@ -513,6 +635,10 @@
     }
     .app_th{
       display: table-cell;
+    }
+    .paperTrading_app{
+      padding-left: 6px;
+      padding-right: 6px;
     }
   }
 </style>

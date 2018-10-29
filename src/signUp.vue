@@ -74,8 +74,10 @@
     },
     methods: {
       login(){
-        if(this.username == "" || this.password == ""){
-          alert("请输入用户名/手机号或密码")
+        if(this.username == ""){
+          alert("请输入用户名/手机号!")
+        }else if(this.password == ""){
+          alert("请输入密码!")
         }else{
           let data = {'name':this.username,'password':this.password}
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{

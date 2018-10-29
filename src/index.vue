@@ -10,6 +10,7 @@
       </ol>
       <!-- 轮播（Carousel）项目 -->
       <div class="carousel-inner">
+        <!--<div style="color: red; font-size: x-large">温馨提示：系统维护中，部分信息暂时无法展示，我们会尽快恢复，谢谢理解！</div>-->
         <div class="item active">
           <img src="https://aisharev1.oss-cn-beijing.aliyuncs.com/share/home_cycle_1.png" alt="First slide">
         </div>
@@ -26,12 +27,11 @@
       <a class="carousel-control right" href="#myCarousel"
          data-slide="next">&rsaquo;</a>
     </div>
-
     <div class="latest_recommend_list">
       <latest-recommendation heading="业绩总览" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="paperTrading">
-      <virtual-account  :virtCountStart="virtCountStart" :virtCountEnd="virtCountEnd" :virtCountSummary="virtCountSummary" ></virtual-account>
+      <virtual-account :todayAccountBo="todayAccountBo" :totalAccountBo="totalAccountBo" ></virtual-account>
       <!--<current-holding :holding="holding"></current-holding>-->
     </div>
     <div class="index_contrast">
@@ -40,6 +40,77 @@
     <!--<div class="index_contrast">-->
       <!--<market-trend :trend="trend" @filterTrendTime="filterTrendByTime($event)" :select="curTime"></market-trend>-->
     <!--</div>-->
+    <div class="operationAccount">
+      <div class="currentHoldingHeader">
+        <h3>交易统计</h3>
+        <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
+      </div>
+      <div class="row operationAccountRow">
+        <div class="col-md-6 clearPadLeft now_tb">
+          <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
+            <tbody>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">当前持股</th>
+              <td class="data_box">{{userAccount.holdNumber}}只</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">挣钱股票</th>
+              <td class="data_box">{{userAccount.profitNumber}}只</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">赔钱股票</th>
+              <td class="data_box">{{userAccount.lossNumber}}只</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">胜率</th>
+              <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">单月最优盈亏率</th>
+              <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100 |toFixed2 }}%</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6 clearPadRig avg_tb">
+          <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
+            <tbody>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">平均盈亏率</th>
+              <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate |toFixed2  }}%</td>
+              <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate |toFixed2 }}%</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">平均持有天数</th>
+              <td class="data_box">{{userAccount.avgHoldDay}}天</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">买入次数</th>
+              <td class="data_box">{{userAccount.buyNumber}}次</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">卖出次数</th>
+              <td class="data_box">{{userAccount.sellNumber}}次</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">单月最差盈亏率</th>
+              <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100 |toFixed2 }}%</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="showTransactionRecord">
+        <a>
+          <router-link :to="{ path: '/components/transaction-record' }" >
+            查看交易记录
+          </router-link>
+        </a>
+      </div>
+    </div>
+    <div class="paperTrading">
+      <current-holding :holding="holding"></current-holding>
+    </div>
     <div class="index_recommend">
       <div class="recommendRow1 recommendRownew">
         <div class="recommendHeader">
@@ -54,16 +125,16 @@
                   <th>股票代码<br/>公司名称</th>
                   <th>推荐操作</th>
                   <th>建议投资比<br>建议投资额(元)</th>
-                  <th>股票类型</th>
+                  <!--<th>股票类型</th>-->
                   <th>备注</th>
                 </tr>
                 </thead>
-                <tbody v-if="recommends.length>0">
+                <tbody v-if="recommends.length>0 && !isLogin ">
                 <tr v-for="(item,index) in recommends">
                   <td >{{item.name}}<br/>{{item.stockName}}</td>
                   <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
-                  <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount}}</td>
-                  <td>{{item.type}}</td>
+                  <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount |setNum}}</td>
+                  <!--<td>{{item.type}}</td>-->
                   <td>{{item.note}}</td>
                 </tr>
                 </tbody>
@@ -84,87 +155,23 @@
             </div>
           </div>
         </div>
-        <div class="showTransactionRecord showTransaction_Record">
-          <a class="recommend_info">
-            <router-link :to="{ path: '/recommend-info' }" >
-              查看推荐详情
-            </router-link>
-          </a>
+        <div v-if="!isLogin">
+          <div class="showTransactionRecord showTransaction_Record">
+            <a class="recommend_info">
+              <router-link :to="{ path: '/recommend-info' }" >
+                查看推荐详情
+              </router-link>
+            </a>
+          </div>
+        </div>
+        <div v-else>
+          <div class="showTransactionRecord showTransaction_Record">
+            <a class="recommend_info">
+            </a>
+          </div>
         </div>
       </div>
 
-    </div>
-    <div class="paperTrading">
-      <current-holding :holding="holding"></current-holding>
-    </div>
-
-    <div class="operationAccount">
-        <div class="currentHoldingHeader">
-          <h3>交易统计</h3>
-          <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
-        </div>
-        <div class="row operationAccountRow">
-            <div class="col-md-6 clearPadLeft now_tb">
-                <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
-                  <tbody>
-                      <tr class="current-holding-thead-tr">
-                        <th class="head_td">当前持股</th>
-                        <td class="data_box">{{userAccount.holdNumber}}只</td>
-                      </tr>
-                      <tr class="current-holding-thead-tr">
-                        <th class="head_td">挣钱股票</th>
-                        <td class="data_box">{{userAccount.profitNumber}}只</td>
-                      </tr>
-                      <tr class="current-holding-thead-tr">
-                        <th class="head_td">赔钱股票</th>
-                        <td class="data_box">{{userAccount.lossNumber}}只</td>
-                      </tr>
-                      <tr class="current-holding-thead-tr">
-                        <th class="head_td">胜率</th>
-                        <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
-                      </tr>
-                      <tr class="current-holding-thead-tr">
-                        <th class="head_td">单月最大盈亏率</th>
-                        <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100 |toFixed2 }}%</td>
-                      </tr>
-                  </tbody>
-                </table>
-            </div>
-            <div class="col-md-6 clearPadRig avg_tb">
-              <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
-                <tbody>
-                    <tr class="current-holding-thead-tr">
-                      <th class="head_td">平均盈亏率</th>
-                      <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate |toFixed2  }}%</td>
-                      <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate |toFixed2 }}%</td>
-                    </tr>
-                    <tr class="current-holding-thead-tr">
-                      <th class="head_td">平均持有天数</th>
-                      <td class="data_box">{{userAccount.avgHoldDay}}天</td>
-                    </tr>
-                    <tr class="current-holding-thead-tr">
-                      <th class="head_td">买入次数</th>
-                      <td class="data_box">{{userAccount.buyNumber}}次</td>
-                    </tr>
-                    <tr class="current-holding-thead-tr">
-                      <th class="head_td">卖出次数</th>
-                      <td class="data_box">{{userAccount.sellNumber}}次</td>
-                    </tr>
-                    <tr class="current-holding-thead-tr">
-                      <th class="head_td">单月最差盈亏率</th>
-                      <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100 |toFixed2 }}%</td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-        </div>
-        <div class="showTransactionRecord">
-          <a>
-              <router-link :to="{ path: '/components/transaction-record' }" >
-                  查看交易记录
-              </router-link>
-          </a>
-        </div>
     </div>
 
     <div class="SettingUpAssets">
@@ -184,14 +191,14 @@
                   </select>
                 </td>
               </tr>
-              <tr >
-                <td  class="SettingUpAssetsItemName"> 最高持股数量</td>
-                <td >
-                  <select id="stockNum"   v-model="initNum">
-                    <option  v-for="num  in stockNum" name="sendSymbolId" :value="num" >{{num}}</option>
-                  </select>
-                </td>
-              </tr>
+              <!--<tr >-->
+                <!--<td  class="SettingUpAssetsItemName"> 最高持股数量</td>-->
+                <!--<td >-->
+                  <!--<select id="stockNum"   v-model="initNum">-->
+                    <!--<option  v-for="num  in stockNum" name="sendSymbolId" :value="num" >{{num}}</option>-->
+                  <!--</select>-->
+                <!--</td>-->
+              <!--</tr>-->
               </tbody>
             </table>
             <div class="clear"></div>
@@ -266,9 +273,11 @@
   export default {
     data () {
       return {
-        virtCountStart:{},
-        virtCountEnd:{},
-        virtCountSummary:{},
+        // virtCountStart:{},
+        // virtCountEnd:{},
+        // virtCountSummary:{},
+        todayAccountBo:{},
+        totalAccountBo:{},
         virtualEmpPresent:0,
         recommendationsList:[],
         indexCompare:[],
@@ -316,7 +325,7 @@
         ],
         stockNum:[5,10],
         initAmount:"1000万",
-        initNum:10,
+        // initNum:10,
         isLogin:true
       }
     },
@@ -331,9 +340,12 @@
     },
     mounted: function () {
       if(getSession('Amount-Share')){
-          var AmountShareArr=getSession('Amount-Share').split("0000_");
-          this.initAmount=AmountShareArr[0]+"万",
-          this.initNum=AmountShareArr[1]
+        var str=getSession('Amount-Share');
+            this.initAmount=str;
+       // var AmountShare=str.split("万")[0]+"0000";
+        //var AmountShareArr=str.substring(0,str.length-4);
+        //this.initAmount=AmountShareArr[0]+"万"
+
       }
       console.log( getSession('username'))
       if(getSession('username')){
@@ -363,16 +375,7 @@
         /**
        * 获取首页的最新推荐赢亏数据
        */
-        this.$http.get(httpUrl.newSearchLastGainApi
-        ).then(function(res){
-          if(res.body.code==0){
-            this.recommendationsList=res.body.data.entities;
-          }else{
-            alert(res.body.message)
-          }
-        },function(){
-          console.log("请求失败")
-        });
+        this.newSearchLastGainApi();
       /**
        * 获取上证指数与毕达指数的对比
        */
@@ -404,6 +407,20 @@
     },
 
     methods:{
+      newSearchLastGainApi(){
+        this.$http.get(httpUrl.newSearchLastGainApi
+        ).then(function(res){
+          if(res.body.code==0){
+            this.recommendationsList=res.body.data.entities;
+          }else{
+            alert(res.body.message)
+          }
+        },function(){
+          console.log("请求失败")
+        });
+      },
+
+
       filterTrendByTime(time){
         this.curTime = time;
         this.fetchTrendData();
@@ -438,9 +455,11 @@
             // console.log("****************************")
             // console.log(res.body.data.entity)
             // console.log("****************************")
-            this.virtCountStart = res.body.data.entity.start;
-            this.virtCountEnd= res.body.data.entity.end;
-            this.virtCountSummary=res.body.data.entity.summary;
+            // this.virtCountStart = res.body.data.entity.start;
+            // this.virtCountEnd= res.body.data.entity.end;
+            // this.virtCountSummary=res.body.data.entity.summary;
+            this.todayAccountBo=res.body.data.entity.todayAccountBo;
+            this.totalAccountBo=res.body.data.entity.totalAccountBo;
           } else {
             alert(res.body.message)
           }
@@ -520,15 +539,17 @@
     },
     watch:{
       initAmount:function(val, oldVal){
-        var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
-        setSession('Amount-Share',AmountShare);
+        //var AmountShare=this.initAmount.split("万")[0]+"0000";
+        setSession('Amount-Share',this.initAmount);
         this.getVirtualAccount();
-      },
-      initNum:function(val, oldVal){
-        var AmountShare=this.initAmount.split("万")[0]+"0000_"+this.initNum;
-        setSession('Amount-Share',AmountShare);
-        this.getVirtualAccount();
-      },
+        this.fetchLastRecomData();
+        this.fetchCurStockeData();
+        this.getOperatorSummary();
+        this.fetchTrendData();
+        this.getGainInfo();
+        this.newSearchLastGainApi();
+      }
+
     }
 
   }
@@ -635,6 +656,7 @@
     height: auto;
     background: #ffffff;
     margin: 0 2%;
+    margin-top: 20px;
   }
   .operationAccountRow{
     width: 96%;
@@ -921,7 +943,7 @@
       padding: 0px;
     }
     .operationAccountRow {
-      margin: 20px 1%;
+      margin: 0 1%;
     }
     .recomment_row {
       margin-bottom: 20px;
