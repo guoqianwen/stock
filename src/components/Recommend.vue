@@ -6,12 +6,16 @@
       </div>
       <div class="row-fluid">
         <div class="span12">
+          <!--<div>-->
+            <!--<p>交易规则：系统买入卖出价均按收盘价，开盘当天若涨停或跌停，系统将认为此股当天不可操作</p>-->
+            <!--<p>资金使用：本金分8份，外加融资2份，总共10份资金，每只推荐的股票用一份资金买入</p>-->
+          <!--</div>-->
           <table class="table table-striped table-bordered table-advance" >
             <thead>
             <tr class="recommend-thead-tr">
               <th>股票代码<br>公司名称</th>
               <th>推荐操作</th>
-              <th>建议投资比<br>建议投资额(元)</th>
+              <th>建议操作比<br>建议操作额(元)</th>
               <th>股票类型</th>
               <th>备注</th>
             </tr>

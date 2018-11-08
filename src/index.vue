@@ -27,12 +27,15 @@
       <a class="carousel-control right" href="#myCarousel"
          data-slide="next">&rsaquo;</a>
     </div>
-    <div class="latest_recommend_list">
-      <latest-recommendation heading="业绩总览" :recommendations="recommendationsList"></latest-recommendation>
-    </div>
+    <!--<div class="latest_recommend_list">-->
+      <!--<latest-recommendation heading="业绩总览" :recommendations="recommendationsList"></latest-recommendation>-->
+    <!--</div>-->
     <div class="paperTrading">
       <virtual-account :todayAccountBo="todayAccountBo" :totalAccountBo="totalAccountBo" ></virtual-account>
       <!--<current-holding :holding="holding"></current-holding>-->
+    </div>
+    <div class="latest_recommend_list">
+      <latest-recommendation heading="业绩总览" :recommendations="recommendationsList"></latest-recommendation>
     </div>
     <div class="index_contrast">
       <index-contrast  heading="盈亏率对比"  @filterIndexCurImg="filterIndexCurImg($event)"  :GainInfo="GainInfo"  :select="curTime"></index-contrast>
@@ -66,7 +69,8 @@
               <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <th class="head_td">单月最优盈亏率</th>
+              <th class="head_td head_td_pc">近一月单日最高盈亏率</th>
+              <th class="head_td head_td_app">近一月单日最高<br>盈亏率</th>
               <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100 |toFixed2 }}%</td>
             </tr>
             </tbody>
@@ -93,7 +97,8 @@
               <td class="data_box">{{userAccount.sellNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <th class="head_td">单月最差盈亏率</th>
+              <th class="head_td head_td_pc">近一月单日最低盈亏率</th>
+              <th class="head_td head_td_app">近一月单日最低<br>盈亏率</th>
               <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100 |toFixed2 }}%</td>
             </tr>
             </tbody>
@@ -119,12 +124,16 @@
         <div class="recomment_row">
           <div class="row-fluid">
             <div class="span12">
+              <!--<div class="recommentTip">-->
+                <!--<p>【交易规则：系统买入卖出价均按收盘价，开盘当天若涨停或跌停，系统将认为此股当天不可操作】</p>-->
+                <!--<p>【资金使用：本金分8份，外加融资2份，总共10份资金，每只推荐的股票用一份资金买入】</p>-->
+              <!--</div>-->
               <table class="table table-striped table-bordered table-advance recomment_tb" >
                 <thead>
                 <tr class="recommend-thead-tr">
                   <th>股票代码<br/>公司名称</th>
                   <th>推荐操作</th>
-                  <th>建议投资比<br>建议投资额(元)</th>
+                  <th>建议操作比<br>建议操作额(元)</th>
                   <!--<th>股票类型</th>-->
                   <th>备注</th>
                 </tr>
@@ -173,10 +182,34 @@
       </div>
 
     </div>
+    <div class="sysRegulation">
+      <div class="sysRegulationHead">
+        <h3 style="width: 100%; text-align: center">系统规则</h3>
+      </div>
+      <div class="sysRegulationInfo">
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="sysRegulationInfoContent">
+              <p>
+                <b>【交易规则】</b>每个交易收盘后，系统自动学习更新，并作出第二天交易的推荐。买入卖出的股票价格以第二天的收盘价计。如果推荐股票在第二天涨停或跌停，系统将认为此股不可操作。
 
+              </p>
+              <p>
+                <b>【资金使用】</b>系统保留一定的仓位，在极个别情况下，系统将融资买入，最大融资额度不超过账户总值的25%。
+
+              </p>
+              <p>
+                <b>【初始设置】</b>用户可自由设置与系统不同的初始投资金额。
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="SettingUpAssets">
       <div class="SettingUpAssetsHead">
-        <h3>资产设置</h3>
+        <h3 style="width: 100%; text-align: center">资产设置</h3>
       </div>
       <div class="SettingUpAssetsInfo">
         <div class="row-fluid">
@@ -558,6 +591,16 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   *
+  .recommentTip{
+    text-align: left;
+    /*color: red;*/
+    font-size: 1.2rem;
+  }
+  .sysRegulationInfoContent{
+    text-align: left;
+    font-size: 1.5rem;
+    color: #595959;
+  }
   .item{
     height:520px;
   }
@@ -736,6 +779,24 @@
   .paperTrading{
     /*margin-top: 2rem;*/
   }
+  .sysRegulation{
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin: 2rem 2% 3rem 2%;
+    border: 1px solid transparent;
+  }
+  .sysRegulationHead{
+    width: 96%;
+    border-bottom: 1px solid #EEF1F5;
+    margin: 0 2%;
+  }
+  .sysRegulationHead h3{
+    text-align: center;
+  }
+  .sysRegulationInfo{
+    width: 100%;
+  }
 
   .SettingUpAssets{
     width: 96%;
@@ -804,6 +865,15 @@
 
   }
   /*
+  pc端隐藏
+  */
+  @media screen and (min-width:601px)
+  {
+    .head_td_app{
+      display: none;
+    }
+  }
+  /*
   屏幕兼容(手机)
    */
   @media screen and (max-width:600px)
@@ -811,6 +881,12 @@
     /*.carousel-inner {
       display: none;
     }*/
+    .head_td_pc{
+      display: none;
+    }
+    .sysRegulationInfoContent{
+      font-size: 1.2rem;
+    }
     .item{
       height:18rem;
     }
@@ -965,6 +1041,10 @@
     .operationAccount{
       width: 100%;
       margin-left: 0px;
+    }
+    .sysRegulation{
+      width: 100%;
+      margin: 2rem 0 0 0;
     }
     .SettingUpAssets{
       width: 100%;
