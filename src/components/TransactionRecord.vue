@@ -209,9 +209,9 @@
             <tr class="current-holding-thead-tr">
               <td class="head_td">卖出次数</td>
               <td class="data_td">{{userAccount.sellNumber}}次</td>
-            </tr>
+            </tr>s
             <tr class="current-holding-thead-tr">
-              <td class="head_td head_td_pc">近一月单日最低月盈亏率</td>
+              <td class="head_td head_td_pc">近一月单日最低盈亏率</td>
               <td class="head_td head_td_app">近一月单日最低<br>盈亏率</td>
               <td  :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}" class="data_td">{{userAccount.minGain *100}}%</td>
             </tr>
