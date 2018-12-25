@@ -119,7 +119,8 @@
     <div class="index_recommend">
       <div class="recommendRow1 recommendRownew">
         <div class="recommendHeader">
-          <h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>
+          <h3 style="width: 100%;text-align: center"><span class="recommentTime">{{holding.length ? holding[0].newDate : ''}}</span> 推荐</h3>
+          <!--<h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>-->
         </div>
         <div class="recomment_row">
           <div class="row-fluid">

@@ -2,7 +2,8 @@
   <div id="recommend" class="recommendComponents">
     <div class="recommendRow1 recommendRownew">
       <div class="recommendHeader">
-        <h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>
+        <h3 style="width: 100%;text-align: center"><span class="recommentTime">{{holding.length ? holding[0].newDate : ''}}</span> 推荐</h3>
+        <!--<h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>-->
       </div>
       <div class="row-fluid">
         <div class="span12">
@@ -79,6 +80,7 @@
     data(){
       return {
         recommendationArray:[],
+        holding:[],
         item3:{},
         imgSrc:'',
         select:'',
@@ -87,7 +89,11 @@
       }
     },
     mounted:function (){
-      this.getRecommendationArray()
+      this.getRecommendationArray();
+      /**
+       *获取当前持股
+       */
+      this.fetchCurStockeData();
 
     },
     methods: {
@@ -99,6 +105,21 @@
         console.log(this.recommendationArray)
        /* this.select=obj.id;*/
 
+      },
+      /**
+       * 获取当前持股信息
+       */
+      fetchCurStockeData (){
+        this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
+
+          if(res.body.code==0){
+            this.holding=res.body.data.entities;
+          }else{
+            alert(res.body.message)
+          }
+        },function(){
+          console.log("请求失败")
+        });
       },
 
       getRecommendationArray:function () {

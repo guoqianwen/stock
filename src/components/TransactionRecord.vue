@@ -528,7 +528,7 @@
   }
 
   .data_td{
-    text-align: right;
+    text-align: center;
   }
   .head_td{
     font-weight: bold;
