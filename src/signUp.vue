@@ -84,6 +84,8 @@
             if(res.body.code == 0 ){
               // console.log(res.body.data.entity.name)
               setSession('username',res.body.data.entity.name);
+              setSession('canSee',res.body.data.entity.canSee);
+              console.log(res.body.data.entity)
               var tempArr=[
                 {
                   title:'首页',

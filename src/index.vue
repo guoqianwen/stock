@@ -113,8 +113,10 @@
         </a>
       </div>
     </div>
-    <div class="paperTrading">
-      <current-holding :holding="holding"></current-holding>
+    <div v-if="isVip">
+      <div class="paperTrading">
+        <current-holding :holding="holding"></current-holding>
+      </div>
     </div>
     <div class="index_recommend">
       <div class="recommendRow1 recommendRownew">
@@ -139,7 +141,7 @@
                   <th>备注</th>
                 </tr>
                 </thead>
-                <tbody v-if="recommends.length>0 && !isLogin ">
+                <tbody v-if="recommends.length>0 && !isLogin && isVip">
                 <tr v-for="(item,index) in recommends">
                   <td >{{item.name}}<br/>{{item.stockName}}</td>
                   <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
@@ -150,7 +152,13 @@
                 </tbody>
                 <tbody v-else-if="isLogin">
                 <tr>
-                  <td colspan="7">您注册登录之后可见，无任何费用
+                  <td colspan="7">此信息仅限合作伙伴；如需帮助，请参考页面底部的联系方式。<!--您注册登录之后可见，无任何费用-->
+                  </td>
+                </tr>
+                </tbody>
+                <tbody v-else-if="!isVip">
+                <tr>
+                  <td colspan="7">此信息仅限合作伙伴；如需帮助，请参考页面底部的联系方式。
                   </td>
                 </tr>
                 </tbody>
@@ -165,7 +173,7 @@
             </div>
           </div>
         </div>
-        <div v-if="!isLogin">
+        <div v-if="isVip">
           <div class="showTransactionRecord showTransaction_Record">
             <a class="recommend_info">
               <router-link :to="{ path: '/recommend-info' }" >
@@ -360,7 +368,8 @@
         stockNum:[5,10],
         initAmount:"1000万",
         // initNum:10,
-        isLogin:true
+        isLogin:true,
+        isVip:false
       }
     },
     components: {
@@ -384,6 +393,9 @@
       console.log( getSession('username'))
       if(getSession('username')){
         this.isLogin=false;
+        if(getSession('canSee') && getSession('canSee')>0){
+          this.isVip=true;
+        }
         var tempArr=[
           {
             title:'首页',

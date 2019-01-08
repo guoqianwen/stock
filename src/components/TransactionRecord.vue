@@ -93,9 +93,11 @@
     </div>
 
     <!--当前持仓-->
-    <div class="paperTrading">
-      <div class="paperTrading_app">
-        <current-holding :holding="holding"></current-holding>
+    <div v-if="isVip">
+      <div class="paperTrading">
+        <div class="paperTrading_app">
+          <current-holding :holding="holding"></current-holding>
+        </div>
       </div>
     </div>
 
@@ -227,6 +229,7 @@
   import Pagination from "./Pagination";
   import {httpUrl} from '../apiConfig/api';
   import CurrentHolding from "./CurrentHolding";
+  import { setSession,getSession } from '../apiConfig/cookie.js';
 
   export default {
     name: "transaction-record",
@@ -247,7 +250,8 @@
         temp:[],
         userAccount:[],
         holding:[],
-        reverseRecords:[]
+        reverseRecords:[],
+        isVip:false
       }
     },
     components: {
@@ -356,6 +360,10 @@
       this.getList2();
       this.getOperatorSummary();
       this.fetchCurStockeData();
+      console.log(getSession('canSee'));
+      if(getSession('canSee') && getSession('canSee')>0){
+        this.isVip=true;
+      }
     },
     watch: {
       transactionRecord(val) {
