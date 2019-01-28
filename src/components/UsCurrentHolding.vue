@@ -2,7 +2,7 @@
   <div id="currentHolding" class="currentHoldingComponents">
     <div class="row currentHoldingRow">
       <div class="currentHoldingHeader">
-        <h3>A股当前持仓 <span>{{holding.length ? holding[0].newDate : ''}}<span class="timeArea">(北京时间)</span></span></h3>
+        <h3>美股当前持仓 <span>{{holding.length ? holding[0].newDate : ''}}<span class="timeArea">(纽约时间)</span></span></h3>
       </div>
       <div class="row-fluid">
       <div class="span6" style="float: left; width: 100%">
@@ -11,60 +11,61 @@
           <thead>
           <tr class="current-holding-thead-tr" >
             <th>股票代码<br>公司名称</th>
-            <th>买入日期</th>
-            <th>买入价格(￥)<br>当前价格(￥)</th>
-            <th>买入份数</th>
-            <th>买入成本(￥)<br>目前价值(￥)</th>
-            <th>浮动盈亏率<br>浮动盈亏(￥)</th>
+            <th>交易日期<br>资产类型</th>
+            <th>交易价格($)<br>当前价格($)</th>
+            <th>交易份数</th>
+            <th>交易成本($)<br>目前市值($)</th>
+            <th>浮动盈亏率<br>浮动盈亏($)</th>
           </tr>
           </thead>
           <tbody v-if="holding.length>0 && holdingCode != '11090010' && holdingCode != '11090012'">
-         <!-- <tr v-if="holding.length>0" v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">-->
           <tr  v-for="(item,index) in holding" >
             <td>{{item.name}}<br>{{item.stockName}}</td>
-            <td>{{item.oldDate}}</td>
+            <td>{{item.oldDate}}<br><span :class="{Green:item.type == '做多',SomeRed:item.type == '做空'}">{{item.type}}</span></td>
             <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice | setNum}}</div></td>
             <td><div class="data_box2"></div>{{item.amount | setNum}}</td>
             <td><div class="data_box3">{{item.cost | setNum}}<br>{{item.value | setNum}}</div></td>
-            <td><div class="data_box3">
-              <span v-if="item.gain>0" :class="{Green:item.gain<0,Red:item.gain>=0}">+{{item.gain  | toFixed2 }}%<br>+{{item.earning  | setNum}}</span>
-              <span v-else="item.gain<=0" :class="{Green:item.gain<0,Red:item.gain>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
-            </div></td>
+            <td>
+              <div class="data_box3">
+                <span v-if="item.gain>0" :class="{Red:item.gain<0,Green:item.gain>=0}">+{{item.gain  | toFixed2 }}%<br>+{{item.earning  | setNum}}</span>
+                <span v-else="item.gain<=0" :class="{Red:item.gain<0,Green:item.gain>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
+              </div>
+            </td>
           </tr>
           </tbody>
-            <tbody v-else-if="holding.length==0 && holdingCode != '11090010' && holdingCode != '11090012'">
-              <tr >
-                <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
-              </tr>
-            </tbody>
-            <tbody v-else>
-              <tr >
-                <td colspan="12">此信息仅限合作伙伴；如需帮助，请参考页面底部的联系方式。</td>
-              </tr>
-            </tbody>
+          <tbody v-else-if="holding.length==0 && holdingCode != '11090010' && holdingCode != '11090012'">
+            <tr >
+              <td colspan="12">目前市场不确定因素较多，暂时已清仓</td>
+            </tr>
+          </tbody>
+          <tbody v-else>
+            <tr >
+              <td colspan="12">此信息仅限合作伙伴；如需帮助，请参考页面底部的联系方式。</td>
+            </tr>
+          </tbody>
         </table>
 
         <table class="table table-striped table-bordered table-advance curHoldingTable app_table" contenteditable="false" >
           <thead>
           <tr class="current-holding-thead-tr" >
             <th>股票代码/<br>公司名称</th>
-            <th>买入日期</th>
-            <th>买入价/<br>当前价<br>(￥)</th>
-            <th>股票份数</th>
-            <th>买入成本/<br>目前价值<br>(￥)</th>
-            <th>盈亏率/<br>浮动盈亏<br>(￥)</th>
+            <th>交易日期/<br>资产类型</th>
+            <th>交易价格/<br>当前价格<br>($)</th>
+            <th>交易份数</th>
+            <th>交易成本/<br>目前市值<br>($)</th>
+            <th>浮动盈亏率/<br>浮动盈亏<br>($)</th>
           </tr>
           </thead>
           <tbody v-if="holding.length>0 && holdingCode != '11090010' && holdingCode != '11090012'">
           <tr v-for="(item,index) in holding" :class="item.gain>=0 ? 'success':''">
             <td>{{item.name}}<br>{{item.stockName}}</td>
-            <td>{{item.oldDate}}</td>
-            <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice   | setNum}}</div></td>
+            <td>{{item.oldDate}}<br><span :class="{Green:item.type == '做多',SomeRed:item.type == '做空'}">{{item.type}}</span></td>
+            <td><div class="data_box2">{{item.oldPrice | setNum}}<br>{{item.newPrice | setNum}}</div></td>
             <td class="data_box2_td"><div class="data_box2"></div>{{item.amount | setNum}}</td>
-            <td><div class="data_box3">{{item.cost  | setNum}}<br>{{item.value  | setNum}}</div></td>
+            <td><div class="data_box3">{{item.cost | setNum}}<br>{{item.value | setNum}}</div></td>
             <td><div class="data_box3">
-              <span v-if="item.gain>0" :class="{Green:item.earning<0,Red:item.earning>=0}">+{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
-              <span v-else="item.gain<=0" :class="{Green:item.earning<0,Red:item.earning>=0}">{{item.gain  | toFixed2 }}%<br>{{item.earning  | setNum}}</span>
+              <span v-if="item.gain>0" :class="{Red:item.earning<0,Green:item.earning>=0}">+{{item.gain | toFixed2 }}%<br>{{item.earning | setNum}}</span>
+              <span v-else="item.gain<=0" :class="{Red:item.earning<0,Green:item.earning>=0}">{{item.gain | toFixed2 }}%<br>{{item.earning | setNum}}</span>
             </div></td>
           </tr>
           </tbody>
@@ -90,7 +91,7 @@
 
 <script>
     export default {
-        name: "current-holding",
+        name: "us-current-holding",
         props:['holding','holdingCode'],
       mounted: function () {
       }
@@ -179,7 +180,7 @@
       margin-left: 0px;
     }
     .currentHoldingTable{
-      /*overflow: scroll;*/
+      overflow: scroll;
     }
     .current-holding-thead-tr th{
       text-align: center;

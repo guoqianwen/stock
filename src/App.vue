@@ -52,8 +52,13 @@ export default {
     if(getSession('username')){
       var tempArr=[
         {
-          title:'首页',
+          title:'A股',
           url:'index'
+        }
+        ,
+        {
+          title:'美股',
+          url:'usStock'
         }
         ,
         {
@@ -61,14 +66,31 @@ export default {
           url:'Forum'
         } ,
         {
-          title:'数据区',
-          url:'DataInquiry'
-        },
+          title:'A股诊股',
+          url:'DiagnosticStocks'
+        } ,
+//        {
+//          title:'数据区',
+//          url:'DataInquiry'
+//        },
         {
           title:'退出',
           url:'SignUp'
         }
       ];
+      if (getSession('authority') != null && getSession('authority') != '') {
+        if(getSession('authority').search('US') == -1){
+          tempArr.splice(1,1);
+          if (getSession('authority').search('AD') == -1) {
+            tempArr.splice(2,1);
+          }
+        } else if (getSession('authority').search('AD') == -1) {
+          tempArr.splice(3,1);
+        }
+      } else {
+        tempArr.splice(1,1);
+        tempArr.splice(2,1);
+      }
       this.aa.seturl(tempArr);
       this.items=this.aa.url;
     }
@@ -187,8 +209,15 @@ a:hover{
   .Green{
     color: #0B9F91;
   }
+  .SomeGreen
+  {
+    color: #09cbba;
+  }
   .Red{
     color: #E9531E;
+  }
+  .SomeRed{
+    color: #dc8495;
   }
   .navbar {
     margin-bottom: 0px;

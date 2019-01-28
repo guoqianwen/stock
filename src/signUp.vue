@@ -25,7 +25,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
   </div>
@@ -36,6 +35,7 @@
 <script>
   import { setSession,getSession } from './apiConfig/cookie.js'
   import {httpUrl} from './apiConfig/api'
+  import aa from "./apiConfig/global";
   export default {
     name: "sign-up",
     data(){
@@ -48,20 +48,31 @@
     mounted(){
       if(getSession('username')&& getSession('username')!=undefined && getSession('username')!=""){
         setSession('username',"");
+        setSession('access_code',"");
+        setSession('authority',"")
         var tempArr=[
           {
-            title:'首页',
+            title:'A股',
             url:'index'
           }
           ,
+//          {
+//            title:'美股',
+//            url:'usStock'
+//          }
+//          ,
           {
             title:'讨论区',
             url:'Forum'
           } ,
-          {
-            title:'数据区',
-            url:'DataInquiry'
-          },
+//          {
+//            title:'A股诊股',
+//            url:'DiagnosticStocks'
+//          } ,
+//          {
+//            title:'数据区',
+//            url:'DataInquiry'
+//          },
           {
             title:'登录',
             url:'SignUp'
@@ -79,40 +90,64 @@
         }else if(this.password == ""){
           alert("请输入密码!")
         }else{
-          let data = {'name':this.username,'password':this.password}
+          let data = {'name':this.username,'password':this.password};
           this.$http.post(httpUrl.userLoginApi,data).then((res)=>{
             if(res.body.code == 0 ){
-              // console.log(res.body.data.entity.name)
               setSession('username',res.body.data.entity.name);
-              setSession('canSee',res.body.data.entity.canSee);
-              console.log(res.body.data.entity)
+              setSession('access_code',res.body.data.entity.accessCode);
+              setSession('authority',res.body.data.entity.authority);
+              console.log(res.body.data.entity);
               var tempArr=[
                 {
-                  title:'首页',
+                  title:'A股',
                   url:'index'
+                }
+                ,
+                {
+                  title:'美股',
+                  url:'usStock'
                 }
                 ,
                 {
                   title:'讨论区',
                   url:'Forum'
-                } ,
+                }
+                ,
                 {
-                  title:'数据区',
-                  url:'DataInquiry'
-                },
+                  title:'A股诊股',
+                  url:'DiagnosticStocks'
+                }
+                ,
+//                {
+//                  title:'数据区',
+//                  url:'DataInquiry'
+//                }
+//                ,
                 {
                   title:'退出',
                   url:'SignUp'
-                },
-
+                }
               ];
+              if (getSession('authority') != null && getSession('authority') != '') {
+                if(getSession('authority').search('US') == -1){
+                  tempArr.splice(1,1);
+                  if (getSession('authority').search('AD') == -1) {
+                    tempArr.splice(2,1);
+                  }
+                } else if (getSession('authority').search('AD') == -1) {
+                  tempArr.splice(3,1);
+                }
+              } else {
+                tempArr.splice(1,1);
+                tempArr.splice(2,1);
+              }
               this.aa.seturl(tempArr);
               setTimeout(function(){
                 this.$router.push({path:'index'})
               }.bind(this),1000);
               this.reload();
             }else{
-               alert(res.body.message)
+               //alert(res.body.message)
             }
           })
         }

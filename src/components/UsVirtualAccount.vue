@@ -2,7 +2,7 @@
   <div class="virtualAccount">
     <div class="row virtualAccountRow">
       <div class="virtualAccountHeader">
-        <h3 class="virtureAllLook">A股账户总览</h3>
+        <h3 class="virtureAllLook">美股账户总览</h3>
       </div>
       <div class="row-fluid virtualAccountBox">
         <div class="col-md-12 virtualAccountC8">
@@ -17,43 +17,47 @@
                   </tr>
 
                   <tr>
-                    <th class="head_td">当天总资产</th>
+                    <th class="head_td head_td_pc">当天总资产($)</th>
+                    <th class="head_td head_td_app">当天总资产<br>($)</th>
                     <td>
                       <div class="data_box">{{todayAccountBo.totalAsset|setNum}}</div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">当天浮动盈亏</th>
+                    <th class="head_td head_td_pc">当天浮动盈亏($)</th>
+                    <th class="head_td head_td_app">当天浮动<br>盈亏($)</th>
                     <td>
-                      <div v-if="todayAccountBo.relativeProfit>0" class="data_box" :class="{Green:todayAccountBo.relativeProfit<0,Red:todayAccountBo.relativeProfit>=0}">
+                      <div v-if="todayAccountBo.relativeProfit>0" class="data_box" :class="{Red:todayAccountBo.relativeProfit<0,Green:todayAccountBo.relativeProfit>=0}">
                         +{{todayAccountBo.relativeProfit|setNum}}
                       </div>
-                      <div v-else="todayAccountBo.relativeProfit<=0" class="data_box" :class="{Green:todayAccountBo.relativeProfit<0,Red:todayAccountBo.relativeProfit>=0}">
+                      <div v-else="todayAccountBo.relativeProfit<=0" class="data_box" :class="{Red:todayAccountBo.relativeProfit<0,Green:todayAccountBo.relativeProfit>=0}">
                         {{todayAccountBo.relativeProfit|setNum}}
                       </div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">当天浮动盈亏率</th>
+                    <th class="head_td head_td_pc">当天浮动盈亏率</th>
+                    <th class="head_td head_td_app">当天浮动<br>盈亏率</th>
                     <td>
-                      <div v-if="todayAccountBo.relativeProfitRate>0" class="data_box" :class="{Green:todayAccountBo.relativeProfitRate<0,Red:todayAccountBo.relativeProfitRate>=0}">
+                      <div v-if="todayAccountBo.relativeProfitRate>0" class="data_box" :class="{Red:todayAccountBo.relativeProfitRate<0,Green:todayAccountBo.relativeProfitRate>=0}">
                         +{{todayAccountBo.relativeProfitRate != undefined ? (todayAccountBo.relativeProfitRate * 100).toFixed(2) : 0.00}}%
                       </div>
-                      <div v-else="todayAccountBo.relativeProfitRate<=0" class="data_box" :class="{Green:todayAccountBo.relativeProfitRate<0,Red:todayAccountBo.relativeProfitRate>=0}">
+                      <div v-else="todayAccountBo.relativeProfitRate<=0" class="data_box" :class="{Red:todayAccountBo.relativeProfitRate<0,Green:todayAccountBo.relativeProfitRate>=0}">
                         {{todayAccountBo.relativeProfitRate != undefined ? (todayAccountBo.relativeProfitRate * 100).toFixed(2) : 0.00}}%
                       </div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">当天跑赢上证</th>
+                    <th class="head_td head_td_pc">当天跑赢标普500</th>
+                    <th class="head_td head_td_app">当天跑赢<br>标普500</th>
                     <td>
-                      <div v-if="todayAccountBo.beatStandardRate>0" class="data_box" :class="{Green:todayAccountBo.beatStandardRate<0,Red:todayAccountBo.beatStandardRate>=0}">
+                      <div v-if="todayAccountBo.beatStandardRate>0" class="data_box" :class="{Red:todayAccountBo.beatStandardRate<0,Green:todayAccountBo.beatStandardRate>=0}">
                         +{{todayAccountBo.beatStandardRate != undefined ? (todayAccountBo.beatStandardRate).toFixed(2) : 0.00}}%
                       </div>
-                      <div v-else="todayAccountBo.beatStandardRate<=0" class="data_box" :class="{Green:todayAccountBo.beatStandardRate<0,Red:todayAccountBo.beatStandardRate>=0}">
+                      <div v-else="todayAccountBo.beatStandardRate<=0" class="data_box" :class="{Red:todayAccountBo.beatStandardRate<0,Green:todayAccountBo.beatStandardRate>=0}">
                         {{todayAccountBo.beatStandardRate != undefined ? (todayAccountBo.beatStandardRate).toFixed(2) : 0.00}}%
                       </div>
                     </td>
@@ -67,15 +71,16 @@
                   </tr>
 
                   <tr>
-                    <th class="head_td head_td_pc">持股市值</th>
-                    <th class="head_td head_td_app">持股市值&#12288;&#12288;</th>
+                    <th class="head_td head_td_pc">持股市值($)</th>
+                    <th class="head_td head_td_app">持股市值<br>($)</th>
                     <td>
                       <div class="data_box">{{todayAccountBo.stockMarket|setNum}}</div>
                     </td>
                   </tr>
+
                   <tr>
-                    <th class="head_td head_td_pc">账户余额</th>
-                    <th class="head_td head_td_app">账户余额&#12288;&#12288;&#12288;</th>
+                    <th class="head_td head_td_pc">账户余额($)</th>
+                    <th class="head_td head_td_app">账户余额($)</th>
                     <td>
                       <div class="data_box">{{todayAccountBo.balance|setNum}}</div>
                     </td>
@@ -94,44 +99,47 @@
                   </tr>
 
                   <tr>
-                    <th class="head_td head_td_pc">初始投资</th>
-                    <th class="head_td head_td_app">初始投资&#12288;</th>
+                    <th class="head_td head_td_pc">初始投资($)</th>
+                    <th class="head_td head_td_app">初始投资<br>($)</th>
                     <td>
                       <div class="data_box">{{totalAccountBo.initAmount|setNum}}</div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">累计浮动盈亏</th>
+                    <th class="head_td head_td_pc">累计浮动盈亏($)</th>
+                    <th class="head_td head_td_app">累计浮动<br>盈亏($)</th>
                     <td>
-                      <div v-if="totalAccountBo.relativeProfit>0" class="data_box" :class="{Green:totalAccountBo.relativeProfit<0,Red:totalAccountBo.relativeProfit>=0}">
+                      <div v-if="totalAccountBo.relativeProfit>0" class="data_box" :class="{Red:totalAccountBo.relativeProfit<0,Green:totalAccountBo.relativeProfit>=0}">
                         +{{totalAccountBo.relativeProfit|setNum}}
                       </div>
-                      <div v-else="totalAccountBo.relativeProfit<=0" class="data_box" :class="{Green:totalAccountBo.relativeProfit<0,Red:totalAccountBo.relativeProfit>=0}">
+                      <div v-else="totalAccountBo.relativeProfit<=0" class="data_box" :class="{Red:totalAccountBo.relativeProfit<0,Green:totalAccountBo.relativeProfit>=0}">
                         {{totalAccountBo.relativeProfit|setNum}}
                       </div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">累计浮动盈亏率</th>
+                    <th class="head_td head_td_pc">累计浮动盈亏率</th>
+                    <th class="head_td head_td_app">累计浮动<br>盈亏率</th>
                     <td>
-                      <div v-if="totalAccountBo.relativeProfitRate>0" class="data_box" :class="{Green:totalAccountBo.relativeProfitRate<0,Red:totalAccountBo.relativeProfitRate>=0}">
+                      <div v-if="totalAccountBo.relativeProfitRate>0" class="data_box" :class="{Red:totalAccountBo.relativeProfitRate<0,Green:totalAccountBo.relativeProfitRate>=0}">
                         +{{totalAccountBo.relativeProfitRate != undefined ? (totalAccountBo.relativeProfitRate * 100).toFixed(2) : 0.00}}%
                       </div>
-                      <div v-else="totalAccountBo.relativeProfitRate<=0" class="data_box" :class="{Green:totalAccountBo.relativeProfitRate<0,Red:totalAccountBo.relativeProfitRate>=0}">
+                      <div v-else="totalAccountBo.relativeProfitRate<=0" class="data_box" :class="{Red:totalAccountBo.relativeProfitRate<0,Green:totalAccountBo.relativeProfitRate>=0}">
                         {{totalAccountBo.relativeProfitRate != undefined ? (totalAccountBo.relativeProfitRate * 100).toFixed(2) : 0.00}}%
                       </div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">累计跑赢上证</th>
+                    <th class="head_td head_td_pc">累计跑赢标普500</th>
+                    <th class="head_td head_td_app">累计跑赢<br>标普500</th>
                     <td>
-                      <div v-if="totalAccountBo.beatStandardRate>0" class="data_box" :class="{Green:totalAccountBo.beatStandardRate<0,Red:totalAccountBo.beatStandardRate>=0}">
+                      <div v-if="totalAccountBo.beatStandardRate>0" class="data_box" :class="{Red:totalAccountBo.beatStandardRate<0,Green:totalAccountBo.beatStandardRate>=0}">
                         +{{totalAccountBo.beatStandardRate != undefined ? (totalAccountBo.beatStandardRate).toFixed(2) : 0.00}}%
                       </div>
-                      <div v-else="totalAccountBo.beatStandardRate<=0" class="data_box" :class="{Green:totalAccountBo.beatStandardRate<0,Red:totalAccountBo.beatStandardRate>=0}">
+                      <div v-else="totalAccountBo.beatStandardRate<=0" class="data_box" :class="{Red:totalAccountBo.beatStandardRate<0,Green:totalAccountBo.beatStandardRate>=0}">
                         {{totalAccountBo.beatStandardRate != undefined ? (totalAccountBo.beatStandardRate).toFixed(2) : 0.00}}%
                       </div>
                     </td>
@@ -145,16 +153,17 @@
                   </tr>
 
                   <tr>
-                    <th class="head_td">逆回购总收益</th>
+                    <th class="head_td head_td_pc">近一年最大回撤</th>
+                    <th class="head_td head_td_app">近一年最大<br>回撤</th>
                     <td>
-                      <div class="data_box">{{totalAccountBo.repoProfit|setNum}}</div>
+                      <div class="data_box">{{totalAccountBo.maxWithdrawal|setNum}}%</div>
                     </td>
                   </tr>
 
                   <tr>
-                    <th class="head_td">逆回购总收益率</th>
+                    <th class="head_td">理财收益($)</th>
                     <td>
-                      <div class="data_box">{{totalAccountBo.repoProfitRate|setNum}}%</div>
+                      <div class="data_box">{{totalAccountBo.repoProfit != undefined ? (totalAccountBo.repoProfit|setNum) : 0}}</div>
                     </td>
                   </tr>
                 </tbody>
@@ -162,6 +171,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
      </div>
@@ -170,20 +180,8 @@
 <script>
   import echarts from 'echarts'
   export default {
-    name: "virtual-account",
+    name: "us-virtual-account",
     props:{
-      // virtCountStart:{
-      //   type: Object,
-      //   required:true
-      // },
-      // virtCountEnd:{
-      //   type: Object,
-      //   required:true
-      // },
-      // virtCountSummary:{
-      //   type: Object,
-      //     required:true
-      // },
       todayAccountBo:{
         type: Object,
         required:true
@@ -289,9 +287,6 @@
   }
 
   .virtualAccountHeader h3 {
-    /*height: 4rem;*/
-    /*  margin-top:10px;*/
-    /*line-height: 4rem;*/
     text-align: center;
   }
 
@@ -442,14 +437,15 @@
 
     }
     .col-md-12 table td {
-      width: 20%;
+      width: 30%;
+      padding: 6px;
     }
     .data_box {
       width: 100%;
       text-align: right;
     }
     .head_td {
-      width: 60%;
+      width: 50%;
       text-align: left;
     }
     tr {

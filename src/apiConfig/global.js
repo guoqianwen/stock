@@ -1,18 +1,27 @@
 export default {
   url: [
     {
-      title:'首页',
+      title:'A股',
       url:'index'
     }
     ,
+    // {
+    //   title:'美股',
+    //   url:'usStock'
+    // }
+    // ,
     {
       title:'讨论区',
       url:'Forum'
     } ,
-    {
-      title:'数据区',
-      url:'DataInquiry'
-    },
+    // {
+    //   title:'A股诊股',
+    //   url:'DiagnosticStocks'
+    // } ,
+    // {
+    //   title:'数据区',
+    //   url:'DataInquiry'
+    // },
     {
       title:'登录',
       url:'SignUp'

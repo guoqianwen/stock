@@ -27,17 +27,17 @@
          data-slide="next">&rsaquo;</a>
     </div>
     <div class="paperTrading">
-      <virtual-account :todayAccountBo="todayAccountBo" :totalAccountBo="totalAccountBo" ></virtual-account>
+      <us-virtual-account :todayAccountBo="todayAccountBo" :totalAccountBo="totalAccountBo" ></us-virtual-account>
     </div>
     <div class="latest_recommend_list">
-      <latest-recommendation heading="A股业绩总览" :recommendations="recommendationsList"></latest-recommendation>
+      <us-latest-recommendation heading="美股业绩总览" :recommendations="recommendationsList"></us-latest-recommendation>
     </div>
     <div class="index_contrast">
-      <index-contrast  heading="A股盈亏率对比"  @filterIndexCurImg="filterIndexCurImg($event)"  :GainInfo="GainInfo"  :select="curTime"></index-contrast>
+      <us-index-contrast  heading="美股盈亏率对比"  @filterIndexCurImg="filterIndexCurImg($event)"  :GainInfo="GainInfo"  :select="curTime"></us-index-contrast>
     </div>
     <div class="operationAccount">
       <div class="currentHoldingHeader">
-        <h3>A股交易统计</h3>
+        <h3>美股交易统计</h3>
         <h4 class="currentHoldingTime">{{holding.length ? holding[0].newData : ''}}</h4>
       </div>
       <div class="row operationAccountRow">
@@ -45,40 +45,8 @@
           <table class="table table-striped table-bordered table-advance curHoldingTable table_now" contenteditable="false" >
             <tbody>
             <tr class="current-holding-thead-tr">
-              <th class="head_td">当前持股</th>
-              <td class="data_box">{{userAccount.holdNumber}}只</td>
-            </tr>
-            <tr class="current-holding-thead-tr">
-              <th class="head_td">挣钱股票</th>
-              <td class="data_box">{{userAccount.profitNumber}}只</td>
-            </tr>
-            <tr class="current-holding-thead-tr">
-              <th class="head_td">赔钱股票</th>
-              <td class="data_box">{{userAccount.lossNumber}}只</td>
-            </tr>
-            <tr class="current-holding-thead-tr">
-              <th class="head_td">胜率</th>
-              <td class="data_box" :class="{Green:userAccount.winRate<50,Red:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
-            </tr>
-            <tr class="current-holding-thead-tr">
-              <th class="head_td head_td_pc">近一月单日最高盈亏率</th>
-              <th class="head_td head_td_app">近一月单日最高<br>盈亏率</th>
-              <td class="data_box" :class="{Green:userAccount.maxGain<0,Red:userAccount.maxGain>=0}">+{{userAccount.maxGain *100 |toFixed2 }}%</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-6 clearPadRig avg_tb">
-          <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
-            <tbody>
-            <tr class="current-holding-thead-tr">
-              <th class="head_td">平均盈亏率</th>
-              <td v-if="userAccount.avgProfitRate>0" :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">+{{userAccount.avgProfitRate |toFixed2  }}%</td>
-              <td v-else :class="{Green:userAccount.avgProfitRate<0,Red:userAccount.avgProfitRate>=0}" class="data_box">{{userAccount.avgProfitRate |toFixed2 }}%</td>
-            </tr>
-            <tr class="current-holding-thead-tr">
-              <th class="head_td">平均持有天数</th>
-              <td class="data_box">{{userAccount.avgHoldDay}}天</td>
+              <th class="head_td">交易总数</th>
+              <td class="data_box">{{userAccount.tradeNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
               <th class="head_td">买入次数</th>
@@ -89,9 +57,38 @@
               <td class="data_box">{{userAccount.sellNumber}}次</td>
             </tr>
             <tr class="current-holding-thead-tr">
-              <th class="head_td head_td_pc">近一月单日最低盈亏率</th>
-              <th class="head_td head_td_app">近一月单日最低<br>盈亏率</th>
-              <td class="data_box" :class="{Green:userAccount.minGain<0,Red:userAccount.minGain>=0}">{{userAccount.minGain *100 |toFixed2 }}%</td>
+              <th class="head_td">做空次数</th>
+              <td class="data_box">{{userAccount.shortNumber}}次</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">平仓次数</th>
+              <td class="data_box">{{userAccount.coverNumber}}次</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6 clearPadRig avg_tb">
+          <table class="table table-striped table-bordered table-advance curHoldingTable table_avg" contenteditable="false" >
+            <tbody>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">当前持仓</th>
+              <td class="data_box">{{userAccount.holdNumber}}只</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">赚钱股票</th>
+              <td class="data_box">{{userAccount.profitNumber}}只</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">赔钱股票</th>
+              <td class="data_box">{{userAccount.lossNumber}}只</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">平均持有天数</th>
+              <td class="data_box">{{userAccount.avgHoldDay}}天</td>
+            </tr>
+            <tr class="current-holding-thead-tr">
+              <th class="head_td">胜率</th>
+              <td class="data_box" :class="{Red:userAccount.winRate<50,Green:userAccount.winRate>=0}">{{userAccount.winRate |toFixed2 }}%</td>
             </tr>
             </tbody>
           </table>
@@ -99,19 +96,19 @@
       </div>
       <div class="showTransactionRecord">
         <a>
-          <router-link :to="{ path: '/components/transaction-record' }" >
+          <router-link :to="{ path: '/components/us-transaction-record' }" >
             查看交易记录
           </router-link>
         </a>
       </div>
     </div>
     <div class="paperTrading">
-      <current-holding :holding="holding" :holdingCode="holdingCode"></current-holding>
+      <us-current-holding :holding="holding" :holdingCode="holdingCode"></us-current-holding>
     </div>
     <div class="index_recommend">
       <div class="recommendRow1 recommendRownew">
         <div class="recommendHeader">
-          <h3 style="width: 100%;text-align: center">A股交易计划<span class="recommentTime">{{holding.length ? holding[0].newDate : ''}}<span class="timeArea">(北京时间)</span></span></h3>
+          <h3 style="width: 100%;text-align: center">美股交易计划<span class="recommentTime">{{holding.length ? holding[0].newDate : ''}}<span class="timeArea">(纽约时间)</span></span></h3>
           <!--<h3 style="width: 100%;text-align: center">最新推荐 <span class="recommentTime">{{recommends.length>0 ? recommends[0].newDate : ""}}</span></h3>-->
         </div>
         <div class="recomment_row">
@@ -122,25 +119,25 @@
                 <tr class="recommend-thead-tr">
                   <th>股票代码<br/>公司名称</th>
                   <th>计划操作</th>
-                  <th>计划操作比<br>计划操作额(￥)</th>
+                  <th>计划操作比<br>计划操作额($)</th>
                   <th>备注</th>
                 </tr>
                 </thead>
-                <tbody v-if="recommends.length>0 && recommendsCode != '11090010' && recommendsCode != '11090012'">
+                <tbody v-if="recommends.length > 0 && recommendsCode != '11090010' && recommendsCode != '11090012'">
                 <tr v-for="(item,index) in recommends">
                   <td >{{item.name}}<br/>{{item.stockName}}</td>
-                  <td  :class="{Green:item.action=='卖出',Red:item.action=='买入'}">{{item.action}}</td>
-                  <td>{{item.investmentRatio*100 |toFixed2 }}%<br>{{item.amount |setNum}}</td>
+                  <td  :class="{Red:item.action=='卖出', SomeRed:item.action=='做空', Green:item.action=='买入', SomeGreen:item.action=='平仓'}">{{item.action}}</td>
+                  <td>{{item.investmentRatio |toFixed2 }}%<br>{{item.amount |setNum}}</td>
                   <td>{{item.note}}</td>
                 </tr>
                 </tbody>
                 <tbody v-else-if="recommends.length == 0 && recommendsCode != '11090010' && recommendsCode != '11090012'">
-                <tr>
+                <tr >
                   <td colspan="7">当前股市风险较高，暂不推荐操作</td>
                 </tr>
                 </tbody>
                 <tbody v-else>
-                <tr >
+                <tr>
                   <td colspan="7">此信息仅限合作伙伴；如需帮助，请参考页面底部的联系方式。</td>
                 </tr>
                 </tbody>
@@ -175,33 +172,6 @@
         </div>
       </div>
     </div>
-    <!--<div class="SettingUpAssets">
-      <div class="SettingUpAssetsHead">
-        <h3 style="width: 100%; text-align: center">资产设置</h3>
-      </div>
-      <div class="SettingUpAssetsInfo">
-        <div class="row-fluid">
-          <div class="span12">
-            <table class="table table-striped table-bordered table-advance setting_recomment_tb" >
-              <tbody >
-              <tr >
-                <td  class="SettingUpAssetsItemName">总金额</td>
-                <td >
-                  <select id="stockMoney"   v-model="initAmount">
-                    <option  v-for="send  in stockMoney" name="sendSymbolId" :value="send.value" >{{send.value}}</option>
-                  </select>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-            <div class="clear"></div>
-            <div>
-              <span  class="help-block textAlignLeft"><a class="aRemarks">注：</a>将总金额按照份数分成等分，按照每一个推荐股票买入一份金额的规则进行交易</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>-->
     <div class="feature">
       <div class="row_top">
         <div class="row row_about">
@@ -214,19 +184,19 @@
           </div>
           <div class="col-md-12 col-md-6_about">
             <div class="icon_title">
-                <div class="icon">
-                  <i class="iconfont icon-tuandui-tianchong iconfont-icon"></i>
-                </div>
-                <div class="title">关于我们</div>
+              <div class="icon">
+                <i class="iconfont icon-tuandui-tianchong iconfont-icon"></i>
+              </div>
+              <div class="title">关于我们</div>
             </div>
             <div class="desc">毕达科技是核心团队由硅谷资深的人工智能专家，及股票投资资深人士领头创建。主要开发人员分布于硅谷，北京，上海三地。勾股是毕达科技公司（Pyttatec.com）科学家及人工智能工程师为中国股市量身打造的股票交易系统。勾股系统的交易算法集巴菲特的价值投资，华尔街的量化风控策略，及机器深度学习于一身。勾股交易属于低频，稳健，长短结合型的价值投资。</div>
           </div>
           <div class="col-md-12 col-md-6_about">
             <div class="icon_title">
-                  <div class="icon">
-                    <i class="iconfont icon-taolun iconfont-icon"></i>
-                  </div>
-                  <div class="title">合作交流</div>
+              <div class="icon">
+                <i class="iconfont icon-taolun iconfont-icon"></i>
+              </div>
+              <div class="title">合作交流</div>
             </div>
             <div class="desc">毕达正在策划私募基金，希望能与您共赢。与此同时，也愿与大资金机构或个人合作（5000万元资本以上），为您量身制定交易策略。有意者请与bd@pyttatec.com联系。如对我们的产品系统等有建议，请联系tec@pyttatec.com， 或前往 <router-link :to="{ path: '/forum' }" >
               （讨论区）
@@ -250,12 +220,12 @@
 </template>
 
 <script>
-  import LatestRecommendation from './components/LatestRecommendation';
-  import Recommend from './components/Recommend';
-  import MarketTrend from './components/MarketTrend';
-  import CurrentHolding from './components/CurrentHolding';
-  import IndexContrast  from './components/IndexContrast';
-  import VirtualAccount from "./components/VirtualAccount";
+  import UsLatestRecommendation from './components/UsLatestRecommendation';
+  import UsRecommend from './components/UsRecommend';
+  import UsMarketTrend from './components/UsMarketTrend';
+  import UsCurrentHolding from './components/UsCurrentHolding';
+  import UsIndexContrast  from './components/UsIndexContrast';
+  import UsVirtualAccount from "./components/UsVirtualAccount";
   import { setSession,getSession } from './apiConfig/cookie.js';
   import {httpUrl} from './apiConfig/api'
   export default {
@@ -317,18 +287,18 @@
       }
     },
     components: {
-      MarketTrend,
-      'virtual-account': VirtualAccount,
-      'v-recommend':Recommend,
-     'market-trend': MarketTrend,
-      'current-holding':CurrentHolding,
-      "latest-recommendation":LatestRecommendation,
-      "index-contrast":IndexContrast
+      UsMarketTrend,
+      'us-virtual-account': UsVirtualAccount,
+      'v-us-recommend':UsRecommend,
+      'us-market-trend': UsMarketTrend,
+      'us-current-holding':UsCurrentHolding,
+      "us-latest-recommendation":UsLatestRecommendation,
+      "us-index-contrast":UsIndexContrast
     },
     mounted: function () {
       if(getSession('Amount-Share')){
         var str=getSession('Amount-Share');
-            this.initAmount=str;
+        this.initAmount=str;
       }
       console.log( getSession('username'))
       if(getSession('username')){
@@ -349,8 +319,8 @@
             url:'Forum'
           } ,
           {
-            title:'A股诊股',
-            url:'DiagnosticStocks'
+          title:'A股诊股',
+          url:'DiagnosticStocks'
           } ,
 //          {
 //            title:'数据区',
@@ -376,11 +346,11 @@
         }
         this.aa.seturl(tempArr);
       }
-        this.getGainInfo();
-        /**
+      this.getGainInfo();
+      /**
        * 获取首页的最新推荐赢亏数据
        */
-        this.newSearchLastGainApi();
+      this.newSearchLastGainApi();
       /**
        * 获取上证指数与毕达指数的对比
        */
@@ -413,7 +383,7 @@
 
     methods:{
       newSearchLastGainApi(){
-        this.$http.get(httpUrl.newSearchLastGainApi
+        this.$http.get(httpUrl.newSearchLastGainApiUs
         ).then(function(res){
           if(res.body.code==0){
             this.recommendationsList=res.body.data.entities;
@@ -439,7 +409,7 @@
        * 获取当前持股信息
        */
       fetchCurStockeData (){
-        this.$http.get(httpUrl.tradeFindStockApi).then(function(res){
+        this.$http.get(httpUrl.tradeFindStockApiUs).then(function(res){
           this.holdingCode=res.body.code;
           if(res.body.code==0){
             this.holding=res.body.data.entities;
@@ -455,7 +425,7 @@
        * 获取用户账户信息数据
        */
       getVirtualAccount:function () {
-        this.$http.get(httpUrl.getUserAccoutInfoApi).then(function (res) {
+        this.$http.get(httpUrl.getUserAccoutInfoApiUs).then(function (res) {
           if (res.body.code == 0) {
             this.todayAccountBo=res.body.data.entity.todayAccountBo;
             this.totalAccountBo=res.body.data.entity.totalAccountBo;
@@ -491,11 +461,12 @@
       },
 
       getGainInfo:function(){
-        this.$http.get(httpUrl.getGainInfoApi,{
+        this.$http.get(httpUrl.getGainInfoApiUs,{
           params:{diff:this.curTime}
         }).then(function (res) {
           if (res.body.code == 0) {
             this.GainInfo = res.body.data.entity;
+            console.log(this.GainInfo);
           } else {
             alert(res.body.message)
           }
@@ -509,7 +480,7 @@
        * 获取操作统计数据
        */
       getOperatorSummary:function () {
-        this.$http.get(httpUrl.getOperatorSummaryApi).then(function (res) {
+        this.$http.get(httpUrl.getOperatorSummaryApiUs).then(function (res) {
           if (res.body.code == 0) {
             this.userAccount = res.body.data.entity;
           } else {
@@ -524,7 +495,7 @@
        * 获取最新推荐的数据
        */
       fetchLastRecomData (){
-        this.$http.get(httpUrl.lastRecommendationApi).then(function(res){
+        this.$http.get(httpUrl.lastRecommendationApiUs).then(function(res){
           this.recommendsCode=res.body.code;
           if(res.body.code==0){
             this.recommends=res.body.data.entities;
@@ -595,17 +566,17 @@
     outline: 0;
     opacity: .9;
   }
- .feature{
-   width: 96%;
-   height: auto;
-   background: #ffffff;
-   margin: 2rem 2% 2rem 2%;
-   padding:  0 0 3rem 0;
+  .feature{
+    width: 96%;
+    height: auto;
+    background: #ffffff;
+    margin: 2rem 2% 2rem 2%;
+    padding:  0 0 3rem 0;
   }
- .featureTitle{
-   padding: 1rem;
-   text-align: center;
- }
+  .featureTitle{
+    padding: 1rem;
+    text-align: center;
+  }
   .featureTitle>h3{
     padding:0rem;
     text-align: center;
@@ -623,8 +594,8 @@
     padding: 0rem  0rem 0rem 15%;
     font-size: 50px;
   }
- .title {
-   padding: 0rem  0rem 0rem 2%;
+  .title {
+    padding: 0rem  0rem 0rem 2%;
     font-size: 2rem;
     line-height: 300%;
     font-weight: bold;
@@ -825,10 +796,6 @@
       font-size: x-small;
     }
 
-    /*.carousel-inner {*/
-    /*display: none;*/
-    /*}*/
-
 
   }
   /*
@@ -845,9 +812,6 @@
    */
   @media screen and (max-width:600px)
   {
-    /*.carousel-inner {
-      display: none;
-    }*/
     .head_td_pc{
       display: none;
     }
@@ -859,7 +823,6 @@
     }
     .feature {
       margin: 20px auto;
-      /*width: 96%;*/
       width: 100%;
     }
 
@@ -895,9 +858,7 @@
       color: #595959;
     }
     .desc {
-      /*text-align: center;*/
       line-height: 100%;
-      /*font-size:0.5rem;*/
       font-size: 1.2rem;
       width: 100%;
       margin: auto;
@@ -913,7 +874,7 @@
       margin: 20px 0;
     }
     .head_td{
-      width: 70%;
+      width: 40%;
       text-align: left;
       border: none;
     }
@@ -938,7 +899,6 @@
     }
     .icon{
       float: left;
-      /*margin-left: 1%;*/
       margin-top: 20px;
       padding: 0rem 0rem 0rem 11%;
     }
@@ -965,8 +925,8 @@
     }
     .table td{
       border: none;
-      /*border-right: 3px solid #b20030;*/
-      padding: 5px;
+      padding: 1px;
+      width: 10%;
     }
     .recomment_tb{
       border: 1px solid #ddd;
@@ -989,7 +949,6 @@
     }
     .recomment_row {
       margin-bottom: 20px;
-      /*float: left;*/
     }
     .recommend_info{
       font-size: 14px;

@@ -16,6 +16,8 @@ Vue.http.interceptors.push((request,next)=>{
   //request.credentials = true; // 接口每次请求会跨域携带cookie
   //request.method= 'POST'; // 请求方式（get,post）
   request.headers.set('Access-Control-Allow-Origin',"*") // 请求headers携带参数
+  request.headers.set('Access-code',getSession("access_code")) // 请求headers携带参数
+
   if(getSession("username")!=""){
     console.log("传递给后台的code："+encodeURI(getSession("username")))
     request.headers.set('Account-Code',encodeURI(getSession("username"))) // 请求headers携带参数
@@ -34,7 +36,7 @@ Vue.http.interceptors.push((request,next)=>{
   });
 })
 Vue.prototype.aa = aa;
-console.log(aa)
+//console.log(aa)
 Object.keys(custom).forEach(key => {
   Vue.filter(key, custom[key])
 })
